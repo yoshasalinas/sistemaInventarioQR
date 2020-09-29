@@ -1,0 +1,26 @@
+/*Barra de navegacion*/
+.navbar {
+    background-color: whitesmoke;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+    min-height: 100px;
+}
+
+.nav-link {
+    color: black;
+}
+
+.nav-link:hover {
+    color: #cc9966;
+}
+
+.logoNavbar {
+    height: 50px
+}
+
+.navbar-toggler {
+    font-size: 50px;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
