@@ -2,37 +2,49 @@
 
 include('conexion_db.php');
 
+
+$rol = $_POST['rol'];
 $nombre = $_POST['nombre'];
-$apellidoPaterno = $_POST['aPaterno'];
 $apellidoMaterno = $_POST['aMaterno'];
+$apellidoPaterno = $_POST['aPaterno'];
 $nombreUsuario = $_POST['nombreUsuario'];
-$email = $_POST['email'];
-$pass = $_POST['password'];
+$pass = $_POST['contraseña'];
+$email = $_POST['correo'];
+
+ 
 
 
-INSERT INTO `usuarios` (`id_usuario`, `idx_rol`, `nombre`, `apellido_paterno`, `apellido_materno`, `nombre_usuario`, `contrasena`, `correo`) VALUES (NULL, '1', 'Yoshajani', 'Salinas', 'Montes', 'yosha', 'yosha123', 'yosha123');
+
+$consulta ="INSERT INTO usuarios (id_usuario, idx_rol, nombre, apellido_paterno, apellido_materno, nombre_usuario, contrasena, correo) 
+VALUES (NULL, '$rol', '$nombre', '$apellidoPaterno', '$apellidoMaterno', '$nombreUsuario', '$pass', '$email')";
+// $resultado = mysqli_query($conexion,$consulta);
 
 
-$consulta ="SELECT * FROM `usuario` WHERE correo='$email' AND contraseña='$pass'";
-$resultado = mysqli_query($conexion,$consulta);
+// $filas=mysqli_num_rows($resultado);
 
-$filas=mysqli_num_rows($resultado);
-
-
+ 
+/*/
 if($filas>0)
 {
+
 	header("location:inicio.php");
 }
 else 
 {
 	echo '<script>	
-		alert("Error en la autentificacion");
-		window.history.go(-1);
+		alert("Error");
+		
 		
 		</script>';
 }
+*/
 
-mysqli_free_result($resultado);
+if($conexion->query($consulta) === TRUE){
+	header("location:inicio.php");
+}else{
+	echo "error";
+}
+// mysqli_free_result($resultado);
 mysqli_close($conexion);
 
 ?>

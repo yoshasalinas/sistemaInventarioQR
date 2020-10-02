@@ -229,8 +229,8 @@ if(isset($_POST['submit'])) {
                             </div>
                             <div class="col-4 col-12-sm ">
                                 <div class="form-group">
-                                    <label for="imagen">Imagen:</label>
-                                    <input type="file" class="form-control-file" id="archivoImagen" name="imagen" onchange="return validarExt()">
+                                    <label for="archivoImagen">Imagen:</label>
+                                    <input type="file" class="form-control-file" id="archivoImagen" name="archivoImagen" onchange="return validarExt()">
                                     <div class="visorImagen" id="visorArchivo">
                                         <!--Aqui se despliega el prevew de la imagen-->
                                     </div>
@@ -326,6 +326,7 @@ if(isset($_POST['submit'])) {
                                 <input type="text" class="form-control" id="columna" name="columna">  
                             </div>
                         </div>-->
+                        
                         <button type="submit" class="btn btn-primary">Aceptar</button>
                     </form>
                            

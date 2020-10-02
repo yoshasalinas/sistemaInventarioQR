@@ -1,3 +1,9 @@
+<?php
+
+include('conexion_db.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
@@ -103,9 +109,9 @@
 			<div class="main-container">
                 <H1>Registro de usuarios:</H1>
                 <div class="container-form">
-                    <form action="registroUsuarios.php" method="POST">
+                    <form action="validarRegistroUsuarios.php" method="POST">
                         <!--Registro de usuarios-->
-                        <div class="form-row">
+                        <div class="form-row"> 
                             <div class="equipo col-12 ">
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
@@ -113,8 +119,8 @@
                                         <input type="text" class="form-control" id="nombre" name="nombre">      
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label for="apaterno">Apellido paterno:</label>
-                                        <input type="text" class="form-control" id="apaterno" name="apaterno">    
+                                        <label for="aPaterno">Apellido paterno:</label>
+                                        <input type="text" class="form-control" id="aPaterno" name="aPaterno">    
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="aMaterno">Apellido materno:</label>
@@ -125,9 +131,13 @@
                                     <div class="col-4">
                                         <label for="rol">Rol:</label>
                                         <select class="form-control" id="rol" name="rol">
-                                            <option>Administrador</option>
-                                            <option>Usuario</option>
+                                            <option>1</option>
+                                            <option>2</option>
                                         </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="nombreUsuario">Nombre usuario:</label>
+                                        <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario">
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -139,17 +149,17 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-5">
                                         <label for="contraseña">Contraseña:</label>
-                                        <input type="email" class="form-control" id="contraseña" name="contraseña">      
+                                        <input type="password" class="form-control" id="contraseña" name="contraseña">      
                                     </div>
                                     <div class="form-group col-md-5">
                                         <label for="confirmarContraseña">Confirmar contraseña:</label>
-                                        <input type="email" class="form-control" id="confirmarContraseña" name="confirmarContraseña">      
+                                        <input type="password" class="form-control" id="confirmarContraseña" name="confirmarContraseña">      
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                        <button  type="submit" class="btn btn-primary">Aceptar</button>
                     </form>
                            
                 </div>
