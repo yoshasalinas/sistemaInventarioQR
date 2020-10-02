@@ -103,7 +103,7 @@
 			<div class="main-container">
                 <H1>Registro de usuarios:</H1>
                 <div class="container-form">
-                    <form>
+                    <form action="registroUsuarios.php" method="POST">
                         <!--Registro de usuarios-->
                         <div class="form-row">
                             <div class="equipo col-12 ">

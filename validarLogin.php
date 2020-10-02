@@ -2,10 +2,11 @@
 
 include('conexion_db.php');
 
+
 $email = $_POST['email'];
 $pass = $_POST['password'];
 
-$consulta ="SELECT * FROM `usuario` WHERE correo='$email' AND contraseña='$pass'";
+$consulta ="SELECT * FROM `usuarios` WHERE correo='$email' AND contrasena='$pass'";
 $resultado = mysqli_query($conexion,$consulta);
 
 $filas=mysqli_num_rows($resultado);
