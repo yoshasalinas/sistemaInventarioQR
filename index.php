@@ -36,7 +36,7 @@ include('conexion_db.php');
                         <div class="row centrado">
                             <!--<div class="col-6 f" ><img src="img/itcj-escudo-rojo.png" class="img-fluid logoitcj " alt=""></div>
                             <div class="col-6"><img src="img/logo-TNM.png" class="img-fluid logoitcj" alt=""></div>    -->
-                            <img src="img/inventario.png" class="img-fluid imagen2" alt="">
+                            <img src="img/inventario1.png" class="img-fluid imagen2" alt="">
 
                         </div>
                         

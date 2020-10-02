@@ -101,7 +101,58 @@
 
 			<!--main container start-->
 			<div class="main-container">
-				<H1>Bienvenido</H1>
+                <H1>Registro de usuarios:</H1>
+                <div class="container-form">
+                    <form>
+                        <!--Registro de usuarios-->
+                        <div class="form-row">
+                            <div class="equipo col-12 ">
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="nombre">Nombre:</label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre">      
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="apaterno">Apellido paterno:</label>
+                                        <input type="text" class="form-control" id="apaterno" name="apaterno">    
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="aMaterno">Apellido materno:</label>
+                                        <input type="text" class="form-control" id="aMaterno" name="aMaterno">  
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-4">
+                                        <label for="rol">Rol:</label>
+                                        <select class="form-control" id="rol" name="rol">
+                                            <option>Administrador</option>
+                                            <option>Usuario</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-5">
+                                        <label for="correo">Correo:</label>
+                                        <input type="email" class="form-control" id="correo" name="correo">      
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-5">
+                                        <label for="contraseña">Contraseña:</label>
+                                        <input type="email" class="form-control" id="contraseña" name="contraseña">      
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <label for="confirmarContraseña">Confirmar contraseña:</label>
+                                        <input type="email" class="form-control" id="confirmarContraseña" name="confirmarContraseña">      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    </form>
+                           
+                </div>
 			</div>
 			<!--main container end-->
 		</div>
@@ -114,6 +165,8 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
 		<script type="text/javascript">
 		$(document).ready(function(){
 			$(".sidebar-btn").click(function(){

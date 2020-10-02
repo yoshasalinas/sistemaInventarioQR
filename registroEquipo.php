@@ -79,10 +79,8 @@ if(isset($_POST['submit'])) {
 			crossorigin="anonymous">
 		<!--Estilo de fuente-->
 
-        <title>Inicio</title>
+        <title>Registro Equipo</title>
         
-        
-
 	</head>
 	<body>
 
@@ -107,7 +105,7 @@ if(isset($_POST['submit'])) {
 			<div class="sidebar">
 				<div class="sidebar-menu">
 					<center class="profile">
-						<img src="img/itcj-escudo-rojo.png.jpg" alt="">
+						
 						<p>Administrador</p>
 					</center>
 					<li class="item">
@@ -175,7 +173,7 @@ if(isset($_POST['submit'])) {
                     <form>
                         <!--Parte activo general-->
                         <div class="form-row">
-                            <div class="col-8 ">
+                            <div class="col-8 col-12-sm ">
                                 <div class="form-group ">
                                     <label for="numSerial">Numero Serial:</label>
                                     <input type="text" class="form-control" id="numSerial" name="numSerial">
@@ -229,10 +227,13 @@ if(isset($_POST['submit'])) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 ">
+                            <div class="col-4 col-12-sm ">
                                 <div class="form-group">
                                     <label for="imagen">Imagen:</label>
-                                    <input type="file" class="form-control-file" id="imagen" name="imagen">
+                                    <input type="file" class="form-control-file" id="archivoImagen" name="imagen" onchange="return validarExt()">
+                                    <div class="visorImagen" id="visorArchivo">
+                                        <!--Aqui se despliega el prevew de la imagen-->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -305,12 +306,16 @@ if(isset($_POST['submit'])) {
                                 <label for="tipoEntrada">Nombre de edificio:</label>
                                 <input type="text" class="form-control" id="tipoEntrada" name="tipoEntrada">  
                             </div> 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-2">
+                                <label for="capacidad">Capacidad:</label>
+                                <input type="text" class="form-control" id="capacidad" name="capacidad">    
+                            </div>
+                            <div class="form-group col-md-4">
                                 <label for="descripcionActivo">Descripcion:</label>
                                 <textarea class="form-control" id="descripcionActivo" name="descripcionActivo"  rows="3"></textarea>  
                             </div>                           
                         </div>
-                        <!--Parte solo Salas!-->
+                        <!--Parte solo Salas!
                         <div class="form-row " id="soloUbicacionSalas">
                             <div class="form-group col-md-1">
                                 <label for="fila">Fila:</label>
@@ -320,8 +325,8 @@ if(isset($_POST['submit'])) {
                                 <label for="columna">Columna:</label>
                                 <input type="text" class="form-control" id="columna" name="columna">  
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign in</button>
+                        </div>-->
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
                     </form>
                            
                 </div>
@@ -346,25 +351,53 @@ if(isset($_POST['submit'])) {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 -->
         
-        <script>
-            window.jQuery = window.$ = require('jquery');
-        </script>
 
-		<script type="text/javascript">
-		$(document).ready(function(){
-			$(".sidebar-btn").click(function(){
-				$(".wrapper").toggleClass("collapse");
-			});
-		});
-        </script>
 
+		
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	</body>
+
+    </body>
 </html>
 
+<script type="text/javascript">
+		$(document).ready(function(){
+			$(".sidebar-btn").click(function(){
+				$(".wrapper").toggleClass("collapse");
+			});
+		});
+    </script>
 
+<script type="text/javascript">
+
+    function validarExt()
+    {
+        var archivoInput = document.getElementById('archivoImagen');
+        var archivoRuta = archivoInput.value;
+        var extPermitidas = /(.jpg)$/i;
+        if(!extPermitidas.exec(archivoRuta)){
+            alert('El sistema solo acepta imagenes .jpg');
+            archivoInput.value = '';
+            return false;
+        }
+
+        else
+        {
+            //PRevio del PDF
+            if (archivoInput.files && archivoInput.files[0]) 
+            {
+                var visor = new FileReader();
+                visor.onload = function(e) 
+                {
+                    document.getElementById('visorArchivo').innerHTML = 
+                    '<embed src="'+e.target.result+'" width="300" height="300" />';
+                };
+                visor.readAsDataURL(archivoInput.files[0]);
+            }
+        }
+    }
+</script>
