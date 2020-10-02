@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 			crossorigin="anonymous">
 		<!--Estilo de fuente-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 		<title>Inicio</title>
 	</head>
@@ -25,10 +26,13 @@
 					<div class="sidebar-btn">
 						<i class="fas fa-bars"></i>
 					</div>
+					<div class="header-logos">
+						<img src="img/itcj-escudo-rojo.png"  class="" alt="">
+						<img src="img/logo-TNM.png"  class="" alt="">
+					</div>
 					<ul>
 						<!--Cerrar sesion-->
 						<li><a href="index.php"><i class="fas fa-sign-out-alt"></i></a></li>
-
 					</ul>
 				</div>
 			</div>
@@ -38,7 +42,7 @@
 			<div class="sidebar">
 				<div class="sidebar-menu">
 					<center class="profile">
-						<!--<i class="fas fa-user-check "></i>-->
+						<i class="fas fa-user-check"></i>
 						<p>Administrador</p>
 					</center>
 					<li class="item">
@@ -102,6 +106,9 @@
 			<!--main container start-->
 			<div class="main-container">
 				<H1>Bienvenido</H1>
+				<div class="form-row center">
+                    <button type="submit" class="btn btn-success btn-lg">Probando bootstra</button>
+                </div>
 			</div>
 			<!--main container end-->
 		</div>

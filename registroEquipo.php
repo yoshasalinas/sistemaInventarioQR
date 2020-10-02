@@ -1,67 +1,7 @@
 <?php
 
 include('conexion_db.php');
-/*
-if(isset($_POST['submit'])) {
-    
 
-    //$Variable = $_POST['name en el input']
-    $numeroSerial = $_POST['numSerial'];
-    $numeroDispositivo = $_POST['numDispositivo'];
-    $numeroTecNM = $_POST['numTecNM'];
-    $tipoActivo = $_POST['tipoActivo'];
-    $nombreActivo = $_POST['nombreActivo'];
-    $fechaAlta = $_POST['fechaAlta'];
-    $marca = $_POST['marca'];
-    $modelo = $_POST['modelo'];
-    $color = $_POST['color'];
-    $descripcion = $_POST['descripcion'];
-    $imagen = $_POST['imagen'];
-    $codigoQR = $_POST['codigoQR'];
-    $tipoUbicacion = $_POST['tipobicacion'];
-    $nombreUbicacion = $_POST['nombreUbicacion'];
-    $tipoEstatus = $_POST['tipoEstatus'];
-
-    $createActivo = $con->query("INSERT INTO activos (id_activo, numero_serial, numero_serial_dispositivo, numero_serial_tecNM, tipo_activo, nombre_activo, fecha_alta, marca, modelo, color, decripcion, imagen_activo, codigo_qr, tipo_ubicacion_activo, nombre_ubicacion, tipo_estatus_activo) VALUES ('5', '$numeroSerial', '$numeroDispositivo', '$numeroTecNM', '$tipoActivo', '$nombreActivo ', '$fechaAlta', '$marca', '$modelo', '$color', '$descripcion','$imagen', '$codigoQR', '$tipoUbicacion', '$nombreUbicacion', ' $tipoEstatus')");
-
-    $resultado = mysqli_query($conexion,$consulta);
-
-    $filas=mysqli_num_rows($resultado);
-
-    if($filas>0)
-    {
-        header("location:inicio.php");
-    }
-    else 
-    {
-        echo '<script>	
-            alert("Error en la autentificacion");
-            window.history.go(-1);
-            
-            </script>';
-    }
-
-    mysqli_free_result($resultado);
-    mysqli_close($conexion);
-        
-
-
-  /*if (empty($numeroSerial)) {
-    $error['numSerial'] = "El campo Numero de serial no puede estar vacio";
-  }
-    if (isset($error['numSerial'])) {
-    } else {
-        //$createActivo = $con->query("INSERT INTO Activos( id, nombre, numero_control, fecha_nacimiento, edad) VALUES (null,'$nombre',
-        //'$numControl', '$fechaNaci','$edad')");
-
-    $createActivo = $con->query("INSERT INTO activos (id_activo, numero_serial, numero_serial_dispositivo, numero_serial_tecNM, tipo_activo, nombre_activo, fecha_alta, marca, modelo, color, decripcion, imagen_activo, codigo_qr, tipo_ubicacion_activo, nombre_ubicacion, tipo_estatus_activo) VALUES ('5', '$numeroSerial', '$numeroDispositivo', '$numeroTecNM', '$tipoActivo', '$nombreActivo ', '$fechaAlta', '$marca', '$modelo', '$color', '$descripcion','$imagen', '$codigoQR', '$tipoUbicacion', '$nombreUbicacion', ' $tipoEstatus')");
-
-    $con->close();
-
-    header("Location: inicio.php");
-  }
-}
-*/
 
 ?>
 
@@ -170,13 +110,28 @@ if(isset($_POST['submit'])) {
 			<div class="main-container">
                 <h1>Registo de Equipo</h1>
                 <div class="container-form">
-                    <form>
+                    <form action="validarRegistroEquipo.php" method="POST">
                         <!--Parte activo general-->
                         <div class="form-row">
                             <div class="col-8 col-12-sm ">
                                 <div class="form-group ">
                                     <label for="numSerial">Numero Serial:</label>
-                                    <input type="text" class="form-control" id="numSerial" name="numSerial">
+                                    <!--<input type="text" class="form-control" id="numSerial" name="numSerial">-->
+                                    <select class="form-control" id="numSerial" name="numSerial">
+                                        <option value="">Seleccione:</option>
+
+                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                        $consulta = $conexion-> query("SELECT * FROM numeroserial");
+
+                                        while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                            echo "<option value ='".$fila['id_numeroserial']."'>".$fila['numero_serial']."</option>"; //muestra los datos de la tabla externa
+                                            
+                                            
+                                        }
+
+                                        ?>
+                                        
+                                    </select>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
@@ -279,42 +234,45 @@ if(isset($_POST['submit'])) {
                             <div class="col-4">
                                 <label for="estatus">Estatus:</label>
                                 <select class="form-control" id="estatus" name="estatus">
-                                    <option>En uso</option>
-                                    <option>Dañado</option>
-                                    <option>En reparacion</option>
-                                    <option>Disponible</option>
+                                <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                        $consulta = $conexion-> query("SELECT * FROM estatus");
+
+                                        while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                            echo "<option value ='".$fila[' id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
+                                            
+                                            
+                                        }
+
+                                        ?>
                                 </select>
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="tipoUbicacion">Tipo de Ubicacion:</label>
                                     <select class="form-control" id="tipoUbicacion" name="tipoUbicacion">
-                                        <option>Sala</option>
-                                        <option>Bodega</option>
-                                        <option>Salon/Oficina</option>
+                                        
+                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                        $consulta = $conexion-> query("SELECT * FROM ubicaciones");
+
+                                        while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                            echo "<option value ='".$fila[' id_ubicacion']."'>".$fila['tipo_ubicacion'].$fila['nombre_ubicacion']."</option>"; //muestra los datos de la tabla externa
+                                            
+                                        }
+                                      
+
+                                        ?>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <!--Parte ubicacion-->
                         <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="tipoEntrada">Nombre de ubicacion:</label>
-                                <input type="text" class="form-control" id="tipoEntrada" name="tipoEntrada">  
-                            </div> 
-                            <div class="form-group col-md-3">
-                                <label for="tipoEntrada">Nombre de edificio:</label>
-                                <input type="text" class="form-control" id="tipoEntrada" name="tipoEntrada">  
-                            </div> 
                             <div class="form-group col-md-2">
                                 <label for="capacidad">Capacidad:</label>
                                 <input type="text" class="form-control" id="capacidad" name="capacidad">    
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="descripcionActivo">Descripcion:</label>
-                                <textarea class="form-control" id="descripcionActivo" name="descripcionActivo"  rows="3"></textarea>  
-                            </div>                           
+                            </div>                      
                         </div>
+                        
                         <!--Parte solo Salas!
                         <div class="form-row " id="soloUbicacionSalas">
                             <div class="form-group col-md-1">
@@ -327,7 +285,15 @@ if(isset($_POST['submit'])) {
                             </div>
                         </div>-->
                         
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                        <div class="col-4 col-12-sm ">
+                                <div class="form-group">
+                                    <label for="archivoQR">Codigo QR:</label>
+                                    <input type="file" class="form-control-file" id="archivoQR" name="archivoQR" onchange="return validarExt()">
+                                </div>
+                            </div>
+                        <div class="form-row center">
+                            <button type="submit" class="btn btn-success btn-lg">Registrar Activo</button>
+                        </div>
                     </form>
                            
                 </div>

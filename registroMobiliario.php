@@ -305,7 +305,9 @@ if(isset($_POST['submit'])) {
                                 <input type="text" class="form-control" id="columna" name="columna">  
                             </div>
                         </div>-->
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                        <div class="form-row center">
+                            <button type="submit" class="btn btn-success btn-lg">Registrar Activo</button>
+                        </div>
                     </form>
                            
                 </div>

@@ -1,10 +1,9 @@
 <?php
-
 include('conexion_db.php');
+/*
 
-//tabla 1
-
-$numeroSerial = $_POST['numSerial'];
+$numeroSerial = $_POST['numSerial']; //llave foranea
+$tipoEstatus = $_POST['tipoEstatus']; //llave foranea
 $numeroDispositivo = $_POST['numDispositivo'];
 $numeroTecNM = $_POST['numTecNM'];
 $tipoActivo = $_POST['tipoActivo'];
@@ -14,13 +13,13 @@ $marca = $_POST['marca'];
 $modelo = $_POST['modelo'];
 $color = $_POST['color'];
 $descripcion = $_POST['descripcionActivo'];
-$imagen = $_POST['archivoImagen'];
-$codigoQR = $_POST['codigoQR'];
+$imagen_activo = $_POST['archivoImagen'];
+$imagen_codigoQR = $_POST['codigoQR'];
 $tipoUbicacion = $_POST['tipoUbicacion'];
 $nombreUbicacion = $_POST['nombreUbicacion'];
-$tipoEstatus = $_POST['tipoEstatus'];
+$nombreEdificio = $_POST['nombreEdificio'];
 
-//tabla 2
+
 $capMemoria = $_POST['capacidadMemoria'];
 $procesador = $_POST['procesador'];
 $discoDuro = $_POST['discoDuro'];
@@ -29,47 +28,44 @@ $resolucion = $_POST['resolucion'];
 $conectividad = $_POST['conectividad'];
 $tipoEntrada = $_POST['tipoEntrada'];
 
-// activo_equipo
- //INSERT INTO `activo_equipo` (`id_activo_equipo`, `capacidad_memoria`, `procesador`, `disco_duro`, `pulgadas`, `resolucion`, `conectividad`, `tipo_entrada`) VALUES (NULL, '8gb', 'corei3', '1t', '12 pulgadas', '15 pulgadas', 'usb', 'usb');
-
-INSERT INTO `activos` (`id_activos`, `idx_numeroSerial`, `idx_estatus`, `idx_activo_equipo`, `idx_activo_mobiliario`, `idx_activo_refacciones`, `idx_ubicacion`, `numero_serial_dispositivo`, `numero_serial_tecNM`, `tipo_activo`, `nombre_activo`, `fecha_alta`, `marca`, `modelo`, `color`, `descripcion_activo`, `imagen_activo`, `imagen_codigo_qr`) VALUES (NULL, '1', '4', '1', NULL, NULL, '1', '123456', '125456', 'Equipo', 'Gabinete', '2020-10-01', 'Dell', '2', 'Negro', 'Color negro y gris', NULL, NULL);
-
-// consulta 1 inserta primero los datos en la tabla ACTIVO_EQUIPO
-$consulta1 ="INSERT INTO activo_equipo (id_activo_equipo, capacidad_memoria, procesador, disco_duro, pulgadas, resolucion, conectividad, tipo_entrada) 
-VALUES (NULL, '$capMemoria', '$procesador', '$discoDuro', '$pulgadas', '$resolucion', '$conectividad', '$tipoEntrada')"; 
-
-$id_ultimo=mysql_insert_id($consulta1);
-
-$consulta2 ="INSERT INTO activos (id_activos, idx_numeroSerial, idx_estatus, idx_activo_equipo, idx_activo_mobiliario, idx_activo_refacciones, idx_ubicacion, numero_serial_dispositivo,numero_serial_tecNM, tipo_activo,fecha_alta,marca,modelo,color,descripcion_activo,imagen_activo,imagen_codigo_qr) 
-VALUES (NULL, '$numeroSerial', '$tipoEstatus', '$id_ultimo', '$MOBILIARIO', NULL, NULL,NULL,'$conectividad', '$tipoEntrada')";
-//$resultado = mysqli_query($conexion,$consulta);
 
 
-// $filas=mysqli_num_rows($resultado);
 
- 
-/*/
-if($filas>0)
-{
+INSERT INTO `activos` (`id_activos`, `idx_numeroSerial`, `idx_estatus`, `idx_ubicacion`, `numero_serial_dispositivo`, `numero_serial_tecNM`, `tipo_activo`, `nombre_activo`, `fecha_alta`, `marca`, `modelo`, `color`, `descripcion_activo`, `imagen_activo`, `imagen_codigo_qr`, `capacidad_memoria`, `procesador`, `disco_duro`, `pulgadas`, `resolucion`, `conectividad`, `tipo_entrada`) 
+VALUES (NULL, '1', '3', '2', '55645421', '545645454', 'Equipo', 'Gabinete', '2020-10-01', 'DEll', '2', 'negro', 'Detalles gris', NULL, NULL, '8gb', 'core i3', '2', '', NULL, 'usb', 'usb');
 
-	header("location:inicio.php");
-}
-else 
-{
-	echo '<script>	
-		alert("Error");
-		
-		
-		</script>';
-}
 */
 
-if($conexion->query($consulta) === TRUE){
-	header("location:inicio.php");
+$consulta_insertar = "INSERT INTO activos (id_activos, idx_numeroSerial, idx_estatus, idx_ubicacion, numero_serial_dispositivo, numero_serial_tecNM, tipo_activo, nombre_activo, fecha_alta, marca, 
+modelo, color, descripcion_activo, imagen_activo, imagen_codigo_qr, capacidad_memoria, procesador,disco_duro, pulgadas, resolucion, conectividad, tipo_entrada) 
+VALUES (null,".$_POST['numSerial'].",".$_POST['estatus'].",".$_POST['tipoUbicacion'].",".$_POST['numDispositivo'].",".$_POST['numTecNM'].",".$_POST['tipoActivo'].",".$_POST['nombreActivo'].",'".$_POST['fechaAlta']."',".$_POST['marca'].",
+".$_POST['modelo'].",".$_POST['color'].",".$_POST['descripcionActivo'].",".$_POST['archivoImagen'].",".$_POST['archivoQR'].",".$_POST['capacidadMemoria'].",".$_POST['procesador'].",".$_POST['discoDuro'].",
+".$_POST['pulgadas'].",".$_POST['resolucion'].",".$_POST['conectividad'].",".$_POST['tipoEntrada'].")";
+//echo $consulta_insertar."<br>";
+/*
+$sql=$conexion -> query($consulta_insertar);
+if(!$sql){
+
+    echo'<script>	
+    alert("Error");    
+    </script>';
+
+} else{
+    echo ("Se inserto correctamente");
+}
+*/
+if($conexion->query($consulta_insertar) === TRUE){
+	header("location:inventario.php");
 }else{
 	echo "error";
 }
 // mysqli_free_result($resultado);
 mysqli_close($conexion);
 
+/*
+VALUES (null,".$_POST['idx_numeroSerial'].",".$_POST['idx_estatus'].",".$_POST['idx_ubicacion'].",".$_POST['numero_serial_dispositivo'].",".$_POST['numero_serial_tecNM'].",".$_POST['tipo_activo'].",".$_POST['nombre_activo'].",'".$_POST['fecha_alta']."',".$_POST['marca'].",
+".$_POST['modelo'].",".$_POST['color'].",".$_POST['descripcion_activo'].",".$_POST['imagen_activo'].",".$_POST['imagen_codigo_qr'].",".$_POST['capacidad_memoria'].",".$_POST['procesador'].",".$_POST['disco_duro'].",
+".$_POST['pulgadas'].",".$_POST['resolucion'].",".$_POST['conectividad'].",".$_POST['tipo_entrada'].")";
+echo $consulta_insertar."<br>";
+*/
 ?>

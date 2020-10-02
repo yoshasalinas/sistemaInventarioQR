@@ -159,7 +159,7 @@ include('conexion_db.php');
                             </div>
                         </div>
                         
-                        <button  type="submit" class="btn btn-primary">Aceptar</button>
+                        <button  type="submit" class="btn btn-primary btn-success">Aceptar</button>
                     </form>
                            
                 </div>

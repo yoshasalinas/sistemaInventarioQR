@@ -39,9 +39,10 @@ body {
     background: #fff;
 }
 
+/*Barra arriba*/
 .wrapper .header {
     z-index: 1;
-    background: #22242A;
+    background:black;
     position: fixed;
     width: calc(100% - 0%);
     height: 70px;
@@ -90,6 +91,16 @@ body {
     color: #C21828;
 }
 
+/*Logos centrales*/
+.wrapper .header .header-menu .header-logos{
+    /*background-color: #fff;*/
+}
+
+.wrapper .header .header-menu img {
+    height: 60px;
+}
+
+
 .wrapper .header .header-menu ul {
     display: flex;
 }
@@ -133,10 +144,15 @@ body {
 
 .wrapper .sidebar .sidebar-menu .profile img {
     margin: 20px 0;
-    
     height: 100px;
     border-radius: 0%;
 }
+.wrapper .sidebar .sidebar-menu .profile i {
+    margin-top: 30px;
+    
+}
+
+
 
 /*Titulo de usuario*/
 .wrapper .sidebar .sidebar-menu .profile p {
@@ -220,6 +236,8 @@ body {
     height: 100vh;
     transition: 0.3s;
 }
+
+
 
 .wrapper.collapse .sidebar {
     width: 70px;

@@ -31,6 +31,10 @@
 			<div class="header">
 				<div class="header-menu">
 					<div class="title">Control de <span>Inventario</span></div>
+					<div class="header-logos">
+						<img src="img/itcj-escudo-rojo.png"  class="" alt="">
+						<img src="img/logo-TNM.png"  class="" alt="">
+					</div>
 					<div class="sidebar-btn">
 						<i class="fas fa-bars"></i>
 					</div>
