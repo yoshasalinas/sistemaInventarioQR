@@ -31,6 +31,10 @@ include('conexion_db.php');
 					<div class="sidebar-btn">
 						<i class="fas fa-bars"></i>
 					</div>
+					<div class="header-logos">
+						<img src="img/itcj-escudo-rojo.png"  class="" alt="">
+						<img src="img/logo-TNM.png"  class="" alt="">
+					</div>
 					<ul>
 						<!--Cerrar sesion-->
 						<li><a href="index.php"><i class="fas fa-sign-out-alt"></i></a></li>
@@ -44,7 +48,7 @@ include('conexion_db.php');
 			<div class="sidebar">
 				<div class="sidebar-menu">
 					<center class="profile">
-						<!--<i class="fas fa-user-check "></i>-->
+						<i class="fas fa-user-check"></i>
 						<p>Administrador</p>
 					</center>
 					<li class="item">

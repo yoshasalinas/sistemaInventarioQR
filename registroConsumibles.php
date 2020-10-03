@@ -92,6 +92,10 @@ if(isset($_POST['submit'])) {
 					<div class="title">Control de <span>Inventario</span></div>
 					<div class="sidebar-btn">
 						<i class="fas fa-bars"></i>
+                    </div>
+                    <div class="header-logos">
+						<img src="img/itcj-escudo-rojo.png"  class="" alt="">
+						<img src="img/logo-TNM.png"  class="" alt="">
 					</div>
 					<ul>
 						<!--Cerrar sesion-->
@@ -105,7 +109,7 @@ if(isset($_POST['submit'])) {
 			<div class="sidebar">
 				<div class="sidebar-menu">
 					<center class="profile">
-						
+						<i class="fas fa-user-check"></i>
 						<p>Administrador</p>
 					</center>
 					<li class="item">

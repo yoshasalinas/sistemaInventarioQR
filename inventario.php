@@ -50,7 +50,7 @@
 			<div class="sidebar">
 				<div class="sidebar-menu">
 					<center class="profile">
-						<img src="img/itcj-escudo-rojo.png.jpg" alt="">
+						<i class="fas fa-user-check"></i>
 						<p>Administrador</p>
 					</center>
 					<li class="item">

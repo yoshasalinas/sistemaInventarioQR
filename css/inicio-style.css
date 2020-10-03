@@ -42,7 +42,8 @@ body {
 /*Barra arriba*/
 .wrapper .header {
     z-index: 1;
-    background:black;
+    /*background:#040925;*/
+    background:#040925;
     position: fixed;
     width: calc(100% - 0%);
     height: 70px;

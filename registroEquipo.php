@@ -32,6 +32,10 @@ include('conexion_db.php');
 					<div class="title">Control de <span>Inventario</span></div>
 					<div class="sidebar-btn">
 						<i class="fas fa-bars"></i>
+                    </div>
+                    <div class="header-logos">
+						<img src="img/itcj-escudo-rojo.png"  class="" alt="">
+						<img src="img/logo-TNM.png"  class="" alt="">
 					</div>
 					<ul>
 						<!--Cerrar sesion-->
@@ -45,7 +49,7 @@ include('conexion_db.php');
 			<div class="sidebar">
 				<div class="sidebar-menu">
 					<center class="profile">
-						
+						<i class="fas fa-user-check"></i>
 						<p>Administrador</p>
 					</center>
 					<li class="item">
@@ -255,7 +259,7 @@ include('conexion_db.php');
                                         $consulta = $conexion-> query("SELECT * FROM ubicaciones");
 
                                         while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                            echo "<option value ='".$fila[' id_ubicacion']."'>".$fila['tipo_ubicacion'].$fila['nombre_ubicacion']."</option>"; //muestra los datos de la tabla externa
+                                            echo "<option value ='".$fila[' id_ubicacion']."'>".$fila['tipo_ubicacion']."</option>"; //muestra los datos de la tabla externa
                                             
                                         }
                                       
