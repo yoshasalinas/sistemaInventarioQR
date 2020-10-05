@@ -2,6 +2,9 @@
 
 include('conexion_db.php');
 
+$select = "SELECT * FROM usuarios";
+$usuario = mysqli_query($conexion, $select);
+
 ?>
 
 <!DOCTYPE html>
@@ -111,8 +114,47 @@ include('conexion_db.php');
 
 			<!--main container start-->
 			<div class="main-container">
-                <H1>Registro de usuarios:</H1>
-                <div class="container-form">
+				<H1>Usuarios del sistema:</H1>
+				<table class="table table-dark">
+					<thead>
+						<tr>
+							
+							<th scope="col">Rol</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellido Paterno</th>
+							<th scope="col">Apellido Materno</th>
+							<th scope="col">Nombre de Usuario</th>
+							<th scope="col">Correo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php while ($getresultado = $usuario->fetch_assoc()) { ?>
+							<tr>
+								<th scope="row"> <?php echo $getresultado['idx_rol'] ?> </th>
+								<td><?php echo $getresultado['nombre'] ?></td>
+								<td><?php echo $getresultado['apellido_paterno'] ?></td>
+								<td><?php echo $getresultado['apellido_materno'] ?></td>
+								<td><?php echo $getresultado['nombre_usuario'] ?></td>
+								<td><?php echo $getresultado['correo'] ?></td>
+								
+								<!--botones--> 
+								<td>
+									<a href="watch.php?id=<?= $getresultado['id'] ?>" class="btn btn-outline-primary">Movimientos</a>
+								</td>
+								<td>
+									<a href="update.php?id=<?= $getresultado['id'] ?>" class="btn btn-outline-info">Modificar</a>
+									<!--<i href="update.php?id=<?= $getresultado['id'] ?>" class="far fa-edit"></i>-->
+								</td>
+								<td>
+									<a href="delete.php?id=<?= $getresultado['id'] ?>" class="btn btn-outline-danger">Eliminar</a>
+								</td>
+							</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+				<!--Registro nuevo usuario-->
+                <div class="container-form-registro-usuarios">
+					<H1>Registro de usuarios:</H1>
                     <form action="validarRegistroUsuarios.php" method="POST">
                         <!--Registro de usuarios-->
                         <div class="form-row"> 
