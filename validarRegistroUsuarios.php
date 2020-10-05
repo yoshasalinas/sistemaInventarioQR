@@ -40,7 +40,7 @@ else
 */
 
 if($conexion->query($consulta) === TRUE){
-	header("location:inicio.php");
+	header("location:usuarios.php");
 }else{
 	echo "error";
 }

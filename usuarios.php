@@ -22,7 +22,20 @@ $usuario = mysqli_query($conexion, $select);
 		<!--Estilo de fuente-->
 
 		<title>Inicio</title>
+
+		
 	</head>
+
+	<script type="text/javascript">
+		function Mostrar(){
+			document.getElementById("formulario-crear-usuario").style.display = "block";
+		}
+		function Ocultar(){
+			document.getElementById("formulario-crear-usuario").style.display = "none";
+		}
+	</script>
+
+
 	<body>
 
 		<!--wrapper start-->
@@ -139,76 +152,80 @@ $usuario = mysqli_query($conexion, $select);
 								
 								<!--botones--> 
 								<td>
-									<a href="watch.php?id=<?= $getresultado['id'] ?>" class="btn btn-outline-primary">Movimientos</a>
+									<a href="watch.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-primary">Movimientos</a>
+								</td>
+								
+								<td>
+									<a href="update.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-info">Modificar</a>
 								</td>
 								<td>
-									<a href="update.php?id=<?= $getresultado['id'] ?>" class="btn btn-outline-info">Modificar</a>
-									<!--<i href="update.php?id=<?= $getresultado['id'] ?>" class="far fa-edit"></i>-->
-								</td>
-								<td>
-									<a href="delete.php?id=<?= $getresultado['id'] ?>" class="btn btn-outline-danger">Eliminar</a>
+									<a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-danger">Eliminar</a>
 								</td>
 							</tr>
 						<?php } ?>
 					</tbody>
 				</table>
-				<!--Registro nuevo usuario-->
-                <div class="container-form-registro-usuarios">
-					<H1>Registro de usuarios:</H1>
-                    <form action="validarRegistroUsuarios.php" method="POST">
-                        <!--Registro de usuarios-->
-                        <div class="form-row"> 
-                            <div class="equipo col-12 ">
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="nombre">Nombre:</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre">      
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="aPaterno">Apellido paterno:</label>
-                                        <input type="text" class="form-control" id="aPaterno" name="aPaterno">    
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="aMaterno">Apellido materno:</label>
-                                        <input type="text" class="form-control" id="aMaterno" name="aMaterno">  
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col-4">
-                                        <label for="rol">Rol:</label>
-                                        <select class="form-control" id="rol" name="rol">
-                                            <option>1</option>
-                                            <option>2</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-4">
-                                        <label for="nombreUsuario">Nombre usuario:</label>
-                                        <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-5">
-                                        <label for="correo">Correo:</label>
-                                        <input type="email" class="form-control" id="correo" name="correo">      
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-5">
-                                        <label for="contraseña">Contraseña:</label>
-                                        <input type="password" class="form-control" id="contraseña" name="contraseña">      
-                                    </div>
-                                    <div class="form-group col-md-5">
-                                        <label for="confirmarContraseña">Confirmar contraseña:</label>
-                                        <input type="password" class="form-control" id="confirmarContraseña" name="confirmarContraseña">      
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button  type="submit" class="btn btn-primary btn-success">Aceptar</button>
-                    </form>
-                           
-                </div>
+				<button  type="submit" class="btn btn-primary btn-success" onclick="Mostrar()">Registrar nuevo usuario</button>
+<!--Registro nuevo usuario-->
+				<section id=formulario-crear-usuario class="oc">
+					<div class="container-form-registro-usuarios ">
+						<H1>Registro de usuarios:</H1>
+						<form action="validarRegistroUsuarios.php" method="POST" >
+							<!--Registro de usuarios-->
+							<div class="form-row"> 
+								<div class="equipo col-12">
+									<div class="form-row">
+										<div class="form-group col-md-3 ">
+											<label for="nombre">Nombre:</label>
+											<input type="text" class="form-control" id="nombre" name="nombre">      
+										</div>
+										<div class="form-group col-md-3">
+											<label for="aPaterno">Apellido paterno:</label>
+											<input type="text" class="form-control" id="aPaterno" name="aPaterno">    
+										</div>
+										<div class="form-group col-md-3">
+											<label for="aMaterno">Apellido materno:</label>
+											<input type="text" class="form-control" id="aMaterno" name="aMaterno">  
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-4">
+											<label for="rol">Rol:</label>
+											<select class="form-control" id="rol" name="rol">
+												<option>1</option>
+												<option>2</option>
+											</select>
+										</div>
+										<div class="col-4">
+											<label for="nombreUsuario">Nombre usuario:</label>
+											<input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-5">
+											<label for="correo">Correo:</label>
+											<input type="email" class="form-control" id="correo" name="correo">      
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-5">
+											<label for="contraseña">Contraseña:</label>
+											<input type="password" class="form-control" id="contraseña" name="contraseña">      
+										</div>
+										<div class="form-group col-md-5">
+											<label for="confirmarContraseña">Confirmar contraseña:</label>
+											<input type="password" class="form-control" id="confirmarContraseña" name="confirmarContraseña">      
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<button  type="submit" class="btn btn-primary btn-success" >Aceptar</button>
+							<!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
+						</form>
+							
+					</div>
+				</section>
 			</div>
 			<!--main container end-->
 		</div>
