@@ -1,3 +1,12 @@
+<?php
+
+include('conexion_db.php');
+
+$select = "SELECT * FROM activos";
+$activo = mysqli_query($conexion, $select);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
@@ -10,37 +19,31 @@
 		<!--Iconos-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 			crossorigin="anonymous">
-        <!--Estilo de fuente-->
-        
-        <!--inventario
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>  
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>-->
+		<!--Estilo de fuente-->
 
-		<title>Inventario</title>
+		<title>Inicio</title>
+
+		
 	</head>
-	<body>
 
+	<body>
 		<!--wrapper start-->
 		<div class="wrapper">
 			<!--header menu start-->
 			<div class="header">
 				<div class="header-menu">
 					<div class="title">Control de <span>Inventario</span></div>
+					<div class="sidebar-btn">
+						<i class="fas fa-bars"></i>
+					</div>
 					<div class="header-logos">
 						<img src="img/itcj-escudo-rojo.png"  class="" alt="">
 						<img src="img/logo-TNM.png"  class="" alt="">
 					</div>
-					<div class="sidebar-btn">
-						<i class="fas fa-bars"></i>
-					</div>
 					<ul>
 						<!--Cerrar sesion-->
 						<li><a href="index.php"><i class="fas fa-sign-out-alt"></i></a></li>
+
 					</ul>
 				</div>
 			</div>
@@ -113,38 +116,48 @@
 
 			<!--main container start-->
 			<div class="main-container">
-              <!--  <h3 align="center">How to use Tabledit plugin with jQuery Datatable in PHP Ajax</h3> -->
-                <br />
-                <div class="panel panel-default">
-                    <div class="panel-heading">Inventario</div>
-                    <div class="panel-body">
-                    <div class="table-responsive">
-                    <table id="sample_data" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                        <th>Id_activo</th>
-                        <th>Numero Serial</th>
-                        <th>Numero Serial Dispositivo</th>
-                        <th>Numero Serial TecNM</th>
-                        <th>Tipo activo</th>
-                        <th>Tipo ubicacion</th>
-                        <th>nombre ubicacion</th>
-                        <th>tipo estatus</th>
-                        <th>marca</th>
-                        <th>Modelo</th>
-                        <th>Color</th>
-                        <th>Descripcion</th>
-                        <th>imagen</th>
-                        <th>Qr</th>
-                        
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    </table>
-                    </div>
-                    </div>
-                </div>
-               
+				<H1>Inventario:</H1>
+				<table class="table table-dark">
+					<thead>
+						<tr>
+							<th scope="col">No.Serial</th>
+							<th scope="col">Estatus</th>
+							<th scope="col">Ubicacion</th>
+							<th scope="col">No. Serial Disp</th>
+							<th scope="col">No. Serial TecNM</th>
+							<th scope="col">Tipo Activo</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Fecha Alta</th>
+							<th scope="col">Marca</th>
+							<th scope="col">Modelo</th>
+							<th scope="col">Color</th>
+							<th scope="col">Descripcion</th>
+							<th scope="col">Imagen</th>
+							<th scope="col">QR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php while ($getresultado = $activo->fetch_assoc()) { ?>
+							<tr>
+								<th scope="row"> <?php echo $getresultado['idx_numeroSerial'] ?> </th>
+								<td><?php echo $getresultado['idx_estatus'] ?></td>
+								<td><?php echo $getresultado['idx_ubicacion'] ?></td>
+								<td><?php echo $getresultado['numero_serial_dispositivo'] ?></td>
+								<td><?php echo $getresultado['numero_serial_tecNM'] ?></td>
+								<td><?php echo $getresultado['tipo_activo'] ?></td>
+								<td><?php echo $getresultado['nombre_activo'] ?></td>
+								<td><?php echo $getresultado['fecha_alta'] ?></td>
+								<td><?php echo $getresultado['marca'] ?></td>
+								<td><?php echo $getresultado['modelo'] ?></td>
+								<td><?php echo $getresultado['color'] ?></td>
+								<td><?php echo $getresultado['descripcion_activo'] ?></td>
+								<td><?php echo $getresultado['imagen_codigo_qr'] ?></td>
+								
+								
+							</tr>
+						<?php } ?>
+					</tbody>
+				</table>
 			</div>
 			<!--main container end-->
 		</div>
@@ -157,49 +170,14 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
 		<script type="text/javascript">
 		$(document).ready(function(){
 			$(".sidebar-btn").click(function(){
 				$(".wrapper").toggleClass("collapse");
 			});
 		});
-        </script>
-        
-        <!--SCRIPT INVENTARIO-->
-        <script type="text/javascript" language="javascript" >
-        $(document).ready(function(){
-
-        var dataTable = $('#sample_data').DataTable({
-        "processing" : true,
-        "serverSide" : true,
-        "order" : [],
-        "ajax" : {
-        url:"fetch.php",
-        type:"POST"
-        }
-        });
-
-        $('#sample_data').on('draw.dt', function(){
-        $('#sample_data').Tabledit({
-        url:'action.php',
-        dataType:'json',
-        columns:{
-            identifier : [0, 'id'],
-            editable:[[1, 'first_name'], [2, 'last_name'], [3, 'gender', '{"1":"Male","2":"Female"}']]
-        },
-        restoreButton:false,
-        onSuccess:function(data, textStatus, jqXHR)
-        {
-            if(data.action == 'delete')
-            {
-            $('#' + data.id).remove();
-            $('#sample_data').DataTable().ajax.reload();
-            }
-        }
-        });
-        });
-        
-        }); 
-        </script>
+		</script>
 	</body>
 </html>
