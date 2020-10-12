@@ -155,9 +155,8 @@ $usuario = mysqli_query($conexion, $select);
 								</td>
 								
 								<td>
-									<a href="editUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-info">Modificar</a>
+									<a href="modificarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-info">Modificar</a>
 								</td>
-
 								<td>
 									<a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-danger">Eliminar</a>
 								</td>

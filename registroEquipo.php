@@ -189,7 +189,7 @@ include('conexion_db.php');
                             <div class="col-4 col-12-sm ">
                                 <div class="form-group">
                                     <label for="archivoImagen">Imagen:</label>
-                                    <input type="file" class="form-control-file" id="archivoImagen" name="archivoImagen" onchange="return validarExt()">
+                                    <input type="file" class="form-control-file" id="archivoImagen" name="archivoImagen" >
                                     <div class="visorImagen" id="visorArchivo">
                                         <!--Aqui se despliega el prevew de la imagen-->
                                     </div>
@@ -242,7 +242,7 @@ include('conexion_db.php');
                                         $consulta = $conexion-> query("SELECT * FROM estatus");
 
                                         while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                            echo "<option value ='".$fila[' id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
+                                            echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
                                             
                                             
                                         }
@@ -259,7 +259,7 @@ include('conexion_db.php');
                                         $consulta = $conexion-> query("SELECT * FROM ubicaciones");
 
                                         while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                            echo "<option value ='".$fila[' id_ubicacion']."'>".$fila['tipo_ubicacion']."</option>"; //muestra los datos de la tabla externa
+                                            echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']."</option>"; //muestra los datos de la tabla externa
                                             
                                         }
                                       
@@ -292,7 +292,10 @@ include('conexion_db.php');
                         <div class="col-4 col-12-sm ">
                                 <div class="form-group">
                                     <label for="archivoQR">Codigo QR:</label>
-                                    <input type="file" class="form-control-file" id="archivoQR" name="archivoQR" onchange="return validarExt()">
+                                    <input type="file" class="form-control-file" id="archivoQR" name="archivoQR">
+                                    <div class="visorImagenQR" id="visorArchivoQR">
+                                        <!--Aqui se despliega el prevew de la imagen-->
+                                    </div>
                                 </div>
                             </div>
                         <div class="form-row center">
@@ -365,6 +368,35 @@ include('conexion_db.php');
                 visor.onload = function(e) 
                 {
                     document.getElementById('visorArchivo').innerHTML = 
+                    '<embed src="'+e.target.result+'" width="300" height="300" />';
+                };
+                visor.readAsDataURL(archivoInput.files[0]);
+            }
+        }
+    }
+</script>
+<script type="text/javascript">
+
+    function validarExt2()
+    {
+        var archivoInput = document.getElementById('archivoQR');
+        var archivoRuta = archivoInput.value;
+        var extPermitidas = /(.jpg)$/i;
+        if(!extPermitidas.exec(archivoRuta)){
+            alert('El sistema solo acepta imagenes .jpg');
+            archivoInput.value = '';
+            return false;
+        }
+
+        else
+        {
+            //PRevio del PDF
+            if (archivoInput.files && archivoInput.files[0]) 
+            {
+                var visor = new FileReader();
+                visor.onload = function(e) 
+                {
+                    document.getElementById('visorArchivoQR').innerHTML = 
                     '<embed src="'+e.target.result+'" width="300" height="300" />';
                 };
                 visor.readAsDataURL(archivoInput.files[0]);

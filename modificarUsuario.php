@@ -1,6 +1,8 @@
-<?php
 
+<?php
 include('conexion_db.php');
+/*
+
 
 $obtenerId = $_GET['id_usuario'];
 
@@ -8,14 +10,13 @@ $edit = $conexion->query("SELECT * FROM usuarios WHERE usuarios.id_usuario ='$ob
 $obtenerArreglo = mysqli_fetch_assoc($edit); 
 
 
-if(isset($_POST['submit'])) {
+if(isset($_POST['submit'])) {;
     $rol = $_POST['rol'];
     $nombre = $_POST['nombre'];
     $aPaterno = $_POST['aPaterno'];
     $aMaterno = $_POST['aMaterno'];
     $nombreUsuario = $_POST['nombreUsuario'];
     $correo = $_POST['correo'];
-
 
   if (empty($nombre)) {
     $error['nombre'] = "El campo Numero de Control no puede estar vacio";
@@ -29,6 +30,14 @@ if(isset($_POST['submit'])) {
     header("Location: usuarios.php");
   }
 }
+*/
+$nombre_usuario = $_GET['nombre_usuario']
+
+
+$consulta = $conexion-> query("SELECT * FROM usuarios WHERE nombre_usuario ='$nombre_usuario'"); //Query donde selecciono toda mi tabla
+
+while($mostrar=mysqli_fetch_array($consulta)){
+
 
 
 ?>
@@ -149,39 +158,51 @@ if(isset($_POST['submit'])) {
 					<H1>Informacion del usuario:</H1>
 					<form action="" method="POST" >
 						<!--Registro de usuarios-->
+				
 						<div class="form-row"> 
 							<div class="equipo col-12">
 								<div class="form-row">
 									<div class="form-group col-md-3 ">
 										<label for="nombre">Nombre:</label>
-										<input type="text" class="form-control" id="nombre" name="nombre">      
+										<input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $mostrar['nombre']?>">    
+										
 									</div>
 									<div class="form-group col-md-3">
 										<label for="aPaterno">Apellido paterno:</label>
-										<input type="text" class="form-control" id="aPaterno" name="aPaterno">    
+										<input type="text" class="form-control" id="aPaterno" name="aPaterno" value="<?php echo $mostrar['apellido_paterno']?>">    
 									</div>
 									<div class="form-group col-md-3">
 										<label for="aMaterno">Apellido materno:</label>
-										<input type="text" class="form-control" id="aMaterno" name="aMaterno">  
+										<input type="text" class="form-control" id="aMaterno" name="aMaterno" value="<?php echo $mostrar['apellido_materno']?>">  
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="col-4">
 										<label for="rol">Rol:</label>
 										<select class="form-control" id="rol" name="rol">
-											<option>1</option>
-											<option>2</option>
+                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                        $consulta = $conexion-> query("SELECT * FROM rol");
+
+                                        while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                            echo "<option value ='".$fila['id_rol']."'>".$fila['rol']."</option>"; //muestra los datos de la tabla externa
+            
+                                        }
+
+                                        ?>
 										</select>
 									</div>
 									<div class="col-4">
 										<label for="nombreUsuario">Nombre usuario:</label>
-										<input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario">
+										<input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" value="<?php echo $mostrar['nombre_usuario']?>">
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-group col-md-5">
 										<label for="correo">Correo:</label>
-										<input type="email" class="form-control" id="correo" name="correo">      
+										<input type="email" class="form-control" id="correo" name="correo" value="<?php echo $mostrar['correo']?>">      
+										<?php
+										}
+										?>
 									</div>
 								</div>
 							</div>
