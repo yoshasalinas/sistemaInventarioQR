@@ -151,7 +151,10 @@ $activo = mysqli_query($conexion, $select);
 								<td><?php echo $getresultado['modelo'] ?></td>
 								<td><?php echo $getresultado['color'] ?></td>
 								<td><?php echo $getresultado['descripcion_activo'] ?></td>
-								<td><?php echo $getresultado['imagen_activo'] ?></td>
+								<td>
+									<img src="data/:image/jpeg:base64, <?php echo base64_encode($getresultado['imagen_activo']) ?>">
+									
+								</td>
 								<td><?php echo $getresultado['imagen_codigo_qr'] ?></td>
 								
 								

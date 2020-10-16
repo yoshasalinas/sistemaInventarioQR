@@ -31,7 +31,9 @@ $usuario = mysqli_query($conexion, $select);
 			document.getElementById("formulario-crear-usuario").style.display = "block";
 		}
 		function Ocultar(){
-			document.getElementById("formulario-crear-usuario").style.display = "none";
+			document.getElementById("formulario-crear-usuario").style.display = "block";
+			document.getElementById("tabla-de-usuarios").style.display = "none";
+			
 		}
 	</script>
 
@@ -127,44 +129,47 @@ $usuario = mysqli_query($conexion, $select);
 
 			<!--main container start-->
 			<div class="main-container">
-				<H1>Usuarios del sistema:</H1>
-				<table class="table table-dark">
-					<thead>
-						<tr>
-							<th scope="col">Rol</th>
-							<th scope="col">Nombre</th>
-							<th scope="col">Apellido Paterno</th>
-							<th scope="col">Apellido Materno</th>
-							<th scope="col">Nombre de Usuario</th>
-							<th scope="col">Correo</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php while ($getresultado = $usuario->fetch_assoc()) { ?>
+<!--Tabla de usuarios registrados-->
+				<section id=tabla-de-usuarios>
+					<H1>Usuarios del sistema:</H1>
+					<table class="table table-dark" >
+						<thead>
 							<tr>
-								<th scope="row"> <?php echo $getresultado['idx_rol'] ?> </th>
-								<td><?php echo $getresultado['nombre'] ?></td>
-								<td><?php echo $getresultado['apellido_paterno'] ?></td>
-								<td><?php echo $getresultado['apellido_materno'] ?></td>
-								<td><?php echo $getresultado['nombre_usuario'] ?></td>
-								<td><?php echo $getresultado['correo'] ?></td>
-								
-								<!--botones--> 
-								<td>
-									<a href="watch.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-primary">Movimientos</a>
-								</td>
-								
-								<td>
-									<a href="modificarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-info">Modificar</a>
-								</td>
-								<td>
-									<a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-danger">Eliminar</a>
-								</td>
+								<th scope="col">Rol</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Apellido Paterno</th>
+								<th scope="col">Apellido Materno</th>
+								<th scope="col">Nombre de Usuario</th>
+								<th scope="col">Correo</th>
 							</tr>
-						<?php } ?>
-					</tbody>
-				</table>
-				<button  type="submit" class="btn btn-primary btn-success" onclick="Mostrar()">Registrar nuevo usuario</button>
+						</thead>
+						<tbody>
+							<?php while ($getresultado = $usuario->fetch_assoc()) { ?>
+								<tr>
+									<th scope="row"> <?php echo $getresultado['idx_rol'] ?> </th>
+									<td><?php echo $getresultado['nombre'] ?></td>
+									<td><?php echo $getresultado['apellido_paterno'] ?></td>
+									<td><?php echo $getresultado['apellido_materno'] ?></td>
+									<td><?php echo $getresultado['nombre_usuario'] ?></td>
+									<td><?php echo $getresultado['correo'] ?></td>
+									
+									<!--botones--> 
+									<td>
+										<a href="watch.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-primary">Movimientos</a>
+									</td>
+									
+									<td>
+										<a href="modificarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-info">Modificar</a>
+									</td>
+									<td>
+										<a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-danger">Eliminar</a>
+									</td>
+								</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+					<button  type="submit" class="btn btn-primary btn-success" onclick="Ocultar()" >Registrar nuevo usuario</button>
+				</section>
 <!--Registro nuevo usuario-->
 				<section id=formulario-crear-usuario class="oc">
 					<div class="container-form-registro-usuarios ">
