@@ -4,8 +4,6 @@ include('conexion_db.php');
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
