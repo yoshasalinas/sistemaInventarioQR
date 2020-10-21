@@ -36,6 +36,16 @@ $usuario = mysqli_query($conexion, $select);
 			document.getElementById("tabla-de-usuarios").style.display = "none";
 			
         }
+
+        function validarInfomracion(){
+            var formulario = document.form;
+
+            if(formulario.contraseña.value != formulario.confirmarContraseña.value ){
+                document.getElementById("alerta").innerHTML = '<div'
+            }
+        }
+
+
         
         
 	</script>
