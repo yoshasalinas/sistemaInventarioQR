@@ -1,7 +1,7 @@
 <?php
 
 //conexion a db
-$conexion = new mysqli("localhost", "root", "", "inventarioactivos");
+$conexion = new mysqli("localhost", "root", "", "inventarioactivos2");
 $resultado = mysqli_query($conexion, "SET NAMES 'utf8'"); //caracteres
 
 if($conexion->connect_errno){

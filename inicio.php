@@ -51,6 +51,7 @@
         </nav>
 
         <div class="wrapper fixed-left">
+            <!--Menu sidebar-->
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h3><i class="fas fa-user"></i>Administrador</h3>
@@ -108,9 +109,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="registroConsumibles.php">
+                                <a href="registroRefacciones.php">
                                     <i class="fas fa-microchip"></i>
-                                    Consumibles
+                                    Refacciones
                                 </a>
                             </li>
                         </ul> 
@@ -154,7 +155,7 @@
                     </li>
                 </ul>
             </nav>
-
+            <!--Contenido principal-->
             <div id="content">
             
 

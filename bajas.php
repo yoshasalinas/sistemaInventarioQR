@@ -108,9 +108,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="registroConsumibles.php">
+                                <a href="registroRefacciones.php">
                                     <i class="fas fa-microchip"></i>
-                                    Consumibles
+                                    Refacciones
                                 </a>
                             </li>
                         </ul> 

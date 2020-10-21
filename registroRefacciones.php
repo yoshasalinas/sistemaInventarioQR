@@ -24,7 +24,7 @@ include('conexion_db.php');
 
         
 
-        <title>Registro Equipo</title>
+        <title>Registro Refacciones</title>
     </head>
     <body>
         <!--Navbar-->
@@ -164,9 +164,9 @@ include('conexion_db.php');
             </nav>
             <!--Contenido principal-->
             <div id="content">
-                <h1>Registo de Equipo</h1>
+                <h1>Registo de Refacciones</h1>
                 <div class="container-form">
-                    <form action="validarRegistroEquipo.php" method="POST">
+                    <form action="" method="POST">
                         <!--Informacion general-->
                         <div class="row">
                             <div class="col-md-8">
@@ -253,36 +253,14 @@ include('conexion_db.php');
                             <div class="col-12">
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
-                                        <label for="capacidadMemoria">Capacidad de memoria</label>
-                                        <input type="text" class="form-control" id="capacidadMemoria" name="capacidadMemoria">
-                                    </div>
+                                        <label for="cantidad">Cantidad</label>
+                                        <input type="text" class="form-control" id="cantidad" name="cantidad">
+                                    </div>        
                                     <div class="form-group col-md-3">
-                                        <label for="procesador">Procesador</label>
-                                        <input type="text" class="form-control" id="procesador" name="procesador">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="discoDuro">Disco Duro</label>
-                                        <input type="text" class="form-control" id="discoDuro" name="discoDuro">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="pulgadas">Pulgadas</label>
-                                        <input type="text" class="form-control" id="pulgadas" name="pulgadas">
-                                    </div>
-                                </div>        
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="resolucion">Resolucion</label>
-                                        <input type="text" class="form-control" id="resolucion" name="resolucion">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="conectividad">Conectividad</label>
-                                        <input type="text" class="form-control" id="conectividad" name="conectividad">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="tipoEntrada">Tipo de entrada</label>
-                                        <input type="text" class="form-control" id="tipoEntrada" name="tipoEntrada">
-                                    </div>
-                                </div>        
+                                        <label for="capacidadAlmacenamiento">Capacidad de Alamcenamiento</label>
+                                        <input type="text" class="form-control" id="capacidadAlmacenamiento" name="capacidadAlmacenamiento">
+                                    </div>        
+                                </div>              
                             </div>
                         </div>
                         <!--Informacion de ubicacion-->

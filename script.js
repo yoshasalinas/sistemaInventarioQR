@@ -6,3 +6,4 @@ $(document).ready(function() {
       document.getElementById("bodyContent").style.width="100%";
     });
 });
+
