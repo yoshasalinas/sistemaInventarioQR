@@ -177,7 +177,7 @@ $usuario = mysqli_query($conexion, $select);
                                     Usuarios</a>
                             </li>
                             <li>
-                                <a href="ubicaciones.php">
+                                <a href="configuracionUbicaciones.php">
                                     <i class="fas fa-map-marker-alt"></i>
                                     Ubicaciones
                                 </a>
