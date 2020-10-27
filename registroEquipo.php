@@ -26,20 +26,7 @@ include('conexion_db.php');
 
         <title>Registro Equipo</title>
     </head>
-<!--
-    <script>
-        function previewImagen() {
-            var file = document.getElementById("file").files;
-            if (file.length > 0) {
-                var fileReader = new FileReader();
-    
-                fileReader.onload = function (event) {
-                    document.getElementById("preview").setAttribute("src", event.target.result);
-                };
-                fileReader.readAsDataURL(file[0]);
-            }
-        }
-    </script>-->
+
 
     
     <body>
@@ -189,7 +176,7 @@ include('conexion_db.php');
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="Serial">Serial</label>
-                                        <input type="text" class="form-control" id="numSerial" >
+                                        <input type="text" class="form-control" id="numSerial" disable>
                                         <input type="button" id="btnSerial">Generar serial</input>
                                         
                                     </div>
@@ -205,7 +192,7 @@ include('conexion_db.php');
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="tipoActivo">Tipo de activo</label>
-                                        <input class="form-control" id="tipoActivo" type="text">
+                                        <input class="form-control" id="tipoActivo" type="text"value="Equipo" disabled>
                                     </div>
                                     <div class="form-group col-md-8">
                                         <label for="nombreActivo">Nombre</label>
@@ -219,22 +206,22 @@ include('conexion_db.php');
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="estatus">Estatus</label>
-                                        <select class="form-control" id="estatus" name="estatus" onchange="registroNuevoEstatus(this);">
+                                        <select class="form-control" id="estatus" name="estatus" onchange="inputNuevoEstatus(this);">
                                         <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
                                             $consulta = $conexion-> query("SELECT * FROM estatus");
-
                                             while($fila=$consulta->fetch_array()){ //recorre el arreglo
                                                 echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
                                             }
-
                                         ?>
                                         <option value="nuevo">Otro...</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-3 oculto">
+                                    <!--Imput oculto-->
+                                    <div class="form-group col-md-3 oculto" id="otroEstatus">
                                         <label for="nuevoEstatus">Nuevo estatus</label>
-                                        <input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus">    
+                                        <input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus" onkeyup="PasarValor();">    
                                     </div>
+                                    
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
@@ -257,16 +244,16 @@ include('conexion_db.php');
                                     </div>
                                 </div>
                             </div> 
-                            <div class="col-md-4">
+                            <div class="col-md-4 p">
+                                <div class="form-group p" id="div_file">
+                                    <!--<label for="archivoImagen">Imagen:</label>-->
+                                    <p id="texto">Seleccionar Imagen</p>
+                                    <input type="file" class="form-control-file" id="archivoImagen" name="archivoImagen" onchange="validarExt()">
+                                </div>
                                 <div class="form-group">
-                                    <label for="archivoImagen">Imagen:</label>
-                                    <input type="file" class="form-control-file" id="archivoImagen" name="archivoImagen" >
                                     <div class="visorImagen" id="visorArchivo">
-                                        <!--Aqui se despliega el prevew de la imagen-->
+                                            <!--Aqui se despliega el prevew de la imagen-->
                                     </div>
-                                    <input type="file" name="file" id="file" accept="image/*" onchange="previewImagen();">
- 
-                                    <img id="preview">
                                 </div>
                             </div>    
                         </div>
@@ -397,44 +384,90 @@ include('conexion_db.php');
             /*Archivo js*/ 
         </script>
 
-       
-                                          
-        
-
     </body>
     
 </html>
+
+
+
 <script type="text/javascript">
-$(document).ready(function() {
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  
-    function getARandomOneInRange() {
-      return possible.charAt(Math.floor(Math.random() * possible.length));
+    function documentoCargado(){
+        alert('El documento HTML se ha cargado.');
     }
-  
-    function getRandomFour() {
-      return getARandomOneInRange() + getARandomOneInRange() + getARandomOneInRange() + getARandomOneInRange();
-    }
-  
-    $('#btnSerial').click(function() {
-        //concatenacion ejemplo AA45-522S-889CV-OPGC1
-      var serial = `${getRandomFour()}-${getRandomFour()}-${getRandomFour()}-${getRandomFour()}`;
-      $('#numSerial').val(serial);
-    });
-
-  });
-  
-
+    /** addEventListener = Este evento se dispara una vez que se rcarga el contenido html, referencia a la funcion*/
+    document.addEventListener('DOMContentLoaded', documentoCargado, false);
 </script>
 
- <script type="text/javascript">
-            function registroNuevoEstatus(that) {
-            if (that.value == "nuevo") {
-                document.getElementById("nuevoEstatus").style.display = "block";
-            } else {
-                document.getElementById("nuevoEstatus").style.display = "none";
-            }
+<!--Funcion para generar numero serial -->
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    
+         function getARandomOneInRange() {
+        return possible.charAt(Math.floor(Math.random() * possible.length));
         }
-        </script>
+    
+        function getRandomFour() {
+        return getARandomOneInRange() + getARandomOneInRange() + getARandomOneInRange() + getARandomOneInRange();
+        }
+    /**LE MOVI AQUI Y YA NO PUDE REGRESARME XD */
+        function genera() {
+            //concatenacion ejemplo AA45-522S-889CV-OPGC1
+        var serial = `${getRandomFour()}-${getRandomFour()}-${getRandomFour()}-${getRandomFour()}`;
+        $('#numSerial').val(serial);
+        });
 
+    });
+</script>
 
+<!--Funcion para mostrar input "Nuevo estatus" oculto-->
+<script type="text/javascript">
+            function inputNuevoEstatus(that) {
+                if (that.value == "nuevo") {
+                    
+                    document.getElementById("otroEstatus").style.display = "block";
+                } else {
+                    document.getElementById("otroEstatus").style.display = "none";
+                }
+            }
+</script>
+
+<script language="javascript">/*
+    function PasarValor()
+    {
+    document.getElementById("nuevoEstatus").value = document.getElementById("estatus").value;
+    }*/
+</script>
+
+<script type="text/javascript">
+
+function validarExt()
+{
+    /**Valor del input */
+    var archivoInput = document.getElementById('archivoImagen');
+    var archivoRuta = archivoImagen.value;
+    /**Extenciones de archivos permitidas  */
+    var extPermitidas = /(.PNG|.jpg)$/i;
+    if(!extPermitidas.exec(archivoRuta)){
+        alert('Solo imagen .PNG y .jpg');
+        archivoImagen.value = '';
+        return false;
+    }
+
+    else
+    {
+        //PRevio del PDF
+        if (archivoImagen.files && archivoImagen.files[0]) 
+        {
+            var visor = new FileReader();
+            visor.onload = function(e) 
+            {
+                document.getElementById('visorArchivo').innerHTML = 
+                '<embed src="'+e.target.result+'" width="500" height="375" />';
+            };
+            visor.readAsDataURL(archivoImagen.files[0]);
+        }
+    }
+}
+</script>
