@@ -17,7 +17,7 @@ include('conexion_db.php');
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <!--CSS-->
         <link href="css/inicio-style.css" rel="stylesheet" type="text/css">
-        <link href="css/registro-style.css" rel="stylesheet" type="text/css">
+        <link href="css/registro-equipo-style.css" rel="stylesheet" type="text/css">
         
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -244,8 +244,8 @@ include('conexion_db.php');
                                     </div>
                                 </div>
                             </div> 
-                            <div class="col-md-4 p">
-                                <div class="form-group p" id="div_file">
+                            <div class="col-md-4 a">
+                                <div class="form-group " id="div_file">
                                     <!--<label for="archivoImagen">Imagen:</label>-->
                                     <p id="texto">Seleccionar Imagen</p>
                                     <input type="file" class="form-control-file" id="archivoImagen" name="archivoImagen" onchange="validarExt()">
@@ -254,6 +254,18 @@ include('conexion_db.php');
                                     <div class="visorImagen" id="visorArchivo">
                                             <!--Aqui se despliega el prevew de la imagen-->
                                     </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="container-imagen ">
+                                        <div class="content">
+                                            <div class="icon"><i class="far fa-images"></i></div>
+                                            <div class="text">No file chosen, yet!</div>
+                                        </div>
+                                        <div id="cancel-btn"><i class="fas fa-times"></i></div>
+                                        <div class="file-name">File name here</div>
+                                    </div>
+                                    <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
+                                    <input id="default-btn" type="file" hidden>
                                 </div>
                             </div>    
                         </div>
@@ -391,11 +403,12 @@ include('conexion_db.php');
 
 
 <script type="text/javascript">
+
     function documentoCargado(){
         alert('El documento HTML se ha cargado.');
     }
     /** addEventListener = Este evento se dispara una vez que se rcarga el contenido html, referencia a la funcion*/
-    document.addEventListener('DOMContentLoaded', documentoCargado, false);
+    document.addEventListener('DOMContentLoaded', , false);
 </script>
 
 <!--Funcion para generar numero serial -->
@@ -433,11 +446,11 @@ include('conexion_db.php');
             }
 </script>
 
-<script language="javascript">/*
+<script language="javascript">
     function PasarValor()
     {
     document.getElementById("nuevoEstatus").value = document.getElementById("estatus").value;
-    }*/
+    }
 </script>
 
 <script type="text/javascript">
@@ -464,7 +477,7 @@ function validarExt()
             visor.onload = function(e) 
             {
                 document.getElementById('visorArchivo').innerHTML = 
-                '<embed src="'+e.target.result+'" width="500" height="375" />';
+                '<embed src="'+e.target.result+'" width="100" height="100" />';
             };
             visor.readAsDataURL(archivoImagen.files[0]);
         }

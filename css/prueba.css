@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-/{
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,13 +10,18 @@ html,body{
   height: 100%;
   place-items: center;
   text-align: center;
+  
 }
 .container{
   height: 350px;
   width: 430px;
   position: relative;
 }
-.imagen-activo {
+
+.content{
+  background: #3a8ffe;
+}
+.container .wrapper{
   position: relative;
   height: 300px;
   width: 100%;
@@ -28,10 +33,10 @@ html,body{
   justify-content: center;
   overflow: hidden;
 }
-.imagen-activo .active{
+.wrapper.active{
   border: none;
 }
-.imagen-activo .image{
+.wrapper .image{
   position: absolute;
   height: 100%;
   width: 100%;
@@ -39,21 +44,21 @@ html,body{
   align-items: center;
   justify-content: center;
 }
-.imagen-activo img{
+.wrapper img{
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-.imagen-activo .icon{
+.wrapper .icon{
   font-size: 100px;
-  color: black;
+  color: #9658fe;
 }
-.imagen-activo .text{
+.wrapper .text{
   font-size: 20px;
   font-weight: 500;
   color: #5B5B7B;
 }
-.imagen-activo #cancel-btn i{
+.wrapper #cancel-btn i{
   position: absolute;
   font-size: 20px;
   right: 15px;
@@ -62,13 +67,13 @@ html,body{
   cursor: pointer;
   display: none;
 }
-.imagen-activo .active:hover #cancel-btn i{
+.wrapper.active:hover #cancel-btn i{
   display: block;
 }
-.imagen-activo #cancel-btn i:hover{
+.wrapper #cancel-btn i:hover{
   color: #e74c3c;
 }
-.imagen-activo .file-name{
+.wrapper .file-name{
   position: absolute;
   bottom: 0px;
   width: 100%;
@@ -78,10 +83,10 @@ html,body{
   display: none;
   background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
 }
-.imagen-activo .active:hover .file-name{
+.wrapper.active:hover .file-name{
   display: block;
 }
-.imagen-activo #custom-btn{
+.container #custom-btn{
   margin-top: 30px;
   display: block;
   width: 100%;
@@ -95,5 +100,5 @@ html,body{
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+  background: linear-gradient(135deg,black 0%,#9658fe 100%);
 }
