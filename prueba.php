@@ -9,63 +9,35 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <!--CSS-->
-    <link href="css/registro-equipo-style.css" rel="stylesheet" type="text/css">
+    <link href="css/prueba.css" rel="stylesheet" type="text/css">
     <title>Hello, world!</title>
   </head>
   <body>
-    <div class="container">
-      <div class="wrapper-imagen">
-        <div class="content">
-          <div class="icon">
-            <i class="fas fa-cloud-upload-alt"></i></div>
-          <div class="text">No se ha seleccionado una imagen!</div>
+    <div class="center">
+      <div class="form-input">
+        <label for="file-ip-1">Upload Image</label>
+        <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+        <div class="preview">
+          <img id="file-ip-1-preview">
         </div>
-        <div id="cancel-btn"><i class="fas fa-times"></i></div>
-        <div class="file-name">File name here</div>
       </div>
-      <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
-      <input id="default-btn" type="file" hidden>
     </div>
-  <script>
-      const wrapper = document.querySelector(".wrapper");
-      const fileName = document.querySelector(".file-name");
-      const defaultBtn = document.querySelector("#default-btn");
-      const customBtn = document.querySelector("#custom-btn");
-      const cancelBtn = document.querySelector("#cancel-btn i");
-      const img = document.querySelector("img");
-      let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
-      function defaultBtnActive(){
-        defaultBtn.click();
+
+    <script>
+      function showPreview(event){
+        if(event.target.files.length > 0){
+          var src = URL.createObjectURL(event.target.files[0]);
+          var preview = document.getElementById("file-ip-1-preview");
+          preview.src = src;
+          preview.style.display = "block";
+        }
       }
-      defaultBtn.addEventListener("change", function(){
-        const file = this.files[0];
-        if(file){
-          const reader = new FileReader();
-          reader.onload = function(){
-            const result = reader.result;
-            img.src = result;
-            wrapper.classList.add("active");
-          }
-          cancelBtn.addEventListener("click", function(){
-            img.src = "";
-            wrapper.classList.remove("active");
-          })
-          reader.readAsDataURL(file);
-        }
-        if(this.value){
-          let valueStore = this.value.match(regExp);
-          fileName.textContent = valueStore;
-        }
-      });
-    </script>
-
-
-
-
-
-
 
     </script>
+    
+  
+
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 

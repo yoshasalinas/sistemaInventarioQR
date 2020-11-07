@@ -244,7 +244,25 @@ include('conexion_db.php');
                                     </div>
                                 </div>
                             </div> 
-                            <div class="col-md-4 a">
+                            <div class="col-md-4">
+                                <div class="form-group ">
+                                    <div id="cancel-btn">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                    <div class="container-imagen ">
+                                        <div class="image-activo">
+                                            <img src="" alt="" id="img-activo" class="oculto">
+                                        </div>
+                                        <div class="content">
+                                            <div class="icon"><i class="fas fa-camera"></i></div>
+                                            <div class="text">No imagen</div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="file-name">File name here</div>  -->    
+                                    <input type="button" onclick="defaultBtnActive()" id="custom-btn">Choose a file</input>
+                                    <input id="default-btn" type="file" hidden>
+                                </div>
+                                
                                 <div class="form-group " id="div_file">
                                     <!--<label for="archivoImagen">Imagen:</label>-->
                                     <p id="texto">Seleccionar Imagen</p>
@@ -254,18 +272,6 @@ include('conexion_db.php');
                                     <div class="visorImagen" id="visorArchivo">
                                             <!--Aqui se despliega el prevew de la imagen-->
                                     </div>
-                                </div>
-                                <div class="form-group ">
-                                    <div class="container-imagen ">
-                                        <div class="content">
-                                            <div class="icon"><i class="far fa-images"></i></div>
-                                            <div class="text">No file chosen, yet!</div>
-                                        </div>
-                                        <div id="cancel-btn"><i class="fas fa-times"></i></div>
-                                        <div class="file-name">File name here</div>
-                                    </div>
-                                    <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
-                                    <input id="default-btn" type="file" hidden>
                                 </div>
                             </div>    
                         </div>
@@ -413,25 +419,25 @@ include('conexion_db.php');
 
 <!--Funcion para generar numero serial -->
 <script type="text/javascript">
-
     $(document).ready(function() {
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     
-         function getARandomOneInRange() {
+        function getARandomOneInRange() {
         return possible.charAt(Math.floor(Math.random() * possible.length));
         }
     
         function getRandomFour() {
         return getARandomOneInRange() + getARandomOneInRange() + getARandomOneInRange() + getARandomOneInRange();
         }
-    /**LE MOVI AQUI Y YA NO PUDE REGRESARME XD */
-        function genera() {
+    
+        $('#btnSerial').click(function() {
             //concatenacion ejemplo AA45-522S-889CV-OPGC1
-        var serial = `${getRandomFour()}-${getRandomFour()}-${getRandomFour()}-${getRandomFour()}`;
+        var serial = ${getRandomFour()}-${getRandomFour()}-${getRandomFour()}-${getRandomFour()};
         $('#numSerial').val(serial);
         });
 
     });
+  
 </script>
 
 <!--Funcion para mostrar input "Nuevo estatus" oculto-->
@@ -451,6 +457,44 @@ include('conexion_db.php');
     {
     document.getElementById("nuevoEstatus").value = document.getElementById("estatus").value;
     }
+</script>
+
+<script language="javascript">
+    const wrapper = document.querySelector(".wrapper-image");
+    const fileName = document.querySelector(".file-name");
+    const defaultBtn = document.querySelector("#default-btn");
+    const customBtn = document.querySelector("#custom-btn");
+    const cancelBtn = document.querySelector("#cancel-btn i");
+    const img = document.querySelector("#img-activo");
+    let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+
+    function defaultBtnActive(){
+        defaultBtn.click();
+    }
+
+    defaultBtn.addEventListener("change", function(){
+        const file = this.files[0];
+        if(file){
+          const reader = new FileReader();
+          reader.onload = function(){
+            const result = reader.result;
+            img.src = result;
+            document.getElementById("img-activo").style.display = "block";
+            wrapper.classList.add("active");
+          }
+          cancelBtn.addEventListener("click", function(){
+            img.src = "";
+            document.getElementById("img-activo").style.display = "none";
+            wrapper.classList.remove("active");
+          })
+          reader.readAsDataURL(file);
+        }
+        if(this.value){
+          let valueStore = this.value.match(regExp);
+          fileName.textContent = valueStore;
+        }
+    });
+
 </script>
 
 <script type="text/javascript">
