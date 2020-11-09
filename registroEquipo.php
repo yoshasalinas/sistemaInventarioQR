@@ -9,7 +9,6 @@ include('conexion_db.php');
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
         <!---->
         <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.  5/jquery.mCustomScrollbar.min.css">
         <!-- Bootstrap CSS -->
@@ -189,7 +188,7 @@ include('conexion_db.php');
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="tipoActivo">Tipo de activo</label>
-                                        <input class="form-control" id="tipoActivo" type="text"value="Equipo" disabled>
+                                        <input class="form-control" id="tipoActivo" type="text" value="Equipo" disabled>
                                     </div>
                                     <div class="form-group col-md-8">
                                         <label for="nombreActivo">Nombre</label>
@@ -201,7 +200,7 @@ include('conexion_db.php');
                                         <label for="fechaAlta">Fecha de alta:</label>
                                         <input type="date" class="form-control" id="fechaAlta" name="fechaAlta">
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-3">
                                         <label for="estatus">Estatus</label>
                                         <select class="form-control" id="estatus" name="estatus" onchange="inputNuevoEstatus(this);">
                                         <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
@@ -217,11 +216,13 @@ include('conexion_db.php');
                                     <div class="form-group col-md-3 oculto" id="otroEstatus">
                                         <label for="nuevoEstatus">Nuevo estatus</label>
                                         <!--<input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus" onkeyup="PasarValor();">    -->
-                                        <input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus" onkeyup="PasarValor();">
-                                        <!--<input type="text" id="val">-->
-                                        <button type="button" class="btn btn-estatus" onclick="insertValue();">Add</button>
+                                        <input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus">
+                                        
                                     </div>
-                                    
+                                    <div class="form-group col-md-3 oculto" id="btn-otroEstatus">
+                                        <button type="button" class="btn btn-estatus" onclick="insertValue();">Agregar</button>
+                                    </div>
+
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
@@ -259,7 +260,7 @@ include('conexion_db.php');
                                         </div>
                                     </div>
                                     <div id="upload-btn" class="div">
-                                        <button type="button" class="btn btn-imagen" onclick="defaultBtnActive()" id="file-btn"><i class="fas fa-upload"></i>Subir imagen</button>
+                                        <button type="button" class="btn btn-imagen " onclick="defaultBtnActive()" id="file-btn"><i class="fas fa-upload"></i>Subir imagen</button>
                                         <input id="archivoImagen" type="file" id="archivoImagen" name="archivoImagen" onchange="validarExt()" hidden>
                                     </div>
                                 </div>
@@ -367,6 +368,20 @@ include('conexion_db.php');
                                     <!--Aqui se despliega el prevew de la imagen-->
                                 </div>
                             </div>
+                            <div class="form-group">
+                                    <div class="container-codigoQR">
+                                        <div class="codigoQR-activo">
+                                            <img src="" alt="" id="codigoQR-activo" class="oculto">
+                                        </div>
+                                        <div class="content">
+                                            <div class="icon"><i class="fas fa-qrcode"></i></div>
+                                        </div>
+                                    </div>
+                                    <div id="upload-btn" class="div">
+                                        <button type="button" class="btn btn-imagen " onclick="" id="file-btn">Generar codigo QR</button>
+                                        <input id="archivoImagen" type="file" id="archivoImagen" name="archivoImagen" onchange="validarExt()" hidden>
+                                    </div>
+                                </div>
                         </div>                
                         <div class="form-row center">
                             <button type="submit" class="btn btn-success btn-lg">Registrar Activo</button>
@@ -384,22 +399,17 @@ include('conexion_db.php');
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-        <!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>-->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-
         <script src="script.js">
-            /*Archivo js*/ 
+            /*Archivo js para side-menu*/ 
         </script>
 
     </body>
     
 </html>
 
-
-
-<!--Funcion para generar numero serial -->
+<!--GENERAR NUMERO SERIAL-->
 <script type="text/javascript">
     $(document).ready(function() {
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -420,20 +430,22 @@ include('conexion_db.php');
     });
 </script>
 
-<!--Funcion para mostrar input "Nuevo estatus" oculto-->
+<!--AGREGAR NUEVO ESTATUS-->
+<!--Funcion para mostrar div "Nuevo estatus" ocultos-->
 <script type="text/javascript">
             function inputNuevoEstatus(that) {
                 if (that.value == "nuevo") {
-                    
                     document.getElementById("otroEstatus").style.display = "block";
+                    document.getElementById("btn-otroEstatus").style.display = "block";
                 } else {
                     document.getElementById("otroEstatus").style.display = "none";
+                    document.getElementById("btn-otroEstatus").style.display = "none";
                 }
             }
 </script>
 
-<!--Inservar nuevo estatus error-->
-<script>       
+<!--Funcion para insertar el nuevo estatus al select-->
+<script type="text/javascript">       
     function insertValue(){
         var select = document.getElementById("estatus"),
         txtVal = document.getElementById("nuevoEstatus").value,
@@ -442,16 +454,39 @@ include('conexion_db.php');
              
         newOption.appendChild(newOptionVal);
         select.insertBefore(newOption,select.firstChild);
-    }          
+
+        //Ocultar input de nuevo estatus
+        document.getElementById("otroEstatus").style.display = "none";
+        document.getElementById("btn-otroEstatus").style.display = "none";
+    }
+    
 </script>
 
+<!--Funcion para limpiar input nuevo estatus-->
+<script type="text/javascript">       
+    function limpiarBoton(){
+        let btnClear = document.querySelector('btn-otroEstatus');
+        let inputs = document.querySelectorAll('otroEstatus');
+        
+        btnClear.addEventListener('click', () => {
+            inputs.forEach(input =>  input.value = '');
+        }); 
+    }         
+</script>
+
+
+
+<!-- Ayuda a pagar el value a un input text
 <script language="javascript">
     function PasarValor()
     {
     document.getElementById("nuevoEstatus").value = document.getElementById("estatus").value;
     }
 </script>
+-->
 
+<!--AGREGAR IMAGEN-->
+<!--Guardar imagen en el input tipo file-->
 <script language="javascript">
     const wrapper = document.querySelector(".wrapper-image");
     const fileName = document.querySelector(".file-name");
@@ -487,37 +522,35 @@ include('conexion_db.php');
           fileName.textContent = valueStore;
         }
     });
-
 </script>
-
+<!--Validar extencion de archivos que se suben al input file-->
 <script type="text/javascript">
-
-function validarExt()
-{
-    /**Valor del input */
-    var archivoInput = document.getElementById('archivoImagen');
-    var archivoRuta = archivoImagen.value;
-    /**Extenciones de archivos permitidas  */
-    var extPermitidas = /(.PNG|.jpg)$/i;
-    if(!extPermitidas.exec(archivoRuta)){
-        alert('Solo imagen .PNG y .jpg');
-        archivoImagen.value = '';
-        return false;
-    }
-
-    else
+    function validarExt()
     {
-        //PRevio del PDF
-        if (archivoImagen.files && archivoImagen.files[0]) 
+        /**Valor del input */
+        var archivoInput = document.getElementById('archivoImagen');
+        var archivoRuta = archivoImagen.value;
+        /**Extenciones de archivos permitidas  */
+        var extPermitidas = /(.PNG|.jpg)$/i;
+        if(!extPermitidas.exec(archivoRuta)){
+            alert('Solo imagen .PNG y .jpg');
+            archivoImagen.value = '';
+            return false;
+        }
+
+        else
         {
-            var visor = new FileReader();
-            visor.onload = function(e) 
+            //PRevio del PDF
+            if (archivoImagen.files && archivoImagen.files[0]) 
             {
-                document.getElementById('visorArchivo').innerHTML = 
-                '<embed src="'+e.target.result+'" width="100" height="100" />';
-            };
-            visor.readAsDataURL(archivoImagen.files[0]);
+                var visor = new FileReader();
+                visor.onload = function(e) 
+                {
+                    document.getElementById('visorArchivo').innerHTML = 
+                    '<embed src="'+e.target.result+'" width="100" height="100" />';
+                };
+                visor.readAsDataURL(archivoImagen.files[0]);
+            }
         }
     }
-}
 </script>

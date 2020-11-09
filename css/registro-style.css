@@ -1,7 +1,10 @@
+.color{
+  background: #9658fe;
+}
+
 h1{
     text-align: center;
-    color: ;
-    
+    color: #09134E;
 }
 
 .center{
@@ -9,31 +12,28 @@ h1{
     justify-content: center;
 }
 
-.ocultos{
-    display: block;
+.oculto{
+    display: none;
 }
 
-.p{
-  background: tomato;
-}
-
-
-.container-form #texto{
+#texto{
   text-align: center;
   color: white;
+  font-size: 15px;
 }
 
-.container-form #div_file{
+#div_file{
   position: relative;
   margin: 50px;
   padding: 10px;
-  width: 100px;
-  background-color: turquoise;
+  width: 150px;
+  height: 50px;
+  background:#09134E;
   -webkit-border-radius: 5px;
-  -webkit-box-shadow: 0px 3px 0px #09134E;
+  -webkit-box-shadow: 0px 3px 0px grey;
 }
 
-.container-form #archivoImagen{
+#archivoImagen{
   position: absolute;
   top:0px;
   left: 0px;
@@ -44,60 +44,139 @@ h1{
   opacity: 0;
 }
 
-.container-form #cancel-btn{
-  background: red;
+
+.container-imagen{
+  position: relative;
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+  background: #fff;
+  border: 2px dashed #c2cdda;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
+
+.container-imagen .active{
+  border: none;
+}
+
+.container-imagen .image-activo{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container-imagen img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.container-imagen .content{
+  align-items: center;
+}
+
+.container-imagen .icon{
+  font-size: 100px;
+  color: #09134E;
+}
+
+.container-imagen .text{
+  font-size: 20px;
+  font-weight: 500;
+  color:#C21828;
+}
+
+#cancel-btn {
+  text-align: right;
+  color: #C21828;
+}
+
+#upload-btn{
+  margin-top: 30px;
+  text-align: center;
+}
+
+.btn-imagen{
+  background: rgb(185, 184, 184);
+  color: #09134E;
+  font-size: 20px;
+}
+
+/*Pendiente css para esta parte*/
+#btn-otroEstatus{
+  margin-top: 30px;
+  
+}
+.btn-estatus{
+  background: rgb(185, 184, 184);
+  color: #09134E;
+  font-size: 15px;
+}
+
+
+
+
+
+
+
+
 
 /*
-.center1 {
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.form-input {
-  width:250px;
-  padding:20px;
-  background:#fff;
-  border:2px dashed #555;
-}
-.form-input input {
-  display:none;
-}
-.form-input label {
-  display:block;
-  width:100%;
-  height:50px;
-  line-height:50px;
-  text-align:center;
-  background:#333;
-  color:#fff;
-  font-size:15px;
-  font-family:"Open Sans",sans-serif;
-  text-transform:Uppercase;
-  font-weight:600;
-  border-radius:10px;
-  cursor:pointer;
+.container-imagen #cancel-btn{
+  position: absolute;
+  font-size: 20px;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+  display: none;
+  color: #e74c3c;
+  
 }
 
-.form-input img {
-  width:100px;
-  display:none;
-  margin-top:10px;
+.container-imagen .active:hover #cancel-btn i{
+  display: block;
+  color: #e74c3c;
+}
+
+.container-imagen #cancel-btn i:hover{
+  color: #e74c3c;
+}
+*/
+/*
+.container-imagen .file-name{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  padding: 8px 0;
+  font-size: 18px;
+  color: #fff;
+  display: none;
+  background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+}
+
+.container-imagen .active:hover .file-name{
+  display: block;
 }
 */
 
-
-/* Small devices (landscape phones, 576px and up)        sm*/
-@media (min-width: 576px) and (max-width: 767.98px) {
-    
+.container-imagen #custom-btn{
+  margin-top: 30px;
+  display: block;
+  width: 100%;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: linear-gradient(135deg,black 0%,#9658fe 100%);
 }
-
-/* Medium devices (tablets, 768px and up)                md*/
-@media (min-width: 768px) and (max-width: 991.98px) {}
-
-/* Large devices (desktops, 992px and up)                   lg*/
-@media (min-width: 992px) and (max-width: 1199.98px) {}
-
-/* Extra large devices (large desktops, 1200px and up)      xl*/
-@media (min-width: 1200px) {}

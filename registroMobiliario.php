@@ -9,7 +9,6 @@ include('conexion_db.php');
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
         <!---->
         <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.  5/jquery.mCustomScrollbar.min.css">
         <!-- Bootstrap CSS -->
@@ -17,7 +16,7 @@ include('conexion_db.php');
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <!--CSS-->
         <link href="css/inicio-style.css" rel="stylesheet" type="text/css">
-        <link href="css/registro-style.css" rel="stylesheet" type="text/css">
+        <link href="css/registro-equipo-style.css" rel="stylesheet" type="text/css">
 
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -173,9 +172,8 @@ include('conexion_db.php');
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="numSerial">Serial</label>
-                                        <input type="text" class="form-control" id="numSerial">
-                                        
-                                        
+                                        <input type="text" class="form-control" id="numSerial" disabled>
+                                         
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="numDispositivo">Serial del Dispositivo</label>
@@ -189,7 +187,7 @@ include('conexion_db.php');
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="tipoActivo">Tipo de activo</label>
-                                        <input class="form-control" id="tipoActivo" type="text" placeholder="Equipo" value="Equipo" disabled>
+                                        <input class="form-control" id="tipoActivo" type="text" value="Mobiliario" disabled>
                                     </div>
                                     <div class="form-group col-md-8">
                                         <label for="nombreActivo">Nombre</label>
@@ -197,22 +195,31 @@ include('conexion_db.php');
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="nombreActivo">Fecha de alta:</label>
-                                        <input type="date" class="form-control" id="nombreActivo" name="nombreActivo">
+                                    <div class="form-group col-md-3">
+                                        <label for="fechaAlta">Fecha de alta:</label>
+                                        <input type="date" class="form-control" id="fechaAlta" name="fechaAlta">
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-3">
                                         <label for="estatus">Estatus</label>
-                                        <select class="form-control" id="estatus" name="estatus">
+                                        <select class="form-control" id="estatus" name="estatus" onchange="inputNuevoEstatus(this);">
                                         <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
                                             $consulta = $conexion-> query("SELECT * FROM estatus");
-
                                             while($fila=$consulta->fetch_array()){ //recorre el arreglo
                                                 echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
                                             }
-
                                         ?>
+                                        <option value="nuevo">Otro...</option>
                                         </select>
+                                    </div>
+                                    <!--Imput oculto-->
+                                    <div class="form-group col-md-3 oculto" id="otroEstatus">
+                                        <label for="nuevoEstatus">Nuevo estatus</label>
+                                        <!--<input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus" onkeyup="PasarValor();">    -->
+                                        <input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus">
+                                        
+                                    </div>
+                                    <div class="form-group col-md-3 oculto" id="btn-otroEstatus">
+                                        <button type="button" class="btn btn-estatus" onclick="insertValue();">Agregar</button>
                                     </div>
 
                                 </div>
@@ -237,14 +244,26 @@ include('conexion_db.php');
                                     </div>
                                 </div>
                             </div> 
-                            <div class="col-md-4">
+                            <div class="col-md-4 ">
                                 <div class="form-group">
-                                    <label for="archivoImagen">Imagen</label>
-                                    <input type="file" class="form-control-file" id="archivoImagen" name="archivoImagen">
-                                    <div class="visorImagen" id="visorArchivo">
-                                        <!--Aqui se despliega el prevew de la imagen-->
+                                    <div id="cancel-btn">
+                                        <i class="far fa-window-close fa-lg"></i>
+                                    </div>
+                                    <div class="container-imagen ">
+                                        <div class="image-activo">
+                                            <img src="" alt="" id="img-activo" class="oculto">
+                                        </div>
+                                        <div class="content">
+                                            <div class="icon"><i class="fas fa-camera"></i></div>
+                                            <div class="text">No imagen</div>
+                                        </div>
+                                    </div>
+                                    <div id="upload-btn" class="div">
+                                        <button type="button" class="btn btn-imagen " onclick="defaultBtnActive()" id="file-btn"><i class="fas fa-upload"></i>Subir imagen</button>
+                                        <input id="archivoImagen" type="file" id="archivoImagen" name="archivoImagen" onchange="validarExt()" hidden>
                                     </div>
                                 </div>
+                                
                             </div>
                                 
                         </div>
@@ -268,59 +287,53 @@ include('conexion_db.php');
                             <div class="col-12">
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label for="tipoUbicacion">Ubicacion</label>
+                                        <label for="tipoUbicacion">Ubicacion</label> <!--Tipo/Nobre ubicacion-->
                                         <select class="form-control" id="tipoUbicacion" name="tipoUbicacion" >
                                         <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
                                             $consulta = $conexion-> query("SELECT * FROM ubicaciones");
 
                                             while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']."</option>"; //muestra los datos de la tabla externa
+                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']." ".$fila['nombre_ubicacion']."</option>"; //muestra los datos de la tabla externa
                                             }
                                         ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="nombreUbicacion">Nombre</label>
-                                        <select class="form-control" id="nombreUbicacion" name="nombreUbicacion" >
-                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
-
-                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['nombre_ubicacion']."</option>"; //muestra los datos de la tabla externa
-                                            }
-                                        ?>
-                                        </select>
-                                    </div>   
-                                </div>        
+                                       
+                                </div>  
+                                <!--      
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <label for="nombreEdificio">Edificio</label>
                                         <input class="form-control" id="nombreEdificio" name="nombreEdificio" type="text"  
-                                        value="<?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                        value=" *<?php /* TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
                                             $consulta = $conexion-> query("SELECT * FROM ubicaciones");
 
                                             while($fila=$consulta->fetch_array()){ //recorre el arreglo
                                                 echo "<option value ='".$fila['id_ubicacion']."'>".$fila['nombre_edificio']."</option>"; //muestra los datos de la tabla externa
                                             }
+                                            */
                                         ?>" disabled>
                                         
                                     </div>
+                                    -->
+                                    <!-- 
                                     <div class="form-group col-md-6">
                                         <label for="descripEdificio">Descripcion de la Ubicacion</label>
                                         <textarea class="form-control" id="descripEdificio" rows="3"name="descripEdificio" type="text" disabled>
-                                            <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                            <?php /* TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
                                             $consulta = $conexion-> query("SELECT * FROM ubicaciones");
 
                                             while($fila=$consulta->fetch_array()){ //recorre el arreglo
                                                 echo "<option value ='".$fila['id_ubicacion']."'>".$fila['descripcion_ubicacion']."</option>"; //muestra los datos de la tabla externa
-                                            }
+                                            }*/
                                             ?>
                                         </textarea>
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    -->
+                                    <!--<div class="form-group col-md-3">
                                         <label for="capacidad">Capacidad</label>
                                         <input class="form-control" id="capacidad" name="capacidad" type="text" placeholder="Disponible??" value="" disabled>
-                                    </div>
+                                    </div>-->
                                 </div>   
                             </div>
                         </div>
@@ -349,39 +362,8 @@ include('conexion_db.php');
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-        <!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>-->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-        <script type="text/javascript">
-
-            function validarExt()
-            {
-                var archivoInput = document.getElementById('archivoImagen');
-                var archivoRuta = archivoInput.value;
-                var extPermitidas = /(.jpg)$/i;
-                if(!extPermitidas.exec(archivoRuta)){
-                    alert('El sistema solo acepta imagenes .jpg');
-                    archivoInput.value = '';
-                    return false;
-                }
-
-                else
-                {
-                    //PRevio del PDF
-                    if (archivoInput.files && archivoInput.files[0]) 
-                    {
-                        var visor = new FileReader();
-                        visor.onload = function(e) 
-                        {
-                            document.getElementById('visorArchivo').innerHTML = 
-                            '<embed src="'+e.target.result+'" width="300" height="300" />';
-                        };
-                        visor.readAsDataURL(archivoInput.files[0]);
-                    }
-                }
-            }
-        </script>
 
         <script src="script.js">
             /*Archivo js*/ 
@@ -392,3 +374,151 @@ include('conexion_db.php');
 
     </body>
 </html>
+
+
+
+<!--GENERAR NUMERO SERIAL-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    
+        function getARandomOneInRange() {
+        return possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+    
+        function getRandomFour() {
+        return getARandomOneInRange() + getARandomOneInRange() + getARandomOneInRange() + getARandomOneInRange();
+        }
+
+        //Funcion autoejecutada, carga al entrar a la pagina
+        window.onload = function Ejemplo1(){
+            var serial = `${getRandomFour()}-${getRandomFour()}-${getRandomFour()}-${getRandomFour()}`;
+            $('#numSerial').val(serial);
+        }
+    });
+</script>
+
+<!--AGREGAR NUEVO ESTATUS-->
+<!--Funcion para mostrar div "Nuevo estatus" ocultos-->
+<script type="text/javascript">
+            function inputNuevoEstatus(that) {
+                if (that.value == "nuevo") {
+                    document.getElementById("otroEstatus").style.display = "block";
+                    document.getElementById("btn-otroEstatus").style.display = "block";
+                } else {
+                    document.getElementById("otroEstatus").style.display = "none";
+                    document.getElementById("btn-otroEstatus").style.display = "none";
+                }
+            }
+</script>
+
+<!--Funcion para insertar el nuevo estatus al select-->
+<script type="text/javascript">       
+    function insertValue(){
+        var select = document.getElementById("estatus"),
+        txtVal = document.getElementById("nuevoEstatus").value,
+        newOption = document.createElement("OPTION"),
+        newOptionVal = document.createTextNode(txtVal);
+             
+        newOption.appendChild(newOptionVal);
+        select.insertBefore(newOption,select.firstChild);
+
+        //Ocultar input de nuevo estatus
+        document.getElementById("otroEstatus").style.display = "none";
+        document.getElementById("btn-otroEstatus").style.display = "none";
+    }
+    
+</script>
+
+<!--Funcion para limpiar input nuevo estatus-->
+<script type="text/javascript">       
+    function limpiarBoton(){
+        let btnClear = document.querySelector('btn-otroEstatus');
+        let inputs = document.querySelectorAll('otroEstatus');
+        
+        btnClear.addEventListener('click', () => {
+            inputs.forEach(input =>  input.value = '');
+        }); 
+    }         
+</script>
+
+
+
+<!-- Ayuda a pagar el value a un input text
+<script language="javascript">
+    function PasarValor()
+    {
+    document.getElementById("nuevoEstatus").value = document.getElementById("estatus").value;
+    }
+</script>
+-->
+
+<!--AGREGAR IMAGEN-->
+<!--Guardar imagen en el input tipo file-->
+<script language="javascript">
+    const wrapper = document.querySelector(".wrapper-image");
+    const fileName = document.querySelector(".file-name");
+    const defaultBtn = document.querySelector("#archivoImagen");
+    const customBtn = document.querySelector("#file-btn");
+    const cancelBtn = document.querySelector("#cancel-btn i");
+    const img = document.querySelector("#img-activo");
+    let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+
+    function defaultBtnActive(){
+        defaultBtn.click();
+    }
+
+    defaultBtn.addEventListener("change", function(){
+        const file = this.files[0];
+        if(file){
+          const reader = new FileReader();
+          reader.onload = function(){
+            const result = reader.result;
+            img.src = result;
+            document.getElementById("img-activo").style.display = "block";
+            wrapper.classList.add("active");
+          }
+          cancelBtn.addEventListener("click", function(){
+            img.src = "";
+            document.getElementById("img-activo").style.display = "none";
+            wrapper.classList.remove("active");
+          })
+          reader.readAsDataURL(file);
+        }
+        if(this.value){
+          let valueStore = this.value.match(regExp);
+          fileName.textContent = valueStore;
+        }
+    });
+</script>
+<!--Validar extencion de archivos que se suben al input file-->
+<script type="text/javascript">
+    function validarExt()
+    {
+        /**Valor del input */
+        var archivoInput = document.getElementById('archivoImagen');
+        var archivoRuta = archivoImagen.value;
+        /**Extenciones de archivos permitidas  */
+        var extPermitidas = /(.PNG|.jpg)$/i;
+        if(!extPermitidas.exec(archivoRuta)){
+            alert('Solo imagen .PNG y .jpg');
+            archivoImagen.value = '';
+            return false;
+        }
+
+        else
+        {
+            //PRevio del PDF
+            if (archivoImagen.files && archivoImagen.files[0]) 
+            {
+                var visor = new FileReader();
+                visor.onload = function(e) 
+                {
+                    document.getElementById('visorArchivo').innerHTML = 
+                    '<embed src="'+e.target.result+'" width="100" height="100" />';
+                };
+                visor.readAsDataURL(archivoImagen.files[0]);
+            }
+        }
+    }
+</script>

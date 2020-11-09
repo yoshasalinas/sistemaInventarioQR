@@ -13,25 +13,20 @@
     <title>Hello, world!</title>
   </head>
   <body>
-     <select id="select">
-            <option value="java">Java</option>
-            <option value="c#">C#</option>
-        </select>
-        <input type="text" id="val">
-        <button onclick="insertValue();">Add</button>
+     <div>
+        <input type="text" placeholder="Enter Username">
+        <input type="password" placeholder="Enter Password">
+        <button>Clear</button>
+    </div>
 
         <script>
             
-            function insertValue()
-            {
-                var select = document.getElementById("select"),
-                    txtVal = document.getElementById("val").value,
-                    newOption = document.createElement("OPTION"),
-                    newOptionVal = document.createTextNode(txtVal);
-             
-                newOption.appendChild(newOptionVal);
-                select.insertBefore(newOption,select.firstChild);
-            }
+            let btnClear = document.querySelector('button');
+            let inputs = document.querySelectorAll('input');
+            
+            btnClear.addEventListener('click', () => {
+                inputs.forEach(input =>  input.value = '');
+            });
             
         </script>
     
