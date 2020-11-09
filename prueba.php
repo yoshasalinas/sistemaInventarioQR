@@ -13,27 +13,27 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <div class="center">
-      <div class="form-input">
-        <label for="file-ip-1">Upload Image</label>
-        <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
-        <div class="preview">
-          <img id="file-ip-1-preview">
-        </div>
-      </div>
-    </div>
+     <select id="select">
+            <option value="java">Java</option>
+            <option value="c#">C#</option>
+        </select>
+        <input type="text" id="val">
+        <button onclick="insertValue();">Add</button>
 
-    <script>
-      function showPreview(event){
-        if(event.target.files.length > 0){
-          var src = URL.createObjectURL(event.target.files[0]);
-          var preview = document.getElementById("file-ip-1-preview");
-          preview.src = src;
-          preview.style.display = "block";
-        }
-      }
-
-    </script>
+        <script>
+            
+            function insertValue()
+            {
+                var select = document.getElementById("select"),
+                    txtVal = document.getElementById("val").value,
+                    newOption = document.createElement("OPTION"),
+                    newOptionVal = document.createTextNode(txtVal);
+             
+                newOption.appendChild(newOptionVal);
+                select.insertBefore(newOption,select.firstChild);
+            }
+            
+        </script>
     
   
 

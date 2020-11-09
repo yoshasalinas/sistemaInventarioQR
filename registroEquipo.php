@@ -197,7 +197,7 @@ include('conexion_db.php');
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-3">
                                         <label for="fechaAlta">Fecha de alta:</label>
                                         <input type="date" class="form-control" id="fechaAlta" name="fechaAlta">
                                     </div>
@@ -216,7 +216,10 @@ include('conexion_db.php');
                                     <!--Imput oculto-->
                                     <div class="form-group col-md-3 oculto" id="otroEstatus">
                                         <label for="nuevoEstatus">Nuevo estatus</label>
-                                        <input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus" onkeyup="PasarValor();">    
+                                        <!--<input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus" onkeyup="PasarValor();">    -->
+                                        <input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus" onkeyup="PasarValor();">
+                                        <!--<input type="text" id="val">-->
+                                        <button type="button" class="btn btn-estatus" onclick="insertValue();">Add</button>
                                     </div>
                                     
                                 </div>
@@ -427,6 +430,19 @@ include('conexion_db.php');
                     document.getElementById("otroEstatus").style.display = "none";
                 }
             }
+</script>
+
+<!--Inservar nuevo estatus error-->
+<script>       
+    function insertValue(){
+        var select = document.getElementById("estatus"),
+        txtVal = document.getElementById("nuevoEstatus").value,
+        newOption = document.createElement("OPTION"),
+        newOptionVal = document.createTextNode(txtVal);
+             
+        newOption.appendChild(newOptionVal);
+        select.insertBefore(newOption,select.firstChild);
+    }          
 </script>
 
 <script language="javascript">
