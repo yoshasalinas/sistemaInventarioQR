@@ -1,7 +1,10 @@
+.color{
+  background: #9658fe;
+}
 
 h1{
     text-align: center;
-    color: #09134E
+    color: #09134E;
 }
 
 .center{
@@ -85,8 +88,26 @@ h1{
 .container-imagen .text{
   font-size: 20px;
   font-weight: 500;
-  color: #5B5B7B;
+  color:#C21828;
 }
+
+#cancel-btn {
+  text-align: right;
+  color: #C21828;
+}
+
+#upload-btn{
+  margin-top: 30px;
+  text-align: center;
+}
+
+.btn-imagen{
+  background: rgb(185, 184, 184);
+  color: #09134E;
+  font-size: 20px;
+}
+
+
 
 /*
 .container-imagen #cancel-btn{
@@ -96,11 +117,13 @@ h1{
   top: 15px;
   cursor: pointer;
   display: none;
+  color: #e74c3c;
   
 }
 
 .container-imagen .active:hover #cancel-btn i{
   display: block;
+  color: #e74c3c;
 }
 
 .container-imagen #cancel-btn i:hover{

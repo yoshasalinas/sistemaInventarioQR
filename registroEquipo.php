@@ -23,7 +23,6 @@ include('conexion_db.php');
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
         
-
         <title>Registro Equipo</title>
     </head>
 
@@ -176,9 +175,7 @@ include('conexion_db.php');
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="Serial">Serial</label>
-                                        <input type="text" class="form-control" id="numSerial" disable>
-                                        <input type="button" id="btnSerial">Generar serial</input>
-                                        
+                                        <input type="text" class="form-control" id="numSerial" disabled>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="numDispositivo">Serial del Dispositivo</label>
@@ -244,10 +241,10 @@ include('conexion_db.php');
                                     </div>
                                 </div>
                             </div> 
-                            <div class="col-md-4">
-                                <div class="form-group ">
+                            <div class="col-md-4 ">
+                                <div class="form-group">
                                     <div id="cancel-btn">
-                                        <i class="fas fa-times"></i>
+                                        <i class="far fa-window-close fa-lg"></i>
                                     </div>
                                     <div class="container-imagen ">
                                         <div class="image-activo">
@@ -258,21 +255,12 @@ include('conexion_db.php');
                                             <div class="text">No imagen</div>
                                         </div>
                                     </div>
-                                    <!--<div class="file-name">File name here</div>  -->    
-                                    <input type="button" onclick="defaultBtnActive()" id="custom-btn">Choose a file</input>
-                                    <input id="default-btn" type="file" hidden>
-                                </div>
-                                
-                                <div class="form-group " id="div_file">
-                                    <!--<label for="archivoImagen">Imagen:</label>-->
-                                    <p id="texto">Seleccionar Imagen</p>
-                                    <input type="file" class="form-control-file" id="archivoImagen" name="archivoImagen" onchange="validarExt()">
-                                </div>
-                                <div class="form-group">
-                                    <div class="visorImagen" id="visorArchivo">
-                                            <!--Aqui se despliega el prevew de la imagen-->
+                                    <div id="upload-btn" class="div">
+                                        <button type="button" class="btn btn-imagen" onclick="defaultBtnActive()" id="file-btn"><i class="fas fa-upload"></i>Subir imagen</button>
+                                        <input id="archivoImagen" type="file" id="archivoImagen" name="archivoImagen" onchange="validarExt()" hidden>
                                     </div>
                                 </div>
+                                
                             </div>    
                         </div>
                         <!--Informacion equipo-->
@@ -408,15 +396,6 @@ include('conexion_db.php');
 
 
 
-<script type="text/javascript">
-
-    function documentoCargado(){
-        alert('El documento HTML se ha cargado.');
-    }
-    /** addEventListener = Este evento se dispara una vez que se rcarga el contenido html, referencia a la funcion*/
-    document.addEventListener('DOMContentLoaded', , false);
-</script>
-
 <!--Funcion para generar numero serial -->
 <script type="text/javascript">
     $(document).ready(function() {
@@ -429,15 +408,13 @@ include('conexion_db.php');
         function getRandomFour() {
         return getARandomOneInRange() + getARandomOneInRange() + getARandomOneInRange() + getARandomOneInRange();
         }
-    
-        $('#btnSerial').click(function() {
-            //concatenacion ejemplo AA45-522S-889CV-OPGC1
-        var serial = ${getRandomFour()}-${getRandomFour()}-${getRandomFour()}-${getRandomFour()};
-        $('#numSerial').val(serial);
-        });
 
+        //Funcion autoejecutada, carga al entrar a la pagina
+        window.onload = function Ejemplo1(){
+            var serial = `${getRandomFour()}-${getRandomFour()}-${getRandomFour()}-${getRandomFour()}`;
+            $('#numSerial').val(serial);
+        }
     });
-  
 </script>
 
 <!--Funcion para mostrar input "Nuevo estatus" oculto-->
@@ -462,8 +439,8 @@ include('conexion_db.php');
 <script language="javascript">
     const wrapper = document.querySelector(".wrapper-image");
     const fileName = document.querySelector(".file-name");
-    const defaultBtn = document.querySelector("#default-btn");
-    const customBtn = document.querySelector("#custom-btn");
+    const defaultBtn = document.querySelector("#archivoImagen");
+    const customBtn = document.querySelector("#file-btn");
     const cancelBtn = document.querySelector("#cancel-btn i");
     const img = document.querySelector("#img-activo");
     let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
