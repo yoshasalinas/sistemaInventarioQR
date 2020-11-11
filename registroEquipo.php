@@ -430,60 +430,6 @@ include('conexion_db.php');
     });
 </script>
 
-<!--AGREGAR NUEVO ESTATUS-->
-<!--Funcion para mostrar div "Nuevo estatus" ocultos-->
-<script type="text/javascript">
-            function inputNuevoEstatus(that) {
-                if (that.value == "nuevo") {
-                    document.getElementById("otroEstatus").style.display = "block";
-                    document.getElementById("btn-otroEstatus").style.display = "block";
-                } else {
-                    document.getElementById("otroEstatus").style.display = "none";
-                    document.getElementById("btn-otroEstatus").style.display = "none";
-                }
-            }
-</script>
-
-<!--Funcion para insertar el nuevo estatus al select-->
-<script type="text/javascript">       
-    function insertValue(){
-        var select = document.getElementById("estatus"),
-        txtVal = document.getElementById("nuevoEstatus").value,
-        newOption = document.createElement("OPTION"),
-        newOptionVal = document.createTextNode(txtVal);
-             
-        newOption.appendChild(newOptionVal);
-        select.insertBefore(newOption,select.firstChild);
-
-        //Ocultar input de nuevo estatus
-        document.getElementById("otroEstatus").style.display = "none";
-        document.getElementById("btn-otroEstatus").style.display = "none";
-    }
-    
-</script>
-
-<!--Funcion para limpiar input nuevo estatus-->
-<script type="text/javascript">       
-    function limpiarBoton(){
-        let btnClear = document.querySelector('btn-otroEstatus');
-        let inputs = document.querySelectorAll('otroEstatus');
-        
-        btnClear.addEventListener('click', () => {
-            inputs.forEach(input =>  input.value = '');
-        }); 
-    }         
-</script>
-
-
-
-<!-- Ayuda a pagar el value a un input text
-<script language="javascript">
-    function PasarValor()
-    {
-    document.getElementById("nuevoEstatus").value = document.getElementById("estatus").value;
-    }
-</script>
--->
 
 <!--AGREGAR IMAGEN-->
 <!--Guardar imagen en el input tipo file-->

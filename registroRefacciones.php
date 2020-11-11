@@ -203,26 +203,16 @@ include('conexion_db.php');
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="estatus">Estatus</label>
-                                        <select class="form-control" id="estatus" name="estatus" onchange="inputNuevoEstatus(this);">
+                                        <select class="form-control" id="estatus" name="estatus">
                                         <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
                                             $consulta = $conexion-> query("SELECT * FROM estatus");
                                             while($fila=$consulta->fetch_array()){ //recorre el arreglo
                                                 echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
                                             }
                                         ?>
-                                        <option value="nuevo">Otro...</option>
                                         </select>
                                     </div>
-                                    <!--Imput oculto-->
-                                    <div class="form-group col-md-3 oculto" id="otroEstatus">
-                                        <label for="nuevoEstatus">Nuevo estatus</label>
-                                        <!--<input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus" onkeyup="PasarValor();">    -->
-                                        <input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus">
-                                        
-                                    </div>
-                                    <div class="form-group col-md-3 oculto" id="btn-otroEstatus">
-                                        <button type="button" class="btn btn-estatus" onclick="insertValue();">Agregar</button>
-                                    </div>
+                                    
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
@@ -393,60 +383,6 @@ include('conexion_db.php');
     });
 </script>
 
-<!--AGREGAR NUEVO ESTATUS-->
-<!--Funcion para mostrar div "Nuevo estatus" ocultos-->
-<script type="text/javascript">
-            function inputNuevoEstatus(that) {
-                if (that.value == "nuevo") {
-                    document.getElementById("otroEstatus").style.display = "block";
-                    document.getElementById("btn-otroEstatus").style.display = "block";
-                } else {
-                    document.getElementById("otroEstatus").style.display = "none";
-                    document.getElementById("btn-otroEstatus").style.display = "none";
-                }
-            }
-</script>
-
-<!--Funcion para insertar el nuevo estatus al select-->
-<script type="text/javascript">       
-    function insertValue(){
-        var select = document.getElementById("estatus"),
-        txtVal = document.getElementById("nuevoEstatus").value,
-        newOption = document.createElement("OPTION"),
-        newOptionVal = document.createTextNode(txtVal);
-             
-        newOption.appendChild(newOptionVal);
-        select.insertBefore(newOption,select.firstChild);
-
-        //Ocultar input de nuevo estatus
-        document.getElementById("otroEstatus").style.display = "none";
-        document.getElementById("btn-otroEstatus").style.display = "none";
-    }
-    
-</script>
-
-<!--Funcion para limpiar input nuevo estatus-->
-<script type="text/javascript">       
-    function limpiarBoton(){
-        let btnClear = document.querySelector('btn-otroEstatus');
-        let inputs = document.querySelectorAll('otroEstatus');
-        
-        btnClear.addEventListener('click', () => {
-            inputs.forEach(input =>  input.value = '');
-        }); 
-    }         
-</script>
-
-
-
-<!-- Ayuda a pagar el value a un input text
-<script language="javascript">
-    function PasarValor()
-    {
-    document.getElementById("nuevoEstatus").value = document.getElementById("estatus").value;
-    }
-</script>
--->
 
 <!--AGREGAR IMAGEN-->
 <!--Guardar imagen en el input tipo file-->
