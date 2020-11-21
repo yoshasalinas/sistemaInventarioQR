@@ -59,6 +59,16 @@ h1{
   align-items: center;
   justify-content: center;
 }
+
+.container-imagen .image-codigo{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .container-imagen img{
   height: 100%;
   width: 100%;
@@ -96,21 +106,14 @@ h1{
   font-size: 20px;
 }
 
-
-.btn-estatus{
+.btn-qr{
   background: rgb(185, 184, 184);
-  color: #09134E;
-  font-size: 15px;
+  color: #C21828;
+  font-size: 20px;
 }
 
-#btn-otroEstatus{
-  margin-top: 30px;
-  
-}
-.btn-estatus{
-  background: rgb(185, 184, 184);
-  color: #09134E;
-  font-size: 15px;
-}
+
+/*Generar QR*/
+
 
 

@@ -17,16 +17,14 @@ include('conexion_db.php');
         <!--CSS-->
         <link href="css/inicio-style.css" rel="stylesheet" type="text/css">
         <link href="css/registro-equipo-style.css" rel="stylesheet" type="text/css">
-        
+
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
         
+
         <title>Registro Equipo</title>
     </head>
-
-
-    
     <body>
         <!--Navbar-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -165,16 +163,18 @@ include('conexion_db.php');
             </nav>
             <!--Contenido principal-->
             <div id="content">
-                <h1>Registro de Equipo</h1>
+                <h1>Registo de Equipo</h1>
                 <div class="container-form">
-                    <form action="validarRegistroEquipo.php" method="POST">
+                    <form action="" method="POST">
                         <!--Informacion general-->
                         <div class="row">
                             <div class="col-md-8">
+                                <!--Informacion general-->
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label for="Serial">Serial</label>
+                                        <label for="numSerial">Serial</label>
                                         <input type="text" class="form-control" id="numSerial" disabled>
+                                         
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="numDispositivo">Serial del Dispositivo</label>
@@ -188,7 +188,7 @@ include('conexion_db.php');
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="tipoActivo">Tipo de activo</label>
-                                        <input class="form-control" id="tipoActivo" type="text" value="Equipo" disabled>
+                                        <input class="form-control" id="tipoActivo" type="text" value="Mobiliario" disabled>
                                     </div>
                                     <div class="form-group col-md-8">
                                         <label for="nombreActivo">Nombre</label>
@@ -202,27 +202,17 @@ include('conexion_db.php');
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="estatus">Estatus</label>
-                                        <select class="form-control" id="estatus" name="estatus" onchange="inputNuevoEstatus(this);">
+                                        <select class="form-control" id="estatus" name="estatus">
                                         <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
                                             $consulta = $conexion-> query("SELECT * FROM estatus");
                                             while($fila=$consulta->fetch_array()){ //recorre el arreglo
                                                 echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
                                             }
                                         ?>
-                                        <option value="nuevo">Otro...</option>
+                                        
                                         </select>
                                     </div>
-                                    <!--Imput oculto-->
-                                    <div class="form-group col-md-3 oculto" id="otroEstatus">
-                                        <label for="nuevoEstatus">Nuevo estatus</label>
-                                        <!--<input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus" onkeyup="PasarValor();">    -->
-                                        <input type="text" class="form-control" id="nuevoEstatus" name="nuevoEstatus">
-                                        
-                                    </div>
-                                    <div class="form-group col-md-3 oculto" id="btn-otroEstatus">
-                                        <button type="button" class="btn btn-estatus" onclick="insertValue();">Agregar</button>
-                                    </div>
-
+                                    
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
@@ -244,32 +234,8 @@ include('conexion_db.php');
                                         <textarea class="form-control" id="descripcionActivo" rows="3"></textarea>
                                     </div>
                                 </div>
-                            </div> 
-                            <div class="col-md-4 ">
-                                <div class="form-group">
-                                    <div id="cancel-btn">
-                                        <i class="far fa-window-close fa-lg"></i>
-                                    </div>
-                                    <div class="container-imagen ">
-                                        <div class="image-activo">
-                                            <img src="" alt="" id="img-activo" class="oculto">
-                                        </div>
-                                        <div class="content">
-                                            <div class="icon"><i class="fas fa-camera"></i></div>
-                                            <div class="text">No imagen</div>
-                                        </div>
-                                    </div>
-                                    <div id="upload-btn" class="div">
-                                        <button type="button" class="btn btn-imagen " onclick="defaultBtnActive()" id="file-btn"><i class="fas fa-upload"></i>Subir imagen</button>
-                                        <input id="archivoImagen" type="file" id="archivoImagen" name="archivoImagen" onchange="validarExt()" hidden>
-                                    </div>
-                                </div>
-                                
-                            </div>    
-                        </div>
-                        <!--Informacion equipo-->
-                        <div class="row">
-                            <div class="col-12">
+
+                                <!--Informacion Equipo-->
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <label for="capacidadMemoria">Capacidad de memoria</label>
@@ -301,12 +267,9 @@ include('conexion_db.php');
                                         <label for="tipoEntrada">Tipo de entrada</label>
                                         <input type="text" class="form-control" id="tipoEntrada" name="tipoEntrada">
                                     </div>
-                                </div>        
-                            </div>
-                        </div>
-                        <!--Informacion de ubicacion-->
-                        <div class="row">
-                            <div class="col-12">
+                                </div>
+
+                                <!--Informacion de ubicacion-->
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="tipoUbicacion">Ubicacion</label> <!--Tipo/Nobre ubicacion-->
@@ -321,93 +284,111 @@ include('conexion_db.php');
                                         </select>
                                     </div>
                                        
-                                </div>  
-                                <!--      
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="nombreEdificio">Edificio</label>
-                                        <input class="form-control" id="nombreEdificio" name="nombreEdificio" type="text"  
-                                        value=" *<?php /* TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
-
-                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['nombre_edificio']."</option>"; //muestra los datos de la tabla externa
-                                            }
-                                            */
-                                        ?>" disabled>
-                                        
-                                    </div>
-                                    -->
-                                    <!-- 
-                                    <div class="form-group col-md-6">
-                                        <label for="descripEdificio">Descripcion de la Ubicacion</label>
-                                        <textarea class="form-control" id="descripEdificio" rows="3"name="descripEdificio" type="text" disabled>
-                                            <?php /* TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
-
-                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['descripcion_ubicacion']."</option>"; //muestra los datos de la tabla externa
-                                            }*/
-                                            ?>
-                                        </textarea>
-                                    </div>
-                                    -->
-                                    <!--<div class="form-group col-md-3">
-                                        <label for="capacidad">Capacidad</label>
-                                        <input class="form-control" id="capacidad" name="capacidad" type="text" placeholder="Disponible??" value="" disabled>
-                                    </div>-->
-                                </div>   
-                            </div>
-                        </div>
-                        <!--Generar codigo QR-->
-                        <div class="col-4 col-12-sm ">
-                            <div class="form-group">
-                                <label for="archivoQR">Codigo QR:</label>
-                                <input type="file" class="form-control-file" id="archivoQR" name="archivoQR">
-                                <div class="visorImagenQR" id="visorArchivoQR">
-                                    <!--Aqui se despliega el prevew de la imagen-->
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                    <div class="container-codigoQR">
-                                        <div class="codigoQR-activo">
-                                            <img src="" alt="" id="codigoQR-activo" class="oculto">
+                            </div> 
+                            <div class="col-md-4 ">
+                                <!--Imagen del activo-->
+                                <div class="form-group">
+                                    <div id="cancel-btn">
+                                        <i class="far fa-window-close fa-lg"></i>
+                                    </div>
+                                    <div class="container-imagen ">
+                                        <div class="image-activo">
+                                            <img src="" alt="" id="img-activo" class="oculto">
                                         </div>
                                         <div class="content">
-                                            <div class="icon"><i class="fas fa-qrcode"></i></div>
+                                            <div class="icon"><i class="fas fa-camera"></i></div>
+                                            <div class="text">No imagen</div>
                                         </div>
                                     </div>
                                     <div id="upload-btn" class="div">
-                                        <button type="button" class="btn btn-imagen " onclick="" id="file-btn">Generar codigo QR</button>
+                                        <button type="button" class="btn btn-imagen " onclick="defaultBtnActive()" id="file-btn"><i class="fas fa-upload"></i>Subir imagen</button>
                                         <input id="archivoImagen" type="file" id="archivoImagen" name="archivoImagen" onchange="validarExt()" hidden>
                                     </div>
                                 </div>
-                        </div>                
+
+                                <!--Codigo QR del activo-->
+                                <div class="form-group">
+                                    <div class="container-imagen ">
+                                        <div class="image-codigo">
+                                            <img src="" alt="" id="img-codigoQR" class="oculto">
+                                        </div>
+                                        <div class="content-qr">
+                                            <div class="icon"><i class="fas fa-qrcode"></i></div>
+                                            <div class="text">No imagen</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Probando Generador de QR-->
+                                <div class="form-group">
+                                    <div class="container">
+                                        <form method="post" id="generador" action="">
+                                             <div class="form-group">
+                                               <button type="button" class="btn btn-qr" onclick="generarQr()">Generar QR</button>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="textqr">Tamaño</label>
+                                                <select class='form-control' id='sizeqr'>
+                                                    <option value='100'>100 px</option>
+                                                    <option value='200' selected>200 px</option>
+                                                    <option value='300'>300 px</option>
+                                                    <option value='400'>400 px</option>
+                                                    <option value='500'>500 px</option>
+                                                </select>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--Input para la BD-->
+                                <div class="form-group color">
+                                    <label for="archivoQR">Codigo QR:</label>
+                                    <input type="file" class="form-control-file" id="archivoQR" name="archivoQR">
+                                    <div class="visorImagenQR" id="visorArchivoQR">
+                                        <!--Aqui se despliega el prevew de la imagen-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="form-row center">
                             <button type="submit" class="btn btn-success btn-lg">Registrar Activo</button>
                         </div>
                     </form>
+                    
                 </div>
-
-
             </div>
 
         </div>
-        
-        
             
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            
+        <!-- jQuery first, then Popper.js, then Bootstrap JS 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        -->
 
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <!-- jQuery first, then Popper.js, then Bootstrap JS 
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  
+        
         <script src="script.js">
-            /*Archivo js para side-menu*/ 
+            /*Archivo js*/ 
         </script>
 
     </body>
-    
 </html>
+
+
 
 <!--GENERAR NUMERO SERIAL-->
 <script type="text/javascript">
@@ -469,6 +450,7 @@ include('conexion_db.php');
         }
     });
 </script>
+
 <!--Validar extencion de archivos que se suben al input file-->
 <script type="text/javascript">
     function validarExt()
@@ -483,7 +465,7 @@ include('conexion_db.php');
             archivoImagen.value = '';
             return false;
         }
-
+        
         else
         {
             //PRevio del PDF
@@ -500,3 +482,24 @@ include('conexion_db.php');
         }
     }
 </script>
+
+<!--GENERAR CODIGO QR (Solo # serial por ahora)-->
+<script type="text/javascript">
+    function generarQr(){
+        //Variable del imput text
+        var textqr=$("#numSerial").val();
+		var sizeqr=$("#sizeqr").val();
+
+		parametros={"textqr":textqr,"sizeqr":sizeqr};
+		    $.ajax({
+		    type: "POST",
+			url: "qr.php",
+			data: parametros,
+			success: function(datos){
+				$(".content-qr").html(datos);
+			}
+		})
+		event.preventDefault();
+    }
+</script>
+
