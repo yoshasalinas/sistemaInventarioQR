@@ -3,6 +3,7 @@
 include('conexion_db.php');
 
 ?>
+
 <!Doctype html>
 <html lang="en">
     <head>
@@ -10,7 +11,7 @@ include('conexion_db.php');
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!---->
-        <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.  5/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -20,8 +21,6 @@ include('conexion_db.php');
 
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-        
 
         <title>Registro Equipo</title>
     </head>
@@ -302,8 +301,8 @@ include('conexion_db.php');
                                         </div>
                                     </div>
                                     <div id="upload-btn" class="div">
-                                        <button type="button" class="btn btn-imagen " onclick="defaultBtnActive()" id="file-btn"><i class="fas fa-upload"></i>Subir imagen</button>
-                                        <input id="archivoImagen" type="file" id="archivoImagen" name="archivoImagen" onchange="validarExt()" hidden>
+                                        <button type="button" class="btn btn-imagen " onclick="defaultBtnActive()" id="file-btn-imagen"><i class="fas fa-upload"></i>Subir imagen</button>
+                                        <input id="archivoImagen" type="file" name="archivoImagen" onchange="validarExt()" hidden>
                                     </div>
                                 </div>
 
@@ -318,36 +317,27 @@ include('conexion_db.php');
                                             <div class="text">No imagen</div>
                                         </div>
                                     </div>
+                                    <div id="generarQr-btn" class="div">
+                                        <button type="button" class="btn btn-qr" onclick="generarQr()" id="file-btn-QR">Generar QR</button>
+                                        <!--<input id="archivoQR" type="file" class="form-control-file"  name="archivoQR" >-->
+                                    </div>
                                 </div>
 
-                                <!--Probando Generador de QR-->
-                                <div class="form-group">
+                                <!--Elegir tamaño de QR-->
+                                <div class="form-group oculto" >
                                     <div class="container">
                                         <form method="post" id="generador" action="">
-                                             <div class="form-group">
-                                               <button type="button" class="btn btn-qr" onclick="generarQr()">Generar QR</button>
-                                            </div>
-                                            
                                             <div class="form-group">
                                                 <label for="textqr">Tamaño</label>
                                                 <select class='form-control' id='sizeqr'>
                                                     <option value='100'>100 px</option>
-                                                    <option value='200' selected>200 px</option>
-                                                    <option value='300'>300 px</option>
+                                                    <option value='200'>200 px</option>
+                                                    <option value='300' selected>300 px</option>
                                                     <option value='400'>400 px</option>
                                                     <option value='500'>500 px</option>
                                                 </select>
                                             </div>
-                                            
                                         </form>
-                                    </div>
-                                </div>
-                                <!--Input para la BD-->
-                                <div class="form-group color">
-                                    <label for="archivoQR">Codigo QR:</label>
-                                    <input type="file" class="form-control-file" id="archivoQR" name="archivoQR">
-                                    <div class="visorImagenQR" id="visorArchivoQR">
-                                        <!--Aqui se despliega el prevew de la imagen-->
                                     </div>
                                 </div>
                             </div>
@@ -418,7 +408,7 @@ include('conexion_db.php');
     const wrapper = document.querySelector(".wrapper-image");
     const fileName = document.querySelector(".file-name");
     const defaultBtn = document.querySelector("#archivoImagen");
-    const customBtn = document.querySelector("#file-btn");
+    const customBtn = document.querySelector("#file-btn-imagen");
     const cancelBtn = document.querySelector("#cancel-btn i");
     const img = document.querySelector("#img-activo");
     let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
@@ -484,6 +474,7 @@ include('conexion_db.php');
 </script>
 
 <!--GENERAR CODIGO QR (Solo # serial por ahora)-->
+
 <script type="text/javascript">
     function generarQr(){
         //Variable del imput text
@@ -502,4 +493,43 @@ include('conexion_db.php');
 		event.preventDefault();
     }
 </script>
+
+<!--Guardar codigo QR en input tipo file-->
+<script language="javascript">
+    const wrapper = document.querySelector(".wrapper-image");
+    const fileName = document.querySelector(".file-name");
+    const defaultBtn = document.querySelector("#archivoQR");
+    const customBtn = document.querySelector("#file-btn");
+    const cancelBtn = document.querySelector("#cancel-btn i");
+    const img = document.querySelector("#img-activo");
+    let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+
+    function defaultBtnActive(){
+        defaultBtn.click();
+    }
+
+    defaultBtn.addEventListener("change", function(){
+        const file = this.files[0];
+        if(file){
+          const reader = new FileReader();
+          reader.onload = function(){
+            const result = reader.result;
+            img.src = result;
+            document.getElementById("img-activo").style.display = "block";
+            wrapper.classList.add("active");
+          }
+          cancelBtn.addEventListener("click", function(){
+            img.src = "";
+            document.getElementById("img-activo").style.display = "none";
+            wrapper.classList.remove("active");
+          })
+          reader.readAsDataURL(file);
+        }
+        if(this.value){
+          let valueStore = this.value.match(regExp);
+          fileName.textContent = valueStore;
+        }
+    });
+</script>
+
 
