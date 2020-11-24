@@ -161,7 +161,7 @@ include('conexion_db.php');
                 </ul>
             </nav>
             <!--Contenido principal-->
-            <div id="content">
+            <div id="content" class="container tarjeta">
                 <h1>Registo de Equipo</h1>
                 <div class="container-form">
                     <form action="" method="POST">

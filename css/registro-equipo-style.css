@@ -2,6 +2,22 @@
   background: #9658fe;
 }
 
+body {
+    background:rgb(236, 236, 236);
+}
+
+.tarjeta{
+  margin-top: 70px;
+	margin-bottom: 50px;
+	background: white;
+	border-radius: 30px;
+  box-shadow: 12px 12px 22px grey;
+}
+
+.container-1{
+  margin: 200px;
+}
+
 h1{
     text-align: center;
     color: #09134E;
@@ -112,11 +128,25 @@ h1{
   font-size: 20px;
 }
 
+.btn-imagen:hover{
+  background: #09134E;
+  color: rgb(185, 184, 184);
+}
+
 .btn-qr{
-  background: #C21828;
+  background: #09134E;
   color: rgb(185, 184, 184);
   font-size: 20px;
+  width: 300px;
+  height: 50px;
 }
+
+.btn-qr:hover {
+  background: #C21828;
+  color: rgb(185, 184, 184);
+}
+
+
 
 
 
