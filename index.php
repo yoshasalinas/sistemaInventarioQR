@@ -40,14 +40,12 @@ include('conexion_db.php');
                         
                         <form action="validarLogin.php" method="POST" class="" >
                             <div class="form-row centrado">
-                                <div class="col-lg-7 ">
-        
-                                    <input type="email" name="email" placeholder="Correo"  class="form-control p-4">
+                                <div class="col-lg-7" id="user-group">
+                                    <input type="email" name="email" placeholder="Correo" class="form-control p-4">
                                 </div>
                             </div>
-                            <div class="form-row centrado">
+                            <div class="form-row centrado" id="contraseña-group">
                                 <div class="col-lg-7 ">
-                                    
                                     <input type="password" name="password" placeholder="Contraseña" class="form-control my-3 p-4">
                                 </div>
                             </div>
@@ -58,8 +56,7 @@ include('conexion_db.php');
                             </div>
                             <div class="form-row texto">
                                 <a href="#" >¿Olvidaste tu contraseña?</a>
-                            </div>
-                            
+                            </div> 
                         </form>
                     </div>
                 </div>

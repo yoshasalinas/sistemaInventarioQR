@@ -4,17 +4,11 @@
     box-sizing: border-box;
 }
 
-.f{
-    background-color: blue;
-    justify-content: right;
-}
-
 body {
     background:rgb(236, 236, 236);
 }
 
 .a {padding: 0%;}
-
 
 .tarjeta{
     margin-top: 30px;
@@ -40,6 +34,11 @@ body {
 
 }
 
+.form-row input{
+    
+    
+}
+
 .btn1{
 	border: none;
 	outline: none;
@@ -62,8 +61,6 @@ body {
     align-self: start;
 	
 }
-
-
 
 .texto{
     
