@@ -1,0 +1,110 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background:rgb(236, 236, 236);
+}
+
+.a {padding: 0%;}
+
+.tarjeta{
+    margin-top: 0px;
+	margin-bottom: 30px;
+	background: white;
+	border-radius: 30px;
+    box-shadow: 12px 12px 22px grey;
+}
+
+#alerta-vacios{
+    color: red;
+    display: block;
+}
+
+.color{
+    background: chartreuse;
+}
+
+.vacios{
+    display: none;
+}
+
+.imagen1 {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background-size: cover;
+}
+
+/*.logoitcj{
+    height: 50px;
+}*/
+
+.imagen2{
+    margin-top: 15px;
+    height: 150px;
+}
+
+.btn1{
+	border: none;
+	outline: none;
+	height: 50px;
+	width: 100%;
+	background-color: black;
+	color: white;
+	border-radius: 4px;
+	font-weight: bold;
+}
+
+.btn1:hover{
+	background: white;
+	border: 1px solid;
+	color: blue;
+}
+
+.centrado{
+    justify-content: center;
+    align-self: start;
+	
+}
+
+.texto{
+    
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* Small devices (landscape phones, 576px and up)        sm*/
+@media (min-width: 576px) and (max-width: 767.98px) {
+    
+}
+
+/* Medium devices (tablets, 768px and up)                md*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+    
+}
+
+/* Large devices (desktops, 992px and up)                   lg*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .imagen1 {
+        border-top-left-radius: 30px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 30px;
+        margin-bottom: 0px;
+        background-size: cover;
+    }
+
+}
+
+/* Extra large devices (large desktops, 1200px and up)      xl*/
+@media (min-width: 1200px) {
+    .imagen1 {
+        border-top-left-radius: 30px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 30px;
+        background-size: cover;
+    }
+}

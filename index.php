@@ -4,71 +4,65 @@ include('conexion_db.php');
 
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <!--estilos css-->
-        <link rel="stylesheet" href="css/login-style.css">
-        <!--Iconos-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!--estilos css-->
+    <link rel="stylesheet" href="css/login-styles.css">
+    <!--Iconos-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
             crossorigin="anonymous">
-        <!--Estilo de fuente-->
-
-        <title>Sistema Control Activos</title>
-
-
-    </head>
-    <body>
-        <section class=Form my-4 mx-5> 
-            <div class="container">
-                <div class="row tarjeta">
-                    <div class="col-lg-5 a">
-                        <img src="img/imagen-login.jpg" class="img-fluid imagen1" alt="">
-                    </div>
-                    <div class="col-lg-7 ">
-                        <div class="row centrado">
-                            <!--<div class="col-6 f" ><img src="img/itcj-escudo-rojo.png" class="img-fluid logoitcj " alt=""></div>
-                            <div class="col-6"><img src="img/logo-TNM.png" class="img-fluid logoitcj" alt=""></div>    -->
-                            <img src="img/inventario1.png" class="img-fluid imagen2" alt="">
-
-                        </div>
-                        
-                        <form action="validarLogin.php" method="POST" class="" >
-                            <div class="form-row centrado">
-                                <div class="col-lg-7" id="user-group">
-                                    <input type="email" name="email" placeholder="Correo" class="form-control p-4">
-                                </div>
-                            </div>
-                            <div class="form-row centrado" id="contraseña-group">
-                                <div class="col-lg-7 ">
-                                    <input type="password" name="password" placeholder="Contraseña" class="form-control my-3 p-4">
-                                </div>
-                            </div>
-                            <div class="form-row centrado">
-                                <div class="col-lg-7">
-                                    <button type="submit" name="submit" class="btn1 mt-3 bm-5" href="inicio.php">Entrar</button>
-                                </div>
-                            </div>
-                            <div class="form-row texto">
-                                <a href="#" >¿Olvidaste tu contraseña?</a>
-                            </div> 
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!--JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!--Estilo de fuente-->    
     
-    </body>
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="container">
+        
+        <div class="row tarjeta">
+            <div class="col-lg-5 izquierda">
+                <img src="img/img-login.jpg" class="img-fluid " alt="">
+            </div>
+            <div class="col-lg-7 derecha">
+                <div class="row">
+                    <img src="img/img-titulo.png" class="img-fluid" alt="">
+                </div>
+                <div class="alert alert-danger error" id="error" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Correo o contraseña incorrectos
+                </div>
+                <div class="row">
+                    <form action="validarLogin.php" method="POST">
+                        <div class="form-row input-contenedor">
+                            <i class="fas fa-user"></i>
+                            <input type="email" class="form-control" id="correoUsuario" name="correo" aria-describedby="emailHelp" placeholder="CORREO" required>
+                        </div>
+                        <div class="form-row input-contenedor">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" class="form-control" id="contraseñaUsuario" name="contraseña" placeholder="CONTRASEÑA" required>
+                        </div>
+                        <div class="form-row btn-ingresar">
+                            <button type="submit" class="btn ">INGRESAR</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  </body>
 </html>
