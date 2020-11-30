@@ -21,12 +21,11 @@ else
 	echo '<script>	
 		alert("Error en la autentificacion no entra");
 		window.history.go(-1);
-		document.getElementById("error").style.visibility = "visible";
+		
 		</script>';
 }
 mysqli_free_result($resultado);
 mysqli_close($conexion);
 
 ?>
-
 
