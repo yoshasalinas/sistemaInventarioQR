@@ -7,13 +7,11 @@
 }
 
 
-
 .navbar {
     padding: 10px 10%;
     background: #040925;
     color: #fff;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 200px;
 }
 
 .navbar img {
@@ -22,11 +20,10 @@
 }
 
 
-#logo  {
+#logo {
     display: inline-block;
     margin-top: 7px;
-    color: #fff;
-    
+    color: #fff; 
 }
 
 
@@ -62,10 +59,11 @@ i {
     align-items: stretch;
 }
 
+/*Menu Sidebar*/
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    margin-top: 70px;
+    margin-top: 30px;
     background: rgb(236, 236, 236);
     color: #040925;
     transition: all 0.3s;
@@ -77,12 +75,19 @@ i {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: rgb(236, 236, 236);
+    text-align: center;
+    
 }
 
-#sidebar .sidebar-header h3 {
-    color: #040925;
-    text-align: center;
+/*Nombre del usuario*/
+#sidebar .sidebar-header i {
+    font-size: 80px;
+    color: #C21828;
+}
+#sidebar .sidebar-header h1 {
+    font-size: 30px;
+    margin-top: 20px;
+    color: #C21828;
 }
 
 #sidebar ul.components {

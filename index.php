@@ -2,6 +2,8 @@
 
     include('conexion_db.php');
 
+    session_start();
+
     if($_POST){
         $email = $_POST['correo'];
         $password = $_POST['contraseña'];
@@ -23,7 +25,7 @@
             if($password_db == $password_campo){
 
                 $_SESSION['id'] = $row['id_usuario'];
-                $_SESSION['nombre'] = $row['nombre_usuario'];
+                $_SESSION['nombreUsuario'] = $row['nombre_usuario'];
                 $_SESSION['rol'] = $row['idX_rol'];
 
                 header("location: inicio.php");
@@ -31,16 +33,19 @@
             }else{
                 //echo "La contraseña no coincide";
                 echo '<script>
+
                     
-                    alert("Contraseña incorrecta!");
+                    
+                    
                        
                     </script>';
+                echo "La contraseña es incorrecta!";
             }
 
 
 
         }else{
-            echo "No existe usuario";
+            echo "El correo no esta registrado!";
         }
     }
     
@@ -76,9 +81,17 @@
                 <div class="row">
                     <img src="img/img-titulo.png" class="img-fluid" alt="">
                 </div>
-                <div class="alert alert-danger" id="alerta" role="alert" >
-                    <i class="fas fa-exclamation-triangle"></i>
-                    Correo o contraseña incorrectos!
+                <div class="row" id="error-contraseña" >
+                    <div class="alert alert-danger" id="alerta" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        La contraseña es incorrecta!
+                    </div>
+                </div>
+                <div class="row" id="error-usuario">
+                    <div class="alert alert-danger" id="alerta" role="alert" >
+                        <i class="fas fa-times-circle"></i>
+                        El correo no esta registrado!
+                    </div>
                 </div>
                 <div class="row">
                     <form action="#" method="POST" id="formenvio_1">
@@ -111,12 +124,8 @@
 </html>
 
 <script type="text/javascript">
-		function Alerta(){
-			document.getElementById("formulario-crear-usuario").style.display = "block";
-		}
-		function Ocultar(){
-			document.getElementById("formulario-crear-usuario").style.display = "block";
-			document.getElementById("tabla-de-usuarios").style.display = "none";
-			
-		}
-	</script>
+	function Alerta(){
+		document.getElementById("error-contraseña").style.display = "none";
+	}
+		
+</script>

@@ -2,6 +2,13 @@
 
     session_start();
 
+    if(!isset($_SESSION[id])){
+        header("Location: index.php");
+    }
+
+    $nombre = $_SESSION['nombreUsuario'];
+    $tipo_usuario = $_SESSION['rol']
+
 ?>
 
 <!Doctype html>
@@ -46,10 +53,10 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse"   data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"  aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <!--Navbarssubmenu-->
+                    <!--Navbarssubmenu-----SALIR-->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                            <li><a href="index.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
+                            <li><a href="logout.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
                         </ul>
                     </div>
                 </div>
@@ -60,7 +67,8 @@
             <!--Menu sidebar-->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3><i class="fas fa-user"></i>Administrador</h3>
+                    <i class="fas fa-user"></i>
+                    <h1><?php echo $nombre ?></h1>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -140,6 +148,8 @@
                             Reportes
                         </a>
                     </li>
+
+                    <?php if($tipo_usuario == 1) { ?>
                     <li>
                         <a href="#configuracionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <i class="fas fa-cog"></i>
@@ -159,6 +169,7 @@
                             </li>
                         </ul> 
                     </li>
+                    <?php } ?>
                 </ul>
             </nav>
             <!--Contenido principal-->

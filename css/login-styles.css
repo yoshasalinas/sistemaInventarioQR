@@ -64,9 +64,11 @@ body {
 }
 
 #alerta{
+    
     text-align: center;
-    font-size: 50px;
-    height: 30px;
+    font-size: 15px;
+    height: 50px;
+    width: 400px;
     display: none;
 }
 
