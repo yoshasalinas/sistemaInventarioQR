@@ -177,7 +177,7 @@
             <div id="content" class="container tarjeta">
                 <h1>Registo de Equipo</h1>
                 <div class="container-form">
-                    <form action="" method="POST">
+                    <form action="validarRegistroEquipo.php" method="POST">
                         <!--Informacion general-->
                         <div class="row">
                             <div class="col-md-8">
@@ -185,7 +185,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="numSerial">Serial</label>
-                                        <input type="text" class="form-control" id="numSerial" disabled>
+                                        <input type="text" class="form-control" id="numSerial" >
                                          
                                     </div>
                                     <div class="form-group col-md-4">
@@ -200,7 +200,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="tipoActivo">Tipo de activo</label>
-                                        <input class="form-control" id="tipoActivo" type="text" value="Mobiliario" disabled>
+                                        <input class="form-control" id="tipoActivo" type="text" value="Mobiliario" >
                                     </div>
                                     <div class="form-group col-md-8">
                                         <label for="nombreActivo">Nombre</label>
@@ -313,8 +313,8 @@
                                             <div class="text">No imagen</div>
                                         </div>
                                     </div>
-                                    <div id="upload-btn" class="div">
-                                        <button type="button" class="btn btn-imagen " onclick="defaultBtnActive()" id="file-btn-imagen"><i class="fas fa-upload"></i>Subir imagen</button>
+                                    <div id="upload-btn" class="div"><!--
+                                        <button type="button" class="btn btn-imagen " onclick="defaultBtnActive()" id="file-btn-imagen"><i class="fas fa-upload"></i>Subir imagen</button>-->
                                         <input id="archivoImagen" type="file" name="archivoImagen" onchange="validarExt()" hidden>
                                     </div>
                                 </div>
@@ -330,9 +330,9 @@
                                             <div class="text">No imagen</div>
                                         </div>
                                     </div>
-                                    <div id="generarQr-btn" class="div">
-                                        <button type="button" class="btn btn-qr" onclick="generarQr()" id="file-btn-QR">Generar QR</button>
-                                        <!--<input id="archivoQR" type="file" class="form-control-file"  name="archivoQR" >-->
+                                    <div id="generarQr-btn" class="div"><!--
+                                        <button type="button" class="btn btn-qr" onclick="generarQr()" id="file-btn-QR">Generar QR</button>-->
+                                        <input id="archivoQR" type="file" class="form-control-file"  name="archivoQR" >
                                     </div>
                                 </div>
 

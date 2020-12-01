@@ -176,17 +176,18 @@
                 </ul>
             </nav>
             <!--Contenido principal-->
-            <div id="content" class="container tarjeta">
+            <div id="content">
                 <h1>Registo de Mobiliario</h1>
                 <div class="container-form">
-                    <form action="" method="POST">
+                    <form action="validarRegistroMobiliario.php" method="POST">
                         <!--Informacion general-->
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="numSerial">Serial</label>
-                                        <input type="text" class="form-control" id="numSerial" disabled>
+                                        <input type="text" class="form-control" id="numSerial" name="numSerial" >
+                                     <!--   <input type="text" class="form-control"  name="numSerial" id="txtSerial"> -->
                                          
                                     </div>
                                     <div class="form-group col-md-4">
@@ -201,7 +202,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="tipoActivo">Tipo de activo</label>
-                                        <input class="form-control" id="tipoActivo" type="text" value="Mobiliario" disabled>
+                                        <input class="form-control" id="tipoActivo" type="text" name="tipoActivo" value="Mobiliario" >
                                     </div>
                                     <div class="form-group col-md-8">
                                         <label for="nombreActivo">Nombre</label>
@@ -244,7 +245,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="descripcionActivo">Descripcion del Activo</label>
-                                        <textarea class="form-control" id="descripcionActivo" rows="3"></textarea>
+                                        <textarea class="form-control" id="descripcionActivo" name="descripcionActivo" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div> 
@@ -277,7 +278,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <label for="cantidad">Cantidad</label>
-                                        <input type="text" class="form-control" id="cantidad" name="cantidad">
+                                        <input type="number" class="form-control" id="cantidad" name="cantidad">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="medidas">Descripcion de medidas</label>
@@ -304,53 +305,22 @@
                                     </div>
                                        
                                 </div>  
-                                <!--      
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="nombreEdificio">Edificio</label>
-                                        <input class="form-control" id="nombreEdificio" name="nombreEdificio" type="text"  
-                                        value=" *<?php /* TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
-
-                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['nombre_edificio']."</option>"; //muestra los datos de la tabla externa
-                                            }
-                                            */
-                                        ?>" disabled>
-                                        
-                                    </div>
-                                    -->
-                                    <!-- 
-                                    <div class="form-group col-md-6">
-                                        <label for="descripEdificio">Descripcion de la Ubicacion</label>
-                                        <textarea class="form-control" id="descripEdificio" rows="3"name="descripEdificio" type="text" disabled>
-                                            <?php /* TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
-
-                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['descripcion_ubicacion']."</option>"; //muestra los datos de la tabla externa
-                                            }*/
-                                            ?>
-                                        </textarea>
-                                    </div>
-                                    -->
-                                    <!--<div class="form-group col-md-3">
-                                        <label for="capacidad">Capacidad</label>
-                                        <input class="form-control" id="capacidad" name="capacidad" type="text" placeholder="Disponible??" value="" disabled>
-                                    </div>-->
+                        
                                 </div>   
                             </div>
                         </div>
                         <!--Generar codigo QR-->
                         <div class="col-4 col-12-sm ">
-                            <div class="form-group">
-                                <label for="archivoQR">Codigo QR:</label>
-                                <input type="file" class="form-control-file" id="archivoQR" name="archivoQR">
-                                <div class="visorImagenQR" id="visorArchivoQR">
-                                    <!--Aqui se despliega el prevew de la imagen-->
+                                <div class="form-group">
+                                    <label for="archivoQR">Codigo QR:</label>
+                                    <input type="file" class="form-control-file" id="archivoQR" name="archivoQR">
+                                    <div class="visorImagenQR" id="visorArchivoQR">
+                                        <!--Aqui se despliega el prevew de la imagen-->
+                                    </div>
                                 </div>
                             </div>
-                        </div>                
+                         
+                                      
                         <div class="form-row center">
                             <button type="submit" class="btn btn-success btn-lg">Registrar Activo</button>
                         </div>
@@ -472,3 +442,4 @@
         }
     }
 </script>
+

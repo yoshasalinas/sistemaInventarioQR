@@ -176,16 +176,14 @@
             <div id="content" class="container tarjeta">
                 <h1>Registo de Refacciones</h1>
                 <div class="container-form">
-                    <form action="" method="POST">
+                    <form action="validarRegistroRefacciones.php" method="POST">
                         <!--Informacion general-->
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="numSerial">Serial</label>
-                                        <input type="text" class="form-control" id="numSerial" disabled>
-                                        
-                                        
+                                        <input type="text" class="form-control" id="numSerial" name="numSerial" >     
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="numDispositivo">Serial del Dispositivo</label>
@@ -199,7 +197,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="tipoActivo">Tipo de activo</label>
-                                        <input class="form-control" id="tipoActivo" type="text" value="Refacciones" disabled>
+                                        <input class="form-control" id="tipoActivo" type="text" name="tipoActivo" value="Refacciones" >
                                     </div>
                                     <div class="form-group col-md-8">
                                         <label for="nombreActivo">Nombre</label>
@@ -241,7 +239,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="descripcionActivo">Descripcion del Activo</label>
-                                        <textarea class="form-control" id="descripcionActivo" rows="3"></textarea>
+                                        <textarea class="form-control" id="descripcionActivo" name="descripcionActivo" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div> 

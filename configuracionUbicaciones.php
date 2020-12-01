@@ -2,8 +2,17 @@
 
 include('conexion_db.php');
 
-$select = "SELECT * FROM ubicaciones";
-$ubicaciones = mysqli_query($conexion, $select);
+    session_start();
+
+        if(!isset($_SESSION['id'])){
+            header("Location: index.php");
+        }
+
+        $nombre = $_SESSION['nombreUsuario'];
+        $tipo_usuario = $_SESSION['rol'];
+
+    $select = "SELECT * FROM ubicaciones";
+    $ubicaciones = mysqli_query($conexion, $select);
 
 ?>
 <!Doctype html>
@@ -43,9 +52,6 @@ $ubicaciones = mysqli_query($conexion, $select);
             
         }
 
-
-        
-        
 	</script>
 
     <body>
@@ -72,7 +78,7 @@ $ubicaciones = mysqli_query($conexion, $select);
                     <!--Navbarssubmenu-->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                            <li><a href="index.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
+                            <li><a href="logout.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
                         </ul>
                     </div>
                 </div>
@@ -83,7 +89,8 @@ $ubicaciones = mysqli_query($conexion, $select);
             <!--Menu sidebar-->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3><i class="fas fa-user"></i>Administrador</h3>
+                    <i class="fas fa-user"></i>
+                    <h1><?php echo $nombre ?></h1>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -222,7 +229,7 @@ $ubicaciones = mysqli_query($conexion, $select);
                                 <?php } ?>
                             </tbody>
                         </table>
-                        <button  type="submit" class="btn btn-primary btn-success" onclick="registroNuevoUsuario()" >Registrar nuevo usuario</button>
+                        <button  type="submit" class="btn btn-primary btn-success" onclick="registroNuevoUsuario()" >Registrar nueva ubicacion</button>
                    
                     </div>
                     <!--Formulario de registro de nueva ubicacion (oculto hasta precionar boton)-->
