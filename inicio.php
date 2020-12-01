@@ -1,13 +1,15 @@
 <?php
 
+    include('conexion_db.php');
+
     session_start();
 
-    if(!isset($_SESSION[id])){
+    if(!isset($_SESSION['id'])){
         header("Location: index.php");
     }
 
     $nombre = $_SESSION['nombreUsuario'];
-    $tipo_usuario = $_SESSION['rol']
+    $tipo_usuario = $_SESSION['rol'];
 
 ?>
 
@@ -42,6 +44,7 @@
                     <!--Titulo-->
                     <a class="navbar-brand" href="">
                         <h2 id="logo">Control de Inventario</h2>
+                        <img src=""  class="" alt="">
                     </a>
                 </div>
                 <div class="div">

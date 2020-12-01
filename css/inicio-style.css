@@ -8,15 +8,20 @@
 
 
 .navbar {
-    padding: 10px 10%;
+    padding: 5px 10%;
     background: #040925;
     color: #fff;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    
 }
 
 .navbar img {
-    height: 60px;
+    height: 50px;
     display: inline-block;
+}
+
+.navbar .titulo{
+    
 }
 
 
@@ -24,8 +29,8 @@
     display: inline-block;
     margin-top: 7px;
     color: #fff; 
+    font-size: 30px;
 }
-
 
 
 i {
@@ -63,7 +68,7 @@ i {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    margin-top: 30px;
+    margin-top: 70px;
     background: rgb(236, 236, 236);
     color: #040925;
     transition: all 0.3s;

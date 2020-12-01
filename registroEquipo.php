@@ -1,15 +1,15 @@
 <?php
 
-include('conexion_db.php');
+    include('conexion_db.php');
+    
+    session_start();
 
-session_start();
-
-    if(!isset($_SESSION[id])){
+    if(!isset($_SESSION['id'])){
         header("Location: index.php");
     }
 
     $nombre = $_SESSION['nombreUsuario'];
-    $tipo_usuario = $_SESSION['rol']
+    $tipo_usuario = $_SESSION['rol'];
 
 ?>
 
@@ -57,7 +57,7 @@ session_start();
                     <!--Navbarssubmenu-->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                            <li><a href="index.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
+                            <li><a href="logout.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
                         </ul>
                     </div>
                 </div>
@@ -149,6 +149,8 @@ session_start();
                             Reportes
                         </a>
                     </li>
+
+                    <?php if($tipo_usuario == 1) { ?>
                     <li>
                         <a href="#configuracionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <i class="fas fa-cog"></i>
@@ -168,6 +170,7 @@ session_start();
                             </li>
                         </ul> 
                     </li>
+                    <?php } ?>
                 </ul>
             </nav>
             <!--Contenido principal-->

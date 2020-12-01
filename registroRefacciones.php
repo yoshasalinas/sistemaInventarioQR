@@ -1,6 +1,15 @@
 <?php
 
-include('conexion_db.php');
+    include('conexion_db.php');
+
+    session_start();
+
+    if(!isset($_SESSION['id'])){
+        header("Location: index.php");
+    }
+
+    $nombre = $_SESSION['nombreUsuario'];
+    $tipo_usuario = $_SESSION['rol'];
 
 ?>
 <!Doctype html>
@@ -50,7 +59,7 @@ include('conexion_db.php');
                     <!--Navbarssubmenu-->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                            <li><a href="index.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
+                            <li><a href="logout.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
                         </ul>
                     </div>
                 </div>
@@ -61,7 +70,8 @@ include('conexion_db.php');
             <!--Menu sidebar-->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3><i class="fas fa-user"></i>Administrador</h3>
+                    <i class="fas fa-user"></i>
+                    <h1><?php echo $nombre ?></h1>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -163,7 +173,7 @@ include('conexion_db.php');
                 </ul>
             </nav>
             <!--Contenido principal-->
-            <div id="content">
+            <div id="content" class="container tarjeta">
                 <h1>Registo de Refacciones</h1>
                 <div class="container-form">
                     <form action="" method="POST">
