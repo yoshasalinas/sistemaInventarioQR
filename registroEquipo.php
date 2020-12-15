@@ -489,10 +489,6 @@
 <!--GENERAR CODIGO QR (Solo # serial por ahora)-->
 
 <script type="text/javascript">
-    function generarQr(){
-        //Variable del imput text
-        var textqr=$("#numSerial").val();
-		var sizeqr=$("#sizeqr").val();
 
 		parametros={"textqr":textqr,"sizeqr":sizeqr};
 		    $.ajax({
