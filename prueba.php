@@ -24,45 +24,19 @@ include('conexion_db.php');
 
     </head>
     <body>
-        <div class="container">
-            <div class="row tarjeta ">
-                <div class="col-lg-5 a">
-                    <img src="img/imagen-login.jpg" class="img-fluid imagen1" alt="">
-                </div>
-
-                <div class="col-lg-7 ">
-                    <div class="row centrado">
-                        <img src="img/inventario1.png" class="img-fluid imagen2" alt="">
-                    </div>
-                        
-                    <form action="validarLogin.php" method="POST" class="" >
-                        <div class="form-row centrado color">
-                            <div class="col-lg-7" id="user-group">
-                                <input type="email" id="correoUsuario" name="email" placeholder="Correo" class="form-control p-4" required>
-                            </div>
-                        </div>
-                        <div class="form-row centrado" id="contraseña-group">
-                            <div class="col-lg-7">
-                                <input type="password" name="password" placeholder="Contraseña" class="form-control my-3 p-4" required>
-                            </div>
-                        </div>
-
-                        <div id="alerta-vacios" class="form-row centrado vacios">
-                            <label for="">Error! Correo o contraseña incorrecta</label>
-                            <i class="fas fa-exclamation-circle fa-lg"></i>
-                        </div>
-
-                        <div class="form-row centrado">
-                            <div class="col-lg-7">
-                                <button type="submit" name="submit" class="btn1 mt-3 bm-5" >Entrar</button>
-                            </div>
-                        </div>
-                        <div class="form-row texto">
-                            <a href="#" >¿Olvidaste tu contraseña?</a>
-                        </div> 
-                    </form>
-                </div>
+        <div class="photo">
+            <label for="foto">Foto (570x380)</label>
+            <div class="prevPhoto">
+            <span class="delPhoto notBlock">X</span>
+            <label for="foto"></label>
+            <div>
+                <img id="img" src="s">
             </div>
+            </div>
+            <div class="upimg">
+            <input type="file" name="foto" id="foto">
+            </div>
+            <div id="form_alert"></div>
         </div>
 
         
@@ -75,17 +49,53 @@ include('conexion_db.php');
     </body>
 </html>
 
-<!--VALIDAR CAMPOS VACIOS-->
 <script type="text/javascript">
-    function camposVacios(){
-        var correo=$("#correoUsuario").val();
-	    var contrasena=$("#contraseñaUsuario").val();
-
-        if(correo.length==0 || contrasena.length==0){
-            alert("Campos vacios!");
-        }
-        else{
-            href="inicio.php";
+    if(document.querySelector("#foto")){
+    var foto = document.querySelector("#foto");
+    foto.onchange = function(e) {
+        var uploadFoto = document.querySelector("#foto").value;
+        var fileimg = document.querySelector("#foto").files;
+        var nav = window.URL || window.webkitURL;
+        var contactAlert = document.querySelector('#form_alert');
+        if(uploadFoto !=''){
+            var type = fileimg[0].type;
+            var name = fileimg[0].name;
+            if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png'){
+                contactAlert.innerHTML = '<p class="errorArchivo">El archivo no es válido.</p>';
+                if(document.querySelector('#img')){
+                    document.querySelector('#img').remove();
+                }
+                document.querySelector('.delPhoto').classList.add("notBlock");
+                foto.value="";
+                return false;
+            }else{  
+                    contactAlert.innerHTML='';
+                    if(document.querySelector('#img')){
+                        document.querySelector('#img').remove();
+                    }
+                    document.querySelector('.delPhoto').classList.remove("notBlock");
+                    var objeto_url = nav.createObjectURL(this.files[0]);
+                    document.querySelector('.prevPhoto div').innerHTML = "<img id='img' src="+objeto_url+">";
+                }
+        }else{
+            alert("No selecciono foto");
+            if(document.querySelector('#img')){
+                document.querySelector('#img').remove();
+            }
         }
     }
+}
+
+if(document.querySelector(".delPhoto")){
+    var delPhoto = document.querySelector(".delPhoto");
+    delPhoto.onclick = function(e) {
+        removePhoto();
+    }
+}
+
+function removePhoto(){
+    document.querySelector('#foto').value ="";
+    document.querySelector('.delPhoto').classList.add("notBlock");
+    document.querySelector('#img').remove();
+}
 </script>

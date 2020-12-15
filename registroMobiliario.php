@@ -176,9 +176,9 @@
                 </ul>
             </nav>
             <!--Contenido principal-->
-            <div id="content">
+            <div id="content" class="container tarjeta">
                 <h1>Registo de Mobiliario</h1>
-                <div class="container-form">
+                <div class="container-form" >
                     <form action="validarRegistroMobiliario.php" method="POST">
                         <!--Informacion general-->
                         <div class="row">
@@ -186,7 +186,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="numSerial">Serial</label>
-                                        <input type="text" class="form-control" id="numSerial" name="numSerial" >
+                                        <input type="text" class="form-control" id="numSerial" name="numSerial" readonly>
                                      <!--   <input type="text" class="form-control"  name="numSerial" id="txtSerial"> -->
                                          
                                     </div>
@@ -202,7 +202,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="tipoActivo">Tipo de activo</label>
-                                        <input class="form-control" id="tipoActivo" type="text" name="tipoActivo" value="Mobiliario" >
+                                        <input class="form-control" id="tipoActivo" type="text" name="tipoActivo" value="Mobiliario" readonly>
                                     </div>
                                     <div class="form-group col-md-8">
                                         <label for="nombreActivo">Nombre</label>
@@ -249,8 +249,8 @@
                                     </div>
                                 </div>
                             </div> 
-                            <div class="col-md-4 ">
-                                <div class="form-group">
+                            <div class="col-md-4 color">
+                                <!--<div class="form-group">
                                     <div id="cancel-btn">
                                         <i class="far fa-window-close fa-lg"></i>
                                     </div>
@@ -266,6 +266,28 @@
                                     <div id="upload-btn" class="div">
                                         <button type="button" class="btn btn-imagen " onclick="defaultBtnActive()" id="file-btn"><i class="fas fa-upload"></i>Subir imagen</button>
                                         <input id="archivoImagen" type="file" id="archivoImagen" name="archivoImagen" onchange="validarExt()" hidden>
+                                    </div>
+                                </div>-->
+                                <div class="form-group">
+                                    <div class="photo">
+                                        <label for="foto">Imagen</label>
+                                        <div class="prevPhoto">
+                                            <span class="delPhoto notBlock"><i class="fas fa-times"></i></span>
+                                            <label for="foto"></label>
+                                            <div>
+                                                <div class="image-activo">
+                                                    <img src="" alt="" id="img" class="oculto">
+                                                </div>
+                                                <div class="content" id="portada">
+                                                    <div class="icon"><i class="fas fa-camera"></i></div>
+                                                    <div class="text">Subir imagen</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="upimg">
+                                            <input type="file" name="foto" id="foto">
+                                        </div>
+                                        <div id="form_alert"></div>
                                     </div>
                                 </div>
                                 
@@ -303,7 +325,6 @@
                                         ?>
                                         </select>
                                     </div>
-                                       
                                 </div>  
                         
                                 </div>   

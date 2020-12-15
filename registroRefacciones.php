@@ -183,7 +183,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="numSerial">Serial</label>
-                                        <input type="text" class="form-control" id="numSerial" name="numSerial" >     
+                                        <input type="text" class="form-control" id="numSerial" name="numSerial" readonly>     
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="numDispositivo">Serial del Dispositivo</label>
@@ -197,7 +197,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="tipoActivo">Tipo de activo</label>
-                                        <input class="form-control" id="tipoActivo" type="text" name="tipoActivo" value="Refacciones" >
+                                        <input class="form-control" id="tipoActivo" type="text" name="tipoActivo" value="Refacciones" readonly>
                                     </div>
                                     <div class="form-group col-md-8">
                                         <label for="nombreActivo">Nombre</label>
@@ -447,7 +447,7 @@
 
         else
         {
-            //PRevio del PDF
+            //Previo del PDF
             if (archivoImagen.files && archivoImagen.files[0]) 
             {
                 var visor = new FileReader();

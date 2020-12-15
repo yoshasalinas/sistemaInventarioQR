@@ -177,15 +177,15 @@
             <div id="content" class="container tarjeta">
                 <h1>Registo de Equipo</h1>
                 <div class="container-form">
-                    <form action="validarRegistroEquipo.php" method="POST">
+                    <form action="" method="POST">
                         <!--Informacion general-->
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-8 ">
                                 <!--Informacion general-->
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="numSerial">Serial</label>
-                                        <input type="text" class="form-control" id="numSerial" >
+                                        <input type="text" class="form-control" id="numSerial" readonly>
                                          
                                     </div>
                                     <div class="form-group col-md-4">
@@ -200,7 +200,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="tipoActivo">Tipo de activo</label>
-                                        <input class="form-control" id="tipoActivo" type="text" value="Mobiliario" >
+                                        <input class="form-control" id="tipoActivo" type="text" value="Equipo" readonly>
                                     </div>
                                     <div class="form-group col-md-8">
                                         <label for="nombreActivo">Nombre</label>
@@ -299,7 +299,7 @@
                                 </div>
                             </div> 
                             <div class="col-md-4 ">
-                                <!--Imagen del activo-->
+                                <!--Imagen del activo-
                                 <div class="form-group">
                                     <div id="cancel-btn">
                                         <i class="far fa-window-close fa-lg"></i>
@@ -313,51 +313,37 @@
                                             <div class="text">No imagen</div>
                                         </div>
                                     </div>
-                                    <div id="upload-btn" class="div"><!--
-                                        <button type="button" class="btn btn-imagen " onclick="defaultBtnActive()" id="file-btn-imagen"><i class="fas fa-upload"></i>Subir imagen</button>-->
-                                        <input id="archivoImagen" type="file" name="archivoImagen" onchange="validarExt()" hidden>
+                                    <div id="upload-btn" class="div">
+                                        
                                     </div>
-                                </div>
-
-                                <!--Codigo QR del activo-->
-                                <div class="form-group">
-                                    <div class="container-imagen ">
-                                        <div class="image-codigo">
-                                            <img src="" alt="" id="img-codigoQR" class="oculto">
-                                        </div>
-                                        <div class="content-qr">
-                                            <div class="icon"><i class="fas fa-qrcode"></i></div>
-                                            <div class="text">No imagen</div>
-                                        </div>
-                                    </div>
-                                    <div id="generarQr-btn" class="div"><!--
-                                        <button type="button" class="btn btn-qr" onclick="generarQr()" id="file-btn-QR">Generar QR</button>-->
-                                        <input id="archivoQR" type="file" class="form-control-file"  name="archivoQR" >
-                                    </div>
-                                </div>
-
-                                <!--Elegir tamaño de QR-->
-                                <div class="form-group oculto" >
-                                    <div class="container">
-                                        <form method="post" id="generador" action="">
-                                            <div class="form-group">
-                                                <label for="textqr">Tamaño</label>
-                                                <select class='form-control' id='sizeqr'>
-                                                    <option value='100'>100 px</option>
-                                                    <option value='200'>200 px</option>
-                                                    <option value='300' selected>300 px</option>
-                                                    <option value='400'>400 px</option>
-                                                    <option value='500'>500 px</option>
-                                                </select>
+                                </div>-->
+                                <div class="form-group ">
+                                    <div class="photo">
+                                        <label for="foto">Imagen</label>
+                                        <div class="prevPhoto">
+                                            <span class="delPhoto notBlock"><i class="fas fa-times"></i></span>
+                                            <label for="foto"></label>
+                                            <div>
+                                                <div class="image-activo">
+                                                    <img src="" alt="" id="img" class="oculto">
+                                                </div>
+                                                <div class="content" id="portada">
+                                                    <div class="icon"><i class="fas fa-camera"></i></div>
+                                                    <div class="text">Subir imagen</div>
+                                                </div>
                                             </div>
-                                        </form>
+                                        </div>
+                                        <div class="upimg">
+                                            <input type="file" name="foto" id="foto">
+                                        </div>
+                                        <div id="form_alert"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="form-row center">
-                            <button type="submit" class="btn btn-success btn-lg">Registrar Activo</button>
+                            <button type="submit" class="btn btn-success btn-lg" href="validarRegistroEquipo.php">Registrar Activo</button>
                         </div>
                     </form>
                     
@@ -367,18 +353,12 @@
         </div>
             
             
-        <!-- jQuery first, then Popper.js, then Bootstrap JS 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         
-        <!-- jQuery first, then Popper.js, then Bootstrap JS 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -411,12 +391,16 @@
             var serial = `${getRandomFour()}-${getRandomFour()}-${getRandomFour()}-${getRandomFour()}`;
             $('#numSerial').val(serial);
         }
+
+
     });
+
+
+    
 </script>
 
-
 <!--AGREGAR IMAGEN-->
-<!--Guardar imagen en el input tipo file-->
+<!--Guardar imagen en el input tipo file
 <script language="javascript">
     const wrapper = document.querySelector(".wrapper-image");
     const fileName = document.querySelector(".file-name");
@@ -452,6 +436,55 @@
           fileName.textContent = valueStore;
         }
     });
+</script>-->
+
+<script language="javascript">
+    $(document).ready(function(){
+
+    //--------------------- SELECCIONAR FOTO PRODUCTO ---------------------
+    $("#foto").on("change",function(){
+    	var uploadFoto = document.getElementById("foto").value;
+        var foto       = document.getElementById("foto").files;
+        var nav = window.URL || window.webkitURL;
+        var contactAlert = document.getElementById('form_alert');
+        
+            if(uploadFoto !='')
+            {
+                var type = foto[0].type;
+                var name = foto[0].name;
+                if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png')
+                {
+                    contactAlert.innerHTML = '<p class="errorArchivo">El archivo no es válido.</p>';                        
+                    $("#img").remove();
+                    $(".delPhoto").addClass('notBlock');
+                    
+                    $('#foto').val('');
+                    return false;
+                }else{  
+                        contactAlert.innerHTML='';
+                        $("#img").remove();
+                        document.getElementById("portada").style.display = "none";
+                        $(".delPhoto").removeClass('notBlock');
+                        var objeto_url = nav.createObjectURL(this.files[0]);
+                        $(".prevPhoto").append("<img id='img' src="+objeto_url+">");
+                        $(".upimg label").remove();
+                        
+                    }
+              }else{
+              	alert("No selecciono foto");
+                $("#img").remove();
+              }              
+    });
+
+    $('.delPhoto').click(function(){
+    	$('#foto').val('');
+    	$(".delPhoto").addClass('notBlock');
+        document.getElementById("portada").style.display = "block";
+    	$("#img").remove();
+
+    });
+
+});
 </script>
 
 <!--Validar extencion de archivos que se suben al input file-->
@@ -486,59 +519,5 @@
     }
 </script>
 
-<!--GENERAR CODIGO QR (Solo # serial por ahora)-->
-
-<script type="text/javascript">
-
-		parametros={"textqr":textqr,"sizeqr":sizeqr};
-		    $.ajax({
-		    type: "POST",
-			url: "qr.php",
-			data: parametros,
-			success: function(datos){
-				$(".content-qr").html(datos);
-			}
-		})
-		event.preventDefault();
-    }
-</script>
-
-<!--Guardar codigo QR en input tipo file-->
-<script language="javascript">
-    const wrapper = document.querySelector(".wrapper-image");
-    const fileName = document.querySelector(".file-name");
-    const defaultBtn = document.querySelector("#archivoQR");
-    const customBtn = document.querySelector("#file-btn");
-    const cancelBtn = document.querySelector("#cancel-btn i");
-    const img = document.querySelector("#img-activo");
-    let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
-
-    function defaultBtnActive(){
-        defaultBtn.click();
-    }
-
-    defaultBtn.addEventListener("change", function(){
-        const file = this.files[0];
-        if(file){
-          const reader = new FileReader();
-          reader.onload = function(){
-            const result = reader.result;
-            img.src = result;
-            document.getElementById("img-activo").style.display = "block";
-            wrapper.classList.add("active");
-          }
-          cancelBtn.addEventListener("click", function(){
-            img.src = "";
-            document.getElementById("img-activo").style.display = "none";
-            wrapper.classList.remove("active");
-          })
-          reader.readAsDataURL(file);
-        }
-        if(this.value){
-          let valueStore = this.value.match(regExp);
-          fileName.textContent = valueStore;
-        }
-    });
-</script>
 
 
