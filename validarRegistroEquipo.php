@@ -1,7 +1,4 @@
 <?php
-
-
-
     include('conexion_db.php');
 
     $consultaUno = "INSERT INTO activos (idx_estatus, idx_ubicacion, numeroSerial, numero_serial_dispositivo,

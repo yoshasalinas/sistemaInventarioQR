@@ -21,12 +21,19 @@ $activo = mysqli_query($conexion, $select);
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <!--CSS-->
         <link href="css/inicio-style.css" rel="stylesheet" type="text/css">
+        <link href="css/inventario-style.css" rel="stylesheet" type="text/css">
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
         
+        <!--  Datatables  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>  
 
+        <!--  extension responsive  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+        
+        
         <title>Inventario</title>
+        
     </head>
     <body>
         <!--Navbar-->
@@ -165,66 +172,98 @@ $activo = mysqli_query($conexion, $select);
                 </ul>
             </nav>
             <!--Contenido principal-->
-            <div id="content">
-                <H1>Inventario:</H1>
-				<table class="table table-dark">
-					<thead>
-						<tr>
-							<th scope="col">No.Serial</th>
-                            <th scope="col">No. Serial Disp</th>
-							<th scope="col">No. Serial TecNM</th>
-							<th scope="col">Estatus</th>
-                            <th scope="col">Tipo Activo</th>
-							<th scope="col">Ubicacion</th>
-							<th scope="col">Nombre</th>
-							<th scope="col">Fecha Alta</th>
-							<th scope="col">Marca</th>
-							<th scope="col">Modelo</th>
-							<th scope="col">Color</th>
-							<th scope="col">Descripcion</th>
-							<th scope="col">Imagen</th>
-							<th scope="col">QR</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php while ($getresultado = $activo->fetch_assoc()) { ?>
-							<tr>
-								<th scope="row"> <?php echo $getresultado['numeroSerial'] ?> </th>
-                                <td><?php echo $getresultado['numero_serial_dispositivo'] ?></td>
-								<td><?php echo $getresultado['numero_serial_tecNM'] ?></td>
-								<td><?php echo $getresultado['idx_estatus'] ?></td>
-                                <td><?php echo $getresultado['tipo_activo'] ?></td>
-								<td><?php echo $getresultado['idx_ubicacion'] ?></td>
-                                <td><?php echo $getresultado['nombre_activo'] ?></td>
-								<td><?php echo $getresultado['fecha_alta'] ?></td>
-								<td><?php echo $getresultado['marca'] ?></td>
-								<td><?php echo $getresultado['modelo'] ?></td>
-								<td><?php echo $getresultado['color'] ?></td>
-								<td><?php echo $getresultado['descripcion_activo'] ?></td>
-								<td>
-									<img src="data/:image/jpeg:base64, <?php echo base64_encode($getresultado['imagen_activo']) ?>">
-								</td>
-								<td>
-                                	<img src="data/:image/jpeg:base64, <?php echo base64_encode($getresultado['imagen_codigo_qr']) ?>">
-                                </td>
-								<!--botones--> 
-								<td>
-									<a href="modificarActivo.php?idx_numeroSerial=<?= $getresultado['idx_numeroSerial'] ?>" class="btn btn-outline-info">Modificar</a>
-								</td>
-							</tr>
-						<?php } ?>
-					</tbody>
-				</table>
+            <div id="content" class="container tarjeta">
+                <h1>Inventario</h1>   
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>No.Serial</th>
+                                        <th>No. Serial Disp</th>
+                                        <th>No. Serial TecNM</th>
+                                        <th>Estatus</th>
+                                        <th>Tipo Activo</th>
+                                        <th>Ubicacion</th>
+                                        <!--
+                                        <th>Nombre</th>
+                                        <th>Fecha Alta</th>
+                                        <th>Marca</th>
+                                        <th>Modelo</th>
+                                        <th>Descripcion</th>
+                                        <th>Imagen</th>
+                                        <th>QR</th>
+                                        <th>...</th>
+                                        -->
+                                        			
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<?php while ($getresultado = $activo->fetch_assoc()) { ?>
+							            <tr>
+							            	<th scope="row"> <?php echo $getresultado['numeroSerial'] ?> </th>
+                                            <td><?php echo $getresultado['numero_serial_dispositivo'] ?></td>
+							            	<td><?php echo $getresultado['numero_serial_tecNM'] ?></td>
+							            	<td><?php echo $getresultado['idx_estatus'] ?></td>
+                                            <td><?php echo $getresultado['tipo_activo'] ?></td>
+							            	<td><?php echo $getresultado['idx_ubicacion'] ?></td>
+                                            <!--
+                                            <td><?php echo $getresultado['nombre_activo'] ?></td>
+							            	<td><?php echo $getresultado['fecha_alta'] ?></td>
+							            	<td><?php echo $getresultado['marca'] ?></td>
+							            	<td><?php echo $getresultado['modelo'] ?></td>
+							            	<td><?php echo $getresultado['color'] ?></td>
+							            	<td><?php echo $getresultado['descripcion_activo'] ?></td>
+							            	<td>
+							            		<img src="data/:image/jpeg:base64, <?php echo base64_encode($getresultado['imagen_activo']) ?>">
+							            	</td>
+							            	<td>
+                                            	<img src="data/:image/jpeg:base64, <?php echo base64_encode($getresultado['imagen_codigo_qr']) ?>">
+                                            </td>
+                                            
+							            	
+							            	<td>
+							            		<a href="modificarActivo.php?idx_numeroSerial=<?= $getresultado['idx_numeroSerial'] ?>" class="btn btn-outline-info">Modificar</a>
+							            	</td>
+                                            -->
+							            </tr>
+						            <?php } ?>
 
-            </div>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </tfoot>
+                            </table>  
+                        </div>
+                    </div> 
+                </div>
 
+        
+            </div> <!--FIN Contenido principal-->
         </div>
             
             
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+        <!--   Datatables-->
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>  
+        
+        <!-- extension responsive -->
+        <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
             
         <script src="script.js">
             /*Archivo js*/ 
@@ -232,3 +271,11 @@ $activo = mysqli_query($conexion, $select);
 
     </body>
 </html>
+
+<script>
+	$(document).ready(function() {
+        $('#example').DataTable({
+            responsive: true
+        });
+    } );  
+</script>

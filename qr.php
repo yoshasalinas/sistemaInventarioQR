@@ -9,8 +9,11 @@ $qrCode->setSize($sizeqr);//Establece el tamaño del qr
 //header('Content-Type: '.$qrCode->getContentType());
 $image= $qrCode->writeString();//Salida en formato de texto 
 
- $imageData = base64_encode($image);//Codifico la imagen usando base64_encode
+$imageData = base64_encode($image);//Codifico la imagen usando base64_encode
 
-echo '<img src="data:image/png;base64,'.$imageData.'">';
+//echo '<img src="data:image/png;base64,'.$imageData.'">';
+
+echo '<textarea class="form-control" id="pruebaQR" name="pruebaQR" rows="10" value = '.$image.' ></textarea>'; 
+
 
 ?>
