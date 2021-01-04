@@ -2,8 +2,17 @@
 
 include('conexion_db.php');
 
-$select = "SELECT * FROM activos";
-$activo = mysqli_query($conexion, $select);
+session_start();
+
+    if(!isset($_SESSION['id'])){
+        header("Location: index.php");
+    }
+
+    $nombre = $_SESSION['nombreUsuario'];
+    $tipo_usuario = $_SESSION['rol'];
+
+    $select = "SELECT * FROM activos";
+    $activo = mysqli_query($conexion, $select);
 
 ?>
 
@@ -59,7 +68,7 @@ $activo = mysqli_query($conexion, $select);
                     <!--Navbarssubmenu-->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                            <li><a href="index.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
+                            <li><a href="logout.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
                         </ul>
                     </div>
                 </div>
@@ -176,19 +185,20 @@ $activo = mysqli_query($conexion, $select);
                 <h1>Inventario</h1>   
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <div class="col-lg-12 ">
+                            <table id="example" class="table table-striped table-bordered tabla-inventario" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>No.Serial</th>
+                                        <th id="col-numSerial">No.Serial</th>
                                         <th>No. Serial Disp</th>
                                         <th>No. Serial TecNM</th>
                                         <th>Estatus</th>
                                         <th>Tipo Activo</th>
                                         <th>Ubicacion</th>
-                                        <!--
                                         <th>Nombre</th>
-                                        <th>Fecha Alta</th>
+                                        <th>...</th>
+                                        <!--
+                                            <th>Fecha Alta</th>
                                         <th>Marca</th>
                                         <th>Modelo</th>
                                         <th>Descripcion</th>
@@ -199,6 +209,7 @@ $activo = mysqli_query($conexion, $select);
                                         			
                                     </tr>
                                 </thead>
+                                
                                 <tbody>
                                 	<?php while ($getresultado = $activo->fetch_assoc()) { ?>
 							            <tr>
@@ -208,9 +219,21 @@ $activo = mysqli_query($conexion, $select);
 							            	<td><?php echo $getresultado['idx_estatus'] ?></td>
                                             <td><?php echo $getresultado['tipo_activo'] ?></td>
 							            	<td><?php echo $getresultado['idx_ubicacion'] ?></td>
-                                            <!--
                                             <td><?php echo $getresultado['nombre_activo'] ?></td>
-							            	<td><?php echo $getresultado['fecha_alta'] ?></td>
+                                            <td>
+                                                <!--Boton de accion Editar(Modal)-->
+                                                <button type="button" id="" class="btn btn-outline-secondary acciones-btn" data-toggle="modal" data-target="#modal-editarActivo">
+                                                    Editar<i class="far fa-edit"></i>
+                                                </button>
+                                                <!-- Boton de accion Eliminar(Modal)-->
+                                                <button type="button" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarActivo">
+                                                    Eliminar <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </td>
+                                           
+                                            
+                                            <!--
+                                            <td><?php echo $getresultado['fecha_alta'] ?></td>
 							            	<td><?php echo $getresultado['marca'] ?></td>
 							            	<td><?php echo $getresultado['modelo'] ?></td>
 							            	<td><?php echo $getresultado['color'] ?></td>
@@ -231,22 +254,57 @@ $activo = mysqli_query($conexion, $select);
 						            <?php } ?>
 
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                    </tr>
-                                </tfoot>
-                            </table>  
+
+                            </table> 
+                            
+                            <!-- Modal Editar datos de Activos-->
+                            <div class="modal fade" id="modal-editarActivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Editar Informacion de Activo</h5>
+                        
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container">
+                                            Traer formulario segun el tipo de activo que sea para poder mostrar la informacion
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-success">Guardar</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal Eliminar datos de Activos-->
+                            <div class="modal fade" id="modal-eliminarActivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Activo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container">
+                                            Verificar el tipo de activo que se quiere eliminar para agregar condicion!
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div> 
                 </div>
-
-        
             </div> <!--FIN Contenido principal-->
         </div>
             

@@ -1,8 +1,11 @@
 	$(document).ready(function() {
         $('#example').DataTable({
-            responsive: true,  
-            autoWidth: false, 
+            
 
+            responsive: true,  //propiedad responsive
+            autoWidth: false, //ajuste de tamaño 
+
+            //Traduccion al español
             "language": {
                 /*"lengthMenu": "Displ _MENU_ records per page",
                 "zeroRecords": "Nothing found - sorry",
