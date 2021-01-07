@@ -2,11 +2,23 @@
 
 include('conexion_db.php');
 
+session_start();
+
+if(!isset($_SESSION['id'])){
+    header("Location: index.php");
+}
+
+$nombre = $_SESSION['nombreUsuario'];
+$tipo_usuario = $_SESSION['rol'];
+
+
 $select = "SELECT * FROM usuarios";
 $usuario = mysqli_query($conexion, $select);
 
 ?>
 <!Doctype html>
+
+
 <html lang="en">
     <head>
         <!-- Required meta tags -->
@@ -20,10 +32,15 @@ $usuario = mysqli_query($conexion, $select);
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <!--CSS-->
         <link href="css/inicio-style.css" rel="stylesheet" type="text/css">
-        <link href="css/usuarios-style.css" rel="stylesheet" type="text/css">
+        <link href="css/usuarios-styles.css" rel="stylesheet" type="text/css">
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
+        <!--  Datatables  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>  
+
+        <!--  extension responsive  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
         
 
         <title>Inicio</title>
@@ -45,9 +62,6 @@ $usuario = mysqli_query($conexion, $select);
             }
         }
 
-
-        
-        
 	</script>
 
     <body>
@@ -74,7 +88,7 @@ $usuario = mysqli_query($conexion, $select);
                     <!--Navbarssubmenu-->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                            <li><a href="index.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
+                            <li><a href="logout.php"><i class="fas fa-sign-out-alt fa-2x"></i></a></li> 
                         </ul>
                     </div>
                 </div>
@@ -187,12 +201,12 @@ $usuario = mysqli_query($conexion, $select);
                 </ul>
             </nav>
             <!--Contenido principal-->
-            <div id="content">
-                <div class="main-container ">
+            <div id="content" class="container tarjeta">
+                <div class="main-container">
                     <!--Tabla de usuarios registrados-->
-                    <div class="row" id=tabla-de-usuarios >
+                    <div class="row" id="tabla-de-usuarios">
                         <H1>Usuarios del sistema:</H1>
-                        <table class="table table-dark" >
+                        <table id="example" class="table table-striped table-bordered tabla-usuarios" style="width:100%">
                             <thead>
                                 <tr>
                                     <th scope="col">Rol</th>
@@ -201,6 +215,7 @@ $usuario = mysqli_query($conexion, $select);
                                     <th scope="col">Apellido Materno</th>
                                     <th scope="col">Nombre de Usuario</th>
                                     <th scope="col">Correo</th>
+                                    <th scope="col">...</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -215,15 +230,18 @@ $usuario = mysqli_query($conexion, $select);
                                         
                                         <!--botones--> 
                                         <td>
-                                            <a href="watch.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-primary">Movimientos</a>
+                                            <a href="watch.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-primary acciones-btn">
+                                                Movimientos<i class="far fa-folder-open"></i>
+                                            </a>
+                                            <a href="modificarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-secondary acciones-btn">
+                                                Editar<i class="far fa-edit"></i>
+
+                                            </a>
+                                            <a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-danger acciones-btn">
+                                                Eliminar <i class="fas fa-trash-alt"></i>
+                                            </a>
                                         </td>
                                         
-                                        <td>
-                                            <a href="modificarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-info">Modificar</a>
-                                        </td>
-                                        <td>
-                                            <a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-danger">Eliminar</a>
-                                        </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -231,6 +249,7 @@ $usuario = mysqli_query($conexion, $select);
                         <button  type="submit" class="btn btn-primary btn-success" onclick="registroNuevoUsuario()" >Registrar nuevo usuario</button>
                    
                     </div>
+
                     <!--Formulario de registro de nuevo usuario (oculto hasta precionar boton)-->
                     <div class="row oculto" id=formulario-crear-usuario >
                         <div class="container-form-registro-usuarios">
@@ -298,10 +317,24 @@ $usuario = mysqli_query($conexion, $select);
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-            
+
+        
+        
+        <!--   Datatables-->
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>  
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>  
+        <!-- extension responsive y de bootstrap 4-->
+        <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
+        
+           
         <script src="script.js">
             /*Archivo js*/ 
         </script>
 
     </body>
 </html>
+
+<script src="js/datatables.js">
+    /*Archivo js para plugin datatables*/ 
+</script>
