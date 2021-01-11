@@ -4,18 +4,19 @@ include('conexion_db.php');
 
     session_start();
 
-        if(!isset($_SESSION['id'])){
-            header("Location: index.php");
-        }
+    if(!isset($_SESSION['id'])){
+        header("Location: index.php");
+    }
 
-        $nombre = $_SESSION['nombreUsuario'];
-        $tipo_usuario = $_SESSION['rol'];
+    $nombre = $_SESSION['nombreUsuario'];
+    $tipo_usuario = $_SESSION['rol'];
 
     $select = "SELECT * FROM ubicaciones";
     $ubicaciones = mysqli_query($conexion, $select);
 
 ?>
 <!Doctype html>
+
 <html lang="en">
     <head>
         <!-- Required meta tags -->
@@ -23,16 +24,21 @@ include('conexion_db.php');
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!---->
-        <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.  5/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <!--CSS-->
         <link href="css/inicio-style.css" rel="stylesheet" type="text/css">
-        <link href="css/configurarUbicaciones.css" rel="stylesheet" type="text/css">
+        <link href="css/configurarUbicaciones-styles.css" rel="stylesheet" type="text/css">
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
+        <!--  Datatables  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>  
+
+        <!--  extension responsive  -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
         
 
         <title>Ubicaciones del sistema</title>
@@ -192,104 +198,51 @@ include('conexion_db.php');
                 </ul>
             </nav>
             <!--Contenido principal-->
-            <div id="content">
+            <div id="content" class="container tarjeta">
                 <div class="main-container ">
                     <!--Tabla de usuarios registrados-->
-                    <div class="row" id=tabla-de-usuarios >
-                        <H1>Ubicaciones del sistema</H1>
-                        <table class="table table-dark" >
+                    <div class="row" id="tabla-de-ubicaciones">
+                        <H1>Ubicaciones registradas:</H1>
+                        <table id="example" class="table table-striped table-bordered tabla-ubicaciones" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th scope="col">Tipo de Ubicacion</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Nombre del Edificio</th>
-                                    <th scope="col">Descripcion</th>
-                                    <th scope="col">Capacidad de la Ubicacion</th>
-                                    
+                                    <th>Tipo de Ubicacion</th>
+                                    <th>Nombre</thscope=>
+                                    <th>Nombre del Edificio</th>
+                                    <th>Descripcion</th>
+                                    <th id="col-capacidad">Capacidad de la Ubicacion</th>
+                                    <th>...</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php while ($getresultado = $ubicaciones->fetch_assoc()) { ?>
-                                    <tr>
-                                        <!--<th scope="row"> <?php echo $getresultado['id_ubicacion'] ?> </th> -->
+                                    <tr> 
                                         <td><?php echo $getresultado['tipo_ubicacion'] ?></td>
                                         <td><?php echo $getresultado['nombre_ubicacion'] ?></td>
                                         <td><?php echo $getresultado['nombre_edificio'] ?></td>
                                         <td><?php echo $getresultado['descripcion_ubicacion'] ?></td>
                                         <td><?php echo $getresultado['capacidad'] ?></td>
+
                                         <!--botones--> 
+                                        <td>
+                                            <a href="watch.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-primary acciones-btn">
+                                                Movimientos<i class="far fa-folder-open"></i>
+                                            </a>
+                                            <a href="modificarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-secondary acciones-btn">
+                                                Editar<i class="far fa-edit"></i>
+
+                                            </a>
+                                            <a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-danger acciones-btn">
+                                                Eliminar <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </td>
                                         
-                                        <td>
-                                            <a href="modificarUsuario.php?id_usuario=<?= $getresultado['id_ubicacion'] ?>" class="btn btn-outline-info">Modificar</a>
-                                        </td>
-                                        <td>
-                                            <a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_ubicacion'] ?>" class="btn btn-outline-danger">Eliminar</a>
-                                        </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
-                        <button  type="submit" class="btn btn-primary btn-success" onclick="registroNuevoUsuario()" >Registrar nueva ubicacion</button>
+                        <button  type="submit" class="btn btn-primary btn-success" onclick="registroNuevoUsuario()" >Registrar nuevo usuario</button>
                    
-                    </div>
-                    <!--Formulario de registro de nueva ubicacion (oculto hasta precionar boton)-->
-                    <div class="row oculto" id=formulario-crear-usuario >
-                        <div class="container-form-registro-usuarios">
-                            <H1>Registro de Ubicaciones:</H1>
-                            <form action="" method="POST" >
-                                <div class="form-row"> 
-                                    <div class="equipo col-12">
-                                        <div class="form-row">
-                                            <div class="form-group col-md-4">
-                                                <label for="tipoUbicacion">Ubicacion</label>
-                                                <select class="form-control" id="tipoUbicacion" name="tipoUbicacion" >
-                                                <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                                    $consulta = $conexion-> query("SELECT * FROM ubicaciones");
-
-                                                    while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                        echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']."</option>"; //muestra los datos de la tabla externa
-                                                    }
-                                                ?>
-                                                <option onclick="registroNuevoUsuario()">Otro...</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-3 oculto">
-                                                <label for="nuevotipoUbicacion">Otro</label>
-                                                <input type="text" class="form-control" id="nuevotipoUbicacion" name="nuevotipoUbicacion">    
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="col-4">
-                                                <label for="nombre">Nombre</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre">    
-                                            
-                                            </div>
-                                            <div class="col-4">
-                                                <label for="nombreEdificio">Nombre del Edificio</label>
-                                                <input type="text" class="form-control" id="nombreEdificio" name="nombreEdificio">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-5">
-                                                <label for="correo">Correo:</label>
-                                                <input type="email" class="form-control" id="correo" name="correo" >      
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-5">
-                                                <label for="descripUbicacion">Descripcion de la Ubicacion</label>
-                                                <textarea class="form-control"  rows="3" name="descripUbicacion" type="text">
-                                                </textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <button  type="submit" class="btn btn-primary btn-success" >Aceptar</button>
-                                <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -301,9 +254,20 @@ include('conexion_db.php');
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
             
+        <!--   Datatables-->
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>  
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>  
+        <!-- extension responsive y de bootstrap 4-->
+        <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
+        
         <script src="script.js">
             /*Archivo js*/ 
         </script>
 
     </body>
 </html>
+
+<script src="js/datatables.js">
+    /*Archivo js para plugin datatables*/ 
+</script>
