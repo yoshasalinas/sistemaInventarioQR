@@ -320,9 +320,11 @@ $usuario = mysqli_query($conexion, $select);
                                                     <input type="password" class="form-control" name="confirmarContraseña" id="pass2" required>      
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" id="registrar" class="btn btn-success">Registrar</button>
+                                            <div class="modal-btns-acciones">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" id="registrar" class="btn btn-success">Registrar</button>
                                             <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -366,8 +368,8 @@ $usuario = mysqli_query($conexion, $select);
                                         <div id="error" class="alert alert-danger ocultar" role="alert">
                                             Las Contraseñas no coinciden, vuelve a intentar!
                                         </div>
-                                       
                                         <!-- Fin Mensajes de Verificación -->
+
                                         <form id="formulario-nuevoUsuario" action="validarRegistroUsuarios.php" method="POST" onsubmit="verificarPasswords(); return false">
                                             <div class="form-row ">
                                                 <div class="form-group col-md-6">
@@ -421,9 +423,11 @@ $usuario = mysqli_query($conexion, $select);
                                                     <input type="password" class="form-control" name="confirmarContraseña" id="pass2" required>      
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" id="registrar" class="btn btn-success">Guardar cambios</button>
+                                            <div class="modal-btns-acciones">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" id="registrar" class="btn btn-success">Guardar cambios</button>
                                             <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -433,23 +437,28 @@ $usuario = mysqli_query($conexion, $select);
                     
                     <!--Eliminar Usuario-->       
                     <div class="modal fade" id="modal-eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            ¿Esta seguro que desea eliminar el usuario del registro?
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-danger">Eliminar</a>
-                          
-                          </div>
-                          
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="div">
+                                            ¿Esta seguro que desea eliminar el usuario del registro?
+                                        </div>
+                                        <div class="modal-btns-acciones">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-danger">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                      </div>
                     </div>
                     
                 </div>

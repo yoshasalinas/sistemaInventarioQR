@@ -65,3 +65,8 @@ body {
 .tabla-usuarios .acciones-btn{
   font-size: 10px;
 }
+
+.modal-btns-acciones{
+  text-align: right;
+  margin-top: 20px;
+}
