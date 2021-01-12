@@ -3,8 +3,13 @@
   
 }
 
-.oculto{
+.ocultar {
     display: none;
+    
+}
+ 
+.mostrar {
+    display: block;
 }
 
 body {
@@ -29,9 +34,21 @@ body {
     color: #09134E;
 }
 
-.center{
-    margin-bottom: 30px;
-    justify-content: center;
+.btn-nuevoUsuario {
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-nuevoUsuario button{
+  color: whitesmoke;
+  background: #C21828;;
+  font-size: 15px;
+}
+
+.btn-nuevoUsuario button:hover{
+  color: whitesmoke;
+  background:#c22535;
 }
 
 .tabla-usuarios thead{
