@@ -338,21 +338,20 @@
                         </div>
                     </form>
                     <!--Codigo QR del activo-->
-                        <div class="row">
+                        <div class="row color">
                             <div class="col-12">
                                 <div class="form-row">
                                     <div class="form-group ">
                                         <div class="container-imagen ">
                                             <div class="image-codigo">
-                                                <img src="" alt=""name="archivoQR2" id="archivoQR" class="oculto">
+                                                <img src="" alt=""name="archivoQR2" id="archivoQR" class="">
                                             </div>
                                             <div class="content-qr">
                                                 <div class="icon"><i class="fas fa-qrcode"></i></div>
                                                 <div class="text">No imagen</div>
                                             </div>
                                         </div>
-                                        
-                                        
+                                          
                                     </div>
                                     <!--Elegir tamaño de QR-->
                                     <div class="form-group oculto" >
@@ -431,6 +430,7 @@
                 data: parametros,
                 success: function(datos){
                     $(".content-qr").html(datos);
+                    //let image = $("#pruebaQR").val();
                 }
             })
             event.preventDefault();

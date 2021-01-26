@@ -290,6 +290,8 @@
                             </div>
                         </div>
 
+                        
+
                         <!--Informacion de ubicacion-->
                         <div class="row">
                             <div class="col-12">
@@ -311,41 +313,30 @@
                         </div>
 
                         <!--QR-->
-                        <div class="row">
+                        <div class="row oculto">
                             <div class="col-12">
                                 <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <input id="archivoCodigoQR" type="file" class="form-control-file"  name="archivoCodigoQR" >
+                                    <div class="form-group ">
+                                        <!--<input id="archivoCodigoQR" type="file" class="form-control-file"  name="archivoCodigoQR" >-->
                                         <div class="content-codigo-qr">
-                                                
                                         </div>
                                     </div>
+                                    <!--Auxiliar oculto para guadar QR base64-->
+                                    <textarea class="form-control" id="archivoQR" name="archivoQR" rows="1"></textarea>
                                 </div>    
                             </div>
                         </div>
-
+                                              
                         <div class="form-row center">
                             <button type="submit" class="btn btn-success btn-lg" >Registrar Activo</button>
                         </div>
                     </form>
 
-            <!--Codigo QR del activo-->
+                        <!--Codigo QR del activo-->
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-row">
-                                    <div class="form-group ">
-                                        <div class="container-imagen ">
-                                            <div class="image-codigo">
-                                                <img src="" alt=""name="archivoQR" id="archivoQR" class="oculto">
-                                            </div>
-                                            <div class="content-qr">
-                                                <div class="icon"><i class="fas fa-qrcode"></i></div>
-                                                <div class="text">No imagen</div>
-                                            </div>
-                                        </div>
-                                        
-                                        
-                                    </div>
+                                    
                                     <!--Elegir tamaño de QR-->
                                     <div class="form-group oculto" >
                                         <div class="container">
@@ -364,10 +355,10 @@
                                         </div>
                                     </div>
                                     
-                                    <textarea class="form-control" id="pruebaQR" name="pruebaQR" name="medidas" rows="1" value="<?php echo $imagenQR; ?>"></textarea>
                                 </div>
                             </div>
                         </div>
+            
                 </div>
             </div>
         </div>
@@ -424,7 +415,9 @@
                 url: "qr.php",
                 data: parametros,
                 success: function(datos){
-                    $(".content-codigo-qr").html(datos);
+                    image = $(".content-codigo-qr").html(datos);
+                    //let image = $("#archivoQR").val();
+                    $("#archivoQR").val(image);
                 }
             })
             event.preventDefault();

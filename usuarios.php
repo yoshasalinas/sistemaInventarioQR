@@ -15,7 +15,10 @@ $select = "SELECT * FROM usuarios";
 $usuario = mysqli_query($conexion, $select);
 
 
+
 ?>
+
+
 <!Doctype html>
 <html lang="en">
     <head>
@@ -208,6 +211,7 @@ $usuario = mysqli_query($conexion, $select);
                             <table id="example" class="table table-striped table-bordered tabla-usuarios" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <th scope="col">ID</th>
                                         <th scope="col">Rol</th>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Apellido Paterno</th>
@@ -220,7 +224,8 @@ $usuario = mysqli_query($conexion, $select);
                                 <tbody>
                                     <?php while ($getresultado = $usuario->fetch_assoc()) { ?>
                                         <tr>
-                                            <th scope="row"> <?php echo $getresultado['idX_rol'] ?> </th>
+                                            <th scope="row"> <?php echo $getresultado['id_usuario'] ?> </th>
+                                            <th> <?php echo $getresultado['idX_rol'] ?> </th>
                                             <td><?php echo $getresultado['nombre'] ?></td>
                                             <td><?php echo $getresultado['apellido_paterno'] ?></td>
                                             <td><?php echo $getresultado['apellido_materno'] ?></td>
@@ -229,27 +234,38 @@ $usuario = mysqli_query($conexion, $select);
                                             
                                             <!--botones--> 
                                             <td>
-                                                <a href="watch.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-primary acciones-btn" data-toggle="modal" data-target="#modal-movimientosUsuario">
+                                                <a href="" class="btn btn-outline-primary acciones-btn" data-toggle="modal" data-target="#modal-movimientosUsuario">
                                                     <!--Movimientos--><i class="far fa-folder-open"></i>
                                                 </a>
-                                                <a href="modificarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-secondary acciones-btn" data-toggle="modal" data-target="#modal-editarUsuario">
-                                                    <!--Editar--><i class="far fa-edit"></i>
+                                                <!--Editar
+                                                <a href="modificarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-secondary acciones-btn editbtn" data-toggle="modal" data-target="#modal-editarUsuario" >
+                                                    <i class="far fa-edit"></i>
 
-                                                </a>
+                                                </a>-->
+                                                <button type="button" class="btn btn-outline-secondary acciones-btn editbtn">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
                                                 <a href="" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarUsuario">
                                                     <!--Eliminar--><i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </td>
-                                            
                                         </tr>
+                                        
                                     <?php } ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!-- Modal: Registro de nuevo usuario-->
-                    <div class="modal fade" id="modal-nuevoUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        
+                    
+                    
+                </div>
+            </div> <!--FIN Contenido principal-->
+        </div>
+
+        <!-- Modal: Registro de nuevo usuario-->
+        <div class="modal fade" id="modal-nuevoUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -330,10 +346,10 @@ $usuario = mysqli_query($conexion, $select);
                                 </div>
                             </div>
                         </div>
-                    </div>  
+        </div>  
 
-                    <!-- Modal: Movimientos del usuario-->
-                    <div class="modal fade" id="modal-movimientosUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <!-- Modal: Movimientos del usuario-->
+        <div class="modal fade" id="modal-movimientosUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -349,122 +365,94 @@ $usuario = mysqli_query($conexion, $select);
                                 </div>
                             </div>
                         </div>
-                    </div>  
+        </div>  
 
-                    <!-- Modal: Editar informacion del usuario-->
-                    <div class="modal fade" id="modal-editarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <H2 class="modal-title" id="exampleModalLongTitle">Usuario</H2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
+        <!-- Modal: Editar informacion del usuario-->
+        <div class="modal fade" id="modal-editarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <H2 class="modal-title" id="exampleModalLongTitle">Usuario</H2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div id="msg"></div>
+                            <!-- Mensajes de Verificación -->
+                            <div id="error" class="alert alert-danger ocultar" role="alert">
+                                Las Contraseñas no coinciden, vuelve a intentar!
+                            </div>
+                            <!-- Fin Mensajes de Verificación -->
+                            <form id="formulario-nuevoUsuario" action="validarRegistroUsuarios.php" method="POST" onsubmit="verificarPasswords(); return false">
+                                <div class="form-row ">
+                                    <div class="form-group col-md-6">
+                                        <label for="nombre">ID</label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $obtenerId ?>" required>
+                                    </div>      
                                 </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <div id="msg"></div>
-                                        <!-- Mensajes de Verificación -->
-                                        <div id="error" class="alert alert-danger ocultar" role="alert">
-                                            Las Contraseñas no coinciden, vuelve a intentar!
-                                        </div>
-                                        <!-- Fin Mensajes de Verificación -->
-
-                                        <form id="formulario-nuevoUsuario" action="validarRegistroUsuarios.php" method="POST" onsubmit="verificarPasswords(); return false">
-                                            <div class="form-row ">
-                                                <div class="form-group col-md-6">
-                                                    <label for="nombre">Nombre</label>
-                                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                                </div>      
-                                            </div>
-
-                                            <div class="form-row ">
-                                                <div class="form-group col-md-6">
-                                                    <label for="aMaterno">Apellido materno</label>
-                                                <input type="text" class="form-control" id="aMaterno" name="aMaterno" required>    
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="aPaterno">Apellido paterno</label>
-                                                    <input type="text" class="form-control" id="aPaterno" name="aPaterno" required>    
-                                                </div>     
-                                                     
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6 ">
-                                                    <label for="rol">Rol</label>
-                                                    <select class="form-control" id="rol" name="rol">
-                                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                                            $consulta = $conexion-> query("SELECT * FROM rol");
-                                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                                echo "<option value ='".$fila['id_rol']."'>".$fila['rol']."</option>"; //muestra los datos de la tabla externa
-                                                            }
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="nombreUsuario">Nombre de usuario</label>
-                                                    <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-12">
-                                                    <label for="correo">Correo electronico</label>
-                                                    <input type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" required>      
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="contraseña">Contraseña</label>
-                                                    <input type="password" class="form-control"  name="contraseña" id="pass1" required>      
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="confirmarContraseña">Confirmar contraseña</label>
-                                                    <input type="password" class="form-control" name="confirmarContraseña" id="pass2" required>      
-                                                </div>
-                                            </div>
-                                            <div class="modal-btns-acciones">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" id="registrar" class="btn btn-success">Guardar cambios</button>
-                                            <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
-                                            </div>
-                                        </form>
+                                <div class="form-row ">
+                                    <div class="form-group col-md-6">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $obtenerArreglo['nombre'] ?>" required>
+                                    </div>      
+                                </div>
+                                <div class="form-row ">
+                                    <div class="form-group col-md-6">
+                                        <label for="aMaterno">Apellido materno</label>
+                                    <input type="text" class="form-control" id="aMaterno" name="aMaterno" required>    
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="aPaterno">Apellido paterno</label>
+                                        <input type="text" class="form-control" id="aPaterno" name="aPaterno" required>    
+                                    </div>     
+                                        
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 ">
+                                        <label for="rol">Rol</label>
+                                        <select class="form-control" id="rol" name="rol">
+                                            <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                                $consulta = $conexion-> query("SELECT * FROM rol");
+                                                while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                                    echo "<option value ='".$fila['id_rol']."'>".$fila['rol']."</option>"; //muestra los datos de la tabla externa
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="nombreUsuario">Nombre de usuario</label>
+                                        <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" required>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!--Eliminar Usuario-->       
-                    <div class="modal fade" id="modal-eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <div class="div">
-                                            ¿Esta seguro que desea eliminar el usuario del registro?
-                                        </div>
-                                        <div class="modal-btns-acciones">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-danger">Eliminar</a>
-                                        </div>
+                                <div class="form-row">
+                                    <div class="form-group col-12">
+                                        <label for="correo">Correo electronico</label>
+                                        <input type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" required>      
                                     </div>
                                 </div>
-
-                            </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="contraseña">Contraseña</label>
+                                        <input type="password" class="form-control"  name="contraseña" id="pass1" required>      
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="confirmarContraseña">Confirmar contraseña</label>
+                                        <input type="password" class="form-control" name="confirmarContraseña" id="pass2" required>      
+                                    </div>
+                                </div>
+                                <div class="modal-btns-acciones">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" id="registrar" class="btn btn-success">Guardar cambios</button>
+                                <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    
                 </div>
-            </div> <!--FIN Contenido principal-->
-        </div>
-            
+            </div>
+        </div>    
             
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -535,4 +523,21 @@ $usuario = mysqli_query($conexion, $select);
 }
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.editbtn').on('click', function()
+        {
+            $('#modal-editarUsuario').modal('show');
 
+            $tr = $(this).closest("td");
+            
+            var data = $tr.children("id").map(function()){
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+
+            $('#').val(data[0]);
+        });
+    });
+</script>

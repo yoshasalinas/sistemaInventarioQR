@@ -7,13 +7,18 @@ use Endroid\QrCode\QrCode;
 $qrCode = new QrCode($textqr);//Creo una nueva instancia de la clase
 $qrCode->setSize($sizeqr);//Establece el tamaño del qr
 //header('Content-Type: '.$qrCode->getContentType());
-$image= $qrCode->writeString();//Salida en formato de texto 
+$image = $qrCode->writeString();//Salida en formato de texto 
 
-$imageData = base64_encode($image);//Codifico la imagen usando base64_encode
+$imageData = base64_encode($image);//Salida en formato imagen Codifico la imagen usando base64_encode
 
-//echo '<img src="data:image/png;base64,'.$imageData.'">';
+//echo '<img name="archivoQR" id="archivoQR" src="data:image/png;base64,'.$imageData.'">';
+//<img src="" alt=""name="archivoQR" id="archivoQR" class="">
 
-echo '<textarea class="form-control" id="pruebaQR" name="pruebaQR" rows="10" value = '.$image.' ></textarea>'; 
+//echo '<textarea class="form-control" id="pruebaQR" name="pruebaQR" rows="10" value = '.$image.' ></textarea>'; 
+
+echo $image;
+
+//echo '<input id="archivoCodigoQR" type="file" class="form-control-file"  name="archivoCodigoQR src="data:image/png;base64,'.$imageData.'" >'; 
 
 
 ?>
