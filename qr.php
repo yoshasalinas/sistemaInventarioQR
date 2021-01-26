@@ -11,6 +11,10 @@ $image = $qrCode->writeString();//Salida en formato de texto
 
 $imageData = base64_encode($image);//Salida en formato imagen Codifico la imagen usando base64_encode
 
+
+
+
+
 //echo '<img name="archivoQR" id="archivoQR" src="data:image/png;base64,'.$imageData.'">';
 //<img src="" alt=""name="archivoQR" id="archivoQR" class="">
 
