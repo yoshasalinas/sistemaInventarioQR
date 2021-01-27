@@ -198,106 +198,87 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="tipoActivo">Tipo de activo</label>
-                                        <input class="form-control" id="tipoActivo" type="text" value="Equipo" readonly>
-                                    </div>
-                                    <div class="form-group col-md-8">
+                                    <div class="form-group col-md-6">
                                         <label for="nombreActivo">Nombre</label>
                                         <input type="text" class="form-control" id="nombreActivo" name="nombreActivo">
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
+                                    
+                                    <div class="form-group col-md-6">
                                         <label for="fechaAlta">Fecha de alta:</label>
                                         <input type="date" class="form-control" id="fechaAlta" name="fechaAlta" value="<?php echo date("Y-m-d");?>">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="estatus">Estatus</label>
-                                        <select class="form-control" id="estatus" name="estatus">
-                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                            $consulta = $conexion-> query("SELECT * FROM estatus");
-                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
-                                            }
-                                        ?>
-                                        
-                                        </select>
-                                    </div>
-                                    
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="marca">Marca</label>
-                                        <input type="text" class="form-control" id="marca" name="marca">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="modelo">Modelo</label>
-                                        <input type="text" class="form-control" id="modelo" name="modelo">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="color">Color</label>
-                                        <input type="text" class="form-control" id="color" name="color">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="descripcionActivo">Descripcion del Activo</label>
-                                        <textarea class="form-control" id="descripcionActivo" rows="3"></textarea>
+                                        
+                                        <div class="form-group ">
+                                            <label for="marca">Marca</label>
+                                            <input type="text" class="form-control" id="marca" name="marca">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="modelo">Modelo</label>
+                                            <input type="text" class="form-control" id="modelo" name="modelo">
+                                        </div>
+                                        
                                     </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="form-group ">
+                                            <label for="descripcionActivo">Descripcion del Activo</label>
+                                            <textarea class="form-control" id="descripcionActivo" rows="5"></textarea>
+                                        </div>
+                                        
+                                    </div>
+                                    
                                 </div>
 
-                                <!--Informacion Equipo-->
                                 <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="capacidadMemoria">Capacidad de memoria</label>
+                                    <div class="form-group col-md-6">
+                                        <label for="color">Color</label>
+                                        <input type="text" class="form-control" id="color" name="color">
+                                    </div>
+                                    <!--Informacion Equipo-->
+                                    <div class="form-group col-md-6">
+                                        <label for="capacidadMemoria">Memoria</label>
                                         <input type="text" class="form-control" id="capacidadMemoria" name="capacidadMemoria">
                                     </div>
-                                    <div class="form-group col-md-3">
+                                </div>
+                                <!--Informacion Equipo-->
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
                                         <label for="procesador">Procesador</label>
                                         <input type="text" class="form-control" id="procesador" name="procesador">
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label for="discoDuro">Disco Duro</label>
                                         <input type="text" class="form-control" id="discoDuro" name="discoDuro">
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label for="pulgadas">Pulgadas</label>
                                         <input type="text" class="form-control" id="pulgadas" name="pulgadas">
                                     </div>
+                                    
                                 </div>        
                                 <div class="form-row">
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label for="resolucion">Resolucion</label>
                                         <input type="text" class="form-control" id="resolucion" name="resolucion">
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label for="conectividad">Conectividad</label>
                                         <input type="text" class="form-control" id="conectividad" name="conectividad">
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label for="tipoEntrada">Tipo de entrada</label>
                                         <input type="text" class="form-control" id="tipoEntrada" name="tipoEntrada">
                                     </div>
-                                </div>
-
-                                <!--Informacion de ubicacion-->
-                                <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label for="tipoUbicacion">Ubicacion</label> <!--Tipo/Nobre ubicacion-->
-                                        <select class="form-control" id="tipoUbicacion" name="tipoUbicacion" >
-                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
-
-                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']." ".$fila['nombre_ubicacion']."</option>"; //muestra los datos de la tabla externa
-                                            }
-                                        ?>
-                                        </select>
+                                        <label for="cantidad">Cantidad</label>
+                                        <input type="number" class="form-control" id="cantidad" name="cantidad" value="1" min="1">
                                     </div>
-                                       
+                                    
                                 </div>
                             </div> 
+
                             <div class="col-md-4 ">
                                 <!--Imagen del activo-->
                                 <div class="form-group">
@@ -320,59 +301,88 @@
                                     </div>
                                     <div id="form_alert"></div>
                                 </div>
+
+                                
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="tipoActivo">Tipo de activo</label>
+                                        <input class="form-control" id="tipoActivo" type="text" value="Equipo" readonly>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="estatus">Estatus</label>
+                                        <select class="form-control" id="estatus" name="estatus">
+                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                            $consulta = $conexion-> query("SELECT * FROM estatus");
+                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                                echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
+                                            }
+                                        ?>
+                                        
+                                        </select>
+                                    </div>
+                                    <!--Informacion de ubicacion-->
+                                    <div class="form-group col-md-12">
+                                        <label for="tipoUbicacion">Ubicacion</label> <!--Tipo/Nobre ubicacion-->
+                                        <select class="form-control" id="tipoUbicacion" name="tipoUbicacion" >
+                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
+                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']." ".$fila['nombre_ubicacion']."</option>"; //muestra los datos de la tabla externa
+                                            }
+                                        ?>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
                             </div>
                         </div>
                         <!--QR-->
-                        <div class="row">
+                        <div class="row oculto">
                             <div class="col-12">
                                 <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <input id="archivoCodigoQR" type="file" class="form-control-file"  name="archivoCodigoQR" >
+                                    <div class="form-group ">
+                                        <!--<input id="archivoCodigoQR" type="file" class="form-control-file"  name="archivoCodigoQR" >-->
+                                        <div class="content-codigo-qr">
+                                        </div>
                                     </div>
+                                    <!--Auxiliar oculto para guadar QR base64-->
+                                    <textarea class="form-control" id="archivoQR" name="archivoQR" rows="1"></textarea>
                                 </div>    
                             </div>
                         </div>
                         
                         <div class="form-row center">
-                            <button type="submit" class="btn btn-success btn-lg" href="validarRegistroEquipo.php">Registrar Activo</button>
+                            <button type="submit" class="btn btn-success btn-lg  registro-btn" href="validarRegistroEquipo.php">Registrar Activo</button>
                         </div>
                     </form>
+
                     <!--Codigo QR del activo-->
-                        <div class="row color">
-                            <div class="col-12">
-                                <div class="form-row">
-                                    <div class="form-group ">
-                                        <div class="container-imagen ">
-                                            <div class="image-codigo">
-                                                <img src="" alt=""name="archivoQR2" id="archivoQR" class="">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-row">
+                                
+                                <!--Elegir tamaño de QR-->
+                                <div class="form-group oculto" >
+                                    <div class="container">
+                                        <form method="post" id="generador" action="">
+                                            <div class="form-group">
+                                                <label for="textqr">Tamaño</label>
+                                                <select class='form-control' id='sizeqr'>
+                                                    <option value='100'>100 px</option>
+                                                    <option value='200'>200 px</option>
+                                                    <option value='300' selected>300 px</option>
+                                                    <option value='400'>400 px</option>
+                                                    <option value='500'>500 px</option>
+                                                </select>
                                             </div>
-                                            <div class="content-qr">
-                                                <div class="icon"><i class="fas fa-qrcode"></i></div>
-                                                <div class="text">No imagen</div>
-                                            </div>
-                                        </div>
-                                          
-                                    </div>
-                                    <!--Elegir tamaño de QR-->
-                                    <div class="form-group oculto" >
-                                        <div class="container">
-                                            <form method="post" id="generador" action="">
-                                                <div class="form-group">
-                                                    <label for="textqr">Tamaño</label>
-                                                    <select class='form-control' id='sizeqr'>
-                                                        <option value='100'>100 px</option>
-                                                        <option value='200'>200 px</option>
-                                                        <option value='300' selected>300 px</option>
-                                                        <option value='400'>400 px</option>
-                                                        <option value='500'>500 px</option>
-                                                    </select>
-                                                </div>
-                                            </form>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
+                    </div>
+                    
                 </div>
             </div>
 
@@ -429,8 +439,9 @@
                 url: "qr.php",
                 data: parametros,
                 success: function(datos){
-                    $(".content-qr").html(datos);
-                    //let image = $("#pruebaQR").val();
+                    image = $(".content-codigo-qr").html(datos);
+                    //let image = $("#archivoQR").val();
+                    $("#archivoQR").val(image);
                 }
             })
             event.preventDefault();

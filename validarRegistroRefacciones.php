@@ -23,7 +23,7 @@ if($result){
     echo $consultaDos;
 
     mysqli_query($conexion, $consultaDos) or die (mysqli_error($conexion));
-    header("Location: registroMobiliario.php");
+    header("Location: registroRefacciones.php");
 
 }else {
                                             

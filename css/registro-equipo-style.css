@@ -22,6 +22,7 @@ body {
 .tarjeta h1{
     text-align: center;
     color: #09134E;
+    margin-bottom: 30px;
 }
 
 .center{
@@ -53,7 +54,7 @@ body {
 
 .container-imagen{
   position: relative;
-  height: 300px;
+  height: 500px;
   width: 100%;
   border-radius: 10px;
   background: #fff;
@@ -123,32 +124,12 @@ body {
   text-align: center;
 }
 
-.btn-imagen{
-  background: rgb(185, 184, 184);
-  color: #09134E;
-  font-size: 20px;
-}
-
-.btn-imagen:hover{
-  background: #09134E;
-  color: rgb(185, 184, 184);
-}
-
-.btn-qr{
-  background: #09134E;
-  color: rgb(185, 184, 184);
-  font-size: 20px;
-  width: 300px;
-  height: 50px;
-}
-
-.btn-qr:hover {
-  background: #C21828;
-  color: rgb(185, 184, 184);
-}
 
 
-/*Generar QR*/
+
+
+
+/*Imagen*/
 
 .previewImagen {
     display: flex;
@@ -167,7 +148,6 @@ body {
     margin: auto;
 
 }
-
 
 .previewImagen .content{
   align-items: center;
@@ -233,3 +213,18 @@ body {
 .imgProductoDelete{
 	width: 175px;
 }
+
+.registro-btn{
+  margin-top: 20px;
+  background: #C21828;
+  color: whitesmoke;
+  font-size: 20px;
+  width: 500px;
+  height: 50px;
+}
+
+.registro-btn:hover {
+  background: #c72737;
+  color: whitesmoke;
+}
+
