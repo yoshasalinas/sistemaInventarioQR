@@ -1,8 +1,6 @@
 <?php
-
-    include('conexion_db.php');
-
-    session_start();
+ include('conexion_db.php');
+session_start();
 
     if($_POST){
         $email = $_POST['correo'];
@@ -12,6 +10,17 @@
         $resultado = mysqli_query($conexion,$consulta);
         
         $filas = mysqli_num_rows($resultado);
+
+        $errorContraseña = false;
+        $errorUsuario = false;
+
+        $a = '<div id="error" class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Error!</strong> La contraseña es incorrecta.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>';
 
         if($filas > 0){
 
@@ -32,22 +41,35 @@
 
             }else{
                 //echo "La contraseña no coincide";
-                echo '<script>
+                
+                //echo "La contraseña es incorrecta!";
+                echo $a;
 
-                    
-                    
-                    
-                       
-                    </script>';
-                echo "La contraseña es incorrecta!";
+                //echo  $errorContraseña = true;
+                //echo '<textarea class="form-control" id="var" name="var" rows="1" value = '.$errorContraseña.' ></textarea>'; 
+
+                $errorContraseña = true;
+        
+
+
             }
 
-
-
         }else{
-            echo "El correo no esta registrado!";
+              $errorUsuario = true;
+            
+            //echo  $errorUsuario = true;
+            //echo "El correo no esta registrado!";
+            echo '<div id="error" class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-triangle ocultar "></i>
+                    <strong>Error!</strong> El correo no existe, ustede no podra ingresar.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>';
         }
     }
+    
+    
     
 ?>
 
@@ -80,7 +102,27 @@
             <div class="col-lg-7 derecha">
                 <div class="row">
                     <img src="img/img-titulo.png" class="img-fluid" alt="">
+                    <div class="prueba">
+
+                    </div>
                 </div>
+                
+                
+                <!-- Mensajes de Verificación -->
+                <div id="error" class="alert alert-danger ocultar" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Error!</strong> La contraseña es incorrecta.
+                </div>
+                <!-- Fin Mensajes de Verificación -->
+
+                <!-- Mensajes de Verificación-->
+                <div id="error" class="alert alert-danger ocultar" role="alert">
+                    <i class="fas fa-exclamation-triangle ocultar "></i>
+                    <strong>Error!</strong> El correo no existe, ustede no podra ingresar.
+                </div>
+                <!--Fin Mensajes de Verificación -->
+                
+                <!--
                 <div class="row" id="error-contraseña" >
                     <div class="alert alert-danger" id="alerta" role="alert">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -93,8 +135,10 @@
                         El correo no esta registrado!
                     </div>
                 </div>
+                -->
+
                 <div class="row">
-                    <form action="#" method="POST" id="formenvio_1">
+                    <form action="" method="POST" id="formulario-login"  >
                         <div class="form-row input-contenedor">
                             <i class="fas fa-user"></i>
                             <input type="email" class="form-control" name="correo" aria-describedby="emailHelp" placeholder="CORREO" required>
@@ -123,9 +167,52 @@
   </body>
 </html>
 
+
+
 <script type="text/javascript">
-	function Alerta(){
-		document.getElementById("error-contraseña").style.display = "none";
-	}
+	function verificarPasswords(){
+        // Ontenemos los valores de los campos de contraseñas 
+        //errorContraseña = document.getElementById('pass1');
+        //errorCorreo = document.getElementById('pass2');
+
+    //
+        var formulario = document.getElementById("formulario-login");
+        var errorContraseña = '<?php echo $errorContraseña;?>'
+ 
+    // Verificamos si las constraseñas no coinciden 
+        if ( errorContraseña  == true  ) {
+    
+            // Si las constraseñas no coinciden mostramos un mensaje 
+            document.getElementById("error").classList.add("mostrar");
+            document.getElementById("error").classList.remove("ocultar");
+
+            return false;
+
+        } else {
+
+            
+            //document.getElementById("error").classList.add("ocultar");
+    
+            // Si las contraseñas coinciden ocultamos el mensaje de error
+            //document.getElementById("error").classList.remove("mostrar");
+    
+            // Mostramos un mensaje mencionando que las Contraseñas coinciden 
+            //document.getElementById("ok").classList.remove("ocultar");
+    
+            // Desabilitamos el botón de login 
+            //document.getElementById("registrar").disabled = true;
+    
+            // Refrescamos la página (Simulación de envío del formulario) 
+            //setTimeout(function() {
+            //  location.reload();
+            //}, 3000);
+
+            formulario.submit();
+            return true;
+        }
+ 
+   
 		
+	}
+
 </script>

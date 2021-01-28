@@ -492,35 +492,35 @@ $usuario = mysqli_query($conexion, $select);
     var formulario = document.getElementById("formulario-nuevoUsuario");
  
     // Verificamos si las constraseñas no coinciden 
-    if (pass1.value != pass2.value) {
- 
-        // Si las constraseñas no coinciden mostramos un mensaje 
-        document.getElementById("error").classList.add("mostrar");
- 
-        return false;
-    } else {
+        if (pass1.value != pass2.value) {
+    
+            // Si las constraseñas no coinciden mostramos un mensaje 
+            document.getElementById("error").classList.add("mostrar");
+    
+            return false;
+        } else {
 
-        
- 
-        // Si las contraseñas coinciden ocultamos el mensaje de error
-        document.getElementById("error").classList.remove("mostrar");
- 
-        // Mostramos un mensaje mencionando que las Contraseñas coinciden 
-        document.getElementById("ok").classList.remove("ocultar");
- 
-        // Desabilitamos el botón de login 
-        //document.getElementById("registrar").disabled = true;
- 
-        // Refrescamos la página (Simulación de envío del formulario) 
-        //setTimeout(function() {
-          //  location.reload();
-        //}, 3000);
+            
+    
+            // Si las contraseñas coinciden ocultamos el mensaje de error
+            document.getElementById("error").classList.remove("mostrar");
+    
+            // Mostramos un mensaje mencionando que las Contraseñas coinciden 
+            document.getElementById("ok").classList.remove("ocultar");
+    
+            // Desabilitamos el botón de login 
+            //document.getElementById("registrar").disabled = true;
+    
+            // Refrescamos la página (Simulación de envío del formulario) 
+            //setTimeout(function() {
+            //  location.reload();
+            //}, 3000);
 
-        formulario.submit();
-        return true;
+            formulario.submit();
+            return true;
+        }
+ 
     }
- 
-}
 </script>
 
 <script type="text/javascript">

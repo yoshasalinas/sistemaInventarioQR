@@ -8,6 +8,14 @@ body {
     background: rgb(236, 236, 236);;
 }
 
+.ocultar {
+    display: none;
+}
+ 
+.mostrar {
+    display: block;
+}
+
 .tarjeta{
     margin-top: 30px;
 	margin-bottom: 30px;
@@ -63,13 +71,17 @@ body {
     -webkit-box-shadow: none;
 }
 
-#alerta{
-    
+.alerta{
     text-align: center;
     font-size: 15px;
     height: 50px;
     width: 400px;
-    display: none;
+    /*display: none;*/
+}
+
+#error{
+    text-align: center;
+    font-size: 15px;
 }
 
 /*
