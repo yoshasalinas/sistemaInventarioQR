@@ -11,9 +11,6 @@ if(!isset($_SESSION['id'])){
 $nombre = $_SESSION['nombreUsuario'];
 $tipo_usuario = $_SESSION['rol'];
 
-$select = "SELECT * FROM usuarios";
-$usuario = mysqli_query($conexion, $select);
-
 
 
 ?>
@@ -217,42 +214,61 @@ $usuario = mysqli_query($conexion, $select);
                                         <th scope="col">Apellido Paterno</th>
                                         <th scope="col">Apellido Materno</th>
                                         <th scope="col">Nombre de Usuario</th>
+                                        <th scope="col">C</th>
                                         <th scope="col">Correo</th>
                                         <th scope="col">...</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php while ($getresultado = $usuario->fetch_assoc()) { ?>
-                                        <tr>
-                                            <th scope="row"> <?php echo $getresultado['id_usuario'] ?> </th>
-                                            <th> <?php echo $getresultado['idX_rol'] ?> </th>
-                                            <td><?php echo $getresultado['nombre'] ?></td>
-                                            <td><?php echo $getresultado['apellido_paterno'] ?></td>
-                                            <td><?php echo $getresultado['apellido_materno'] ?></td>
-                                            <td><?php echo $getresultado['nombre_usuario'] ?></td>
-                                            <td><?php echo $getresultado['correo'] ?></td>
-                                            
-                                            <!--botones--> 
-                                            <td>
-                                                <a href="" class="btn btn-outline-primary acciones-btn" data-toggle="modal" data-target="#modal-movimientosUsuario">
-                                                    <!--Movimientos--><i class="far fa-folder-open"></i>
-                                                </a>
-                                                <!--Editar
-                                                <a href="modificarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-outline-secondary acciones-btn editbtn" data-toggle="modal" data-target="#modal-editarUsuario" >
-                                                    <i class="far fa-edit"></i>
 
+                                    <?php 
+                                    
+                                    $select = "SELECT * FROM usuarios";
+                                    $usuario = mysqli_query($conexion, $select);
+
+                                    while ($getFila = mysqli_fetch_array($usuario)) { 
+
+                                        $datos = $getFila[0].'||'.
+                                                $getFila[1]."||".
+                                                $getFila[2]."||".
+                                                $getFila[3]."||".
+                                                $getFila[4]."||".
+                                                $getFila[5]."||".
+                                                $getFila[6]."||".
+                                                $getFila[7];
+
+                                    ?>
+                                <tbody> 
+                                    <tr>
+                                        <th scope="row"> <?php echo $getFila[0] ?> </th>
+                                        <th><?php echo $getFila[1] ?></th>
+                                        <td><?php echo $getFila[2] ?></td>
+                                        <td><?php echo $getFila[3] ?></td>
+                                        <td><?php echo $getFila[4] ?></td>
+                                        <td><?php echo $getFila[5] ?></td>
+                                        <td><?php echo $getFila[6] ?></td>
+                                        <td><?php echo $getFila[7] ?></td>
+                                        
+                                        <!--botones--> 
+                                        <td>
+                                            <a href="" class="btn btn-outline-primary acciones-btn" data-toggle="modal" data-target="#modal-movimientosUsuario">
+                                                <!--Movimientos--><i class="far fa-folder-open"></i>
+                                            </a>
+                                            <!--Editar
+                                            <a href="modificarUsuario.php?id_usuario=<?= $getFila['id_usuario'] ?>" class="btn btn-outline-secondary acciones-btn editbtn" data-toggle="modal" data-target="#modal-editarUsuario" >
+                                                <i class="far fa-edit"></i>
                                                 </a>-->
-                                                <button type="button" class="btn btn-outline-secondary acciones-btn editbtn">
+                                                    
+                                                    
+                                                <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarUsuario" onclick="llenarModal_actualizar('<?php echo $datos ?>');">
                                                     <i class="far fa-edit"></i>
                                                 </button>
-                                                <a href="" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarUsuario">
-                                                    <!--Eliminar--><i class="fas fa-trash-alt"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        
-                                    <?php } ?>
+                                            <a href="" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarUsuario">
+                                                <!--Eliminar--><i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
                                 </tbody>
+                                    <?php } ?>
                             </table>
                         </div>
                     </div>
@@ -336,6 +352,7 @@ $usuario = mysqli_query($conexion, $select);
                                                     <input type="password" class="form-control" name="confirmarContraseña" id="pass2" required>      
                                                 </div>
                                             </div>
+                                            
                                             <div class="modal-btns-acciones">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                                 <button type="submit" id="registrar" class="btn btn-success">Registrar</button>
@@ -385,67 +402,74 @@ $usuario = mysqli_query($conexion, $select);
                                 Las Contraseñas no coinciden, vuelve a intentar!
                             </div>
                             <!-- Fin Mensajes de Verificación -->
-                            <form id="formulario-nuevoUsuario" action="validarRegistroUsuarios.php" method="POST" onsubmit="verificarPasswords(); return false">
+                            <form id="formulario-nuevoUsuario" action="" method="POST" onsubmit="verificarPasswords(); return false">
                                 <div class="form-row ">
                                     <div class="form-group col-md-6">
-                                        <label for="nombre">ID</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $obtenerId ?>" required>
+                                        <label for="id-edit">ID Usuario</label>
+                                        <input type="text" class="form-control" id="id-edit" name="id-edit" value="" required>
                                     </div>      
                                 </div>
                                 <div class="form-row ">
                                     <div class="form-group col-md-6">
-                                        <label for="nombre">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $obtenerArreglo['nombre'] ?>" required>
+                                        <label for="id-rol-edit">ID rol</label>
+                                        <input type="text" class="form-control" id="id-rol-edit" name="id-rol-edit" value="" required>
                                     </div>      
                                 </div>
                                 <div class="form-row ">
                                     <div class="form-group col-md-6">
-                                        <label for="aMaterno">Apellido materno</label>
-                                    <input type="text" class="form-control" id="aMaterno" name="aMaterno" required>    
+                                        <label for="nombre-edit">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre-edit" name="nombre-edit" value="" required>
+                                    </div>      
+                                </div>
+                                <div class="form-row ">
+                                    <div class="form-group col-md-6">
+                                        <label for="aMaterno-edit">Apellido materno</label>
+                                    <input type="text" class="form-control" id="aMaterno-edit" name="aMaterno-edit" required>    
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="aPaterno">Apellido paterno</label>
-                                        <input type="text" class="form-control" id="aPaterno" name="aPaterno" required>    
+                                        <label for="aPaterno-edit">Apellido paterno</label>
+                                        <input type="text" class="form-control" id="aPaterno-edit" name="aPaterno-edit" required>    
                                     </div>     
                                         
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 ">
-                                        <label for="rol">Rol</label>
-                                        <select class="form-control" id="rol" name="rol">
+                                        <label for="rol-edit">Rol</label>
+                                        <select class="form-control" id="rol-edit" name="rol-edit">
                                             <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
                                                 $consulta = $conexion-> query("SELECT * FROM rol");
-                                                while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                    echo "<option value ='".$fila['id_rol']."'>".$fila['rol']."</option>"; //muestra los datos de la tabla externa
+                                                while($getFila=$consulta->fetch_array()){ //recorre el arreglo
+                                                    echo "<option value ='".$getFila['id_rol']."'>".$getFila['rol']."</option>"; //muestra los datos de la tabla externa
                                                 }
                                             ?>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="nombreUsuario">Nombre de usuario</label>
-                                        <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" required>
+                                        <label for="nombreUsuario-edit">Nombre de usuario</label>
+                                        <input type="text" class="form-control" id="nombreUsuario-edit" name="nombreUsuario-edit" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-12">
-                                        <label for="correo">Correo electronico</label>
-                                        <input type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" required>      
+                                        <label for="correo-edit">Correo electronico</label>
+                                        <input type="email" class="form-control" id="correo-edit" name="correo-edit" aria-describedby="emailHelp" required>      
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="contraseña">Contraseña</label>
-                                        <input type="password" class="form-control"  name="contraseña" id="pass1" required>      
+                                        <label for="contraseña-edit">Contraseña</label>
+                                        <input type="password" class="form-control"  name="contraseña-edit" id="pass1" required>      
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="confirmarContraseña">Confirmar contraseña</label>
-                                        <input type="password" class="form-control" name="confirmarContraseña" id="pass2" required>      
+                                        <label for="confirmarContraseña-edit">Confirmar contraseña</label>
+                                        <input type="password" class="form-control" name="confirmarContraseña-edit" id="pass2" required>      
                                     </div>
                                 </div>
                                 <div class="modal-btns-acciones">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" id="registrar" class="btn btn-success">Guardar cambios</button>
                                 <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
+                                    <input type="hidden" id="hidden_user_id">
                                 </div>
                             </form>
                         </div>
@@ -478,6 +502,10 @@ $usuario = mysqli_query($conexion, $select);
 </html>
 
 <script src="js/datatables.js">
+    /*Archivo js para plugin datatables*/ 
+</script>
+
+<script src="js/funciones.js">
     /*Archivo js para plugin datatables*/ 
 </script>
 
@@ -525,19 +553,52 @@ $usuario = mysqli_query($conexion, $select);
 
 <script type="text/javascript">
     $(document).ready(function(){
+        /*
         $('.editbtn').on('click', function()
         {
             $('#modal-editarUsuario').modal('show');
 
-            $tr = $(this).closest("td");
+                
+                $tr = $(this).closest('tr');
+
+                var data = $tr.children("td").map(function(){
+                    return $(this).text();
+                }).get();
+
+                console.log(data);
+
+                //$('#id').val(data[0]);
+                $('#nombre-edit').val(data[0]);
+                $('#aMaterno-edit').val(data[1]);
+                
             
-            var data = $tr.children("id").map(function()){
-                return $(this).text();
-            }).get();
-
-            console.log(data);
-
-            $('#').val(data[0]);
+        });*/
+        /*
+        $(document).on('click', '.editbtn', function(){  
+            $('#modal-editarUsuario').modal('show');
+            
+          
         });
+        /*
+        function GetUserDetails() {
+            // Add User ID to the hidden field for furture usage
+            //$("#hidden_user_id").val(id);
+
+            /*
+            $.post("readUserDetails.php", {
+                    id: id
+                },
+                function (data, status) {
+                    // PARSE json data
+                    var user = JSON.parse(data);
+                    // Assing existing values to the modal popup fields
+                    $("#update_idalumno").val(user.idalumno);
+                    $("#update_codalumno").val(user.codalumno);
+                    $("#update_obs").val(user.obs);
+                }
+            );
+            // Abrir modal popup
+            $("#modal-editarUsuario").modal("show");
+        } */
     });
 </script>

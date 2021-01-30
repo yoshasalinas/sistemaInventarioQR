@@ -14,13 +14,7 @@ session_start();
         $errorContraseña = false;
         $errorUsuario = false;
 
-        $a = '<div id="error" class="alert alert-danger" role="alert">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <strong>Error!</strong> La contraseña es incorrecta.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>';
+        
 
         if($filas > 0){
 
@@ -43,7 +37,13 @@ session_start();
                 //echo "La contraseña no coincide";
                 
                 //echo "La contraseña es incorrecta!";
-                echo $a;
+                echo '<div id="error" class="alert alert-danger" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Error!</strong> La contraseña es incorrecta.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>';
 
                 //echo  $errorContraseña = true;
                 //echo '<textarea class="form-control" id="var" name="var" rows="1" value = '.$errorContraseña.' ></textarea>'; 
@@ -61,7 +61,7 @@ session_start();
             //echo "El correo no esta registrado!";
             echo '<div id="error" class="alert alert-danger" role="alert">
                     <i class="fas fa-exclamation-triangle ocultar "></i>
-                    <strong>Error!</strong> El correo no existe, ustede no podra ingresar.
+                    <strong>Error!</strong> El correo no esta registrado, ustede no podra ingresar.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

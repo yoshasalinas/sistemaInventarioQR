@@ -30,7 +30,7 @@ $ubicacion = mysqli_query($conexion, $select);
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <!--CSS-->
         <link href="css/inicio-style.css" rel="stylesheet" type="text/css">
-        <link href="css/usuarios-styles.css" rel="stylesheet" type="text/css">
+        <link href="css/configurarUbicaciones-styles.css" rel="stylesheet" type="text/css">
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         
@@ -258,35 +258,61 @@ $ubicacion = mysqli_query($conexion, $select);
                                 <div class="modal-body">
                                     <div class="container">
                                         
+                                        
                                         <form id="formulario-nuevaUbicacion" action="validarRegistroUbicaciones.php" method="POST">
                                             <div class="form-row ">
-                                                <div class="form-group col-md-6">
-                                                    <label for="nombre">Tipo de Ubicacion</label>
-                                                    <input type="text" class="form-control" id="tipoUbicacion" name="tipoUbicacion" required>
+                                                <div class="form-group col-md-5">
+                                                    <label for="tipoUbicacion">Tipo de Ubicacion</label>
+                                                    <select class="form-control" id="tipoUbicacion" name="tipoUbicacion">
+                                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
+                                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']."</option>"; //muestra los datos de la tabla externa
+                                                            }
+                                                        ?>
+                                                        <option value="">No especificado</option>
+                                                    </select>
+                                                </div>
+
+                                                <!--Agregar nuevo tipo de ubicacion-->    
+                                                <div class="form-group col-md-5">
+                                                    <label for="nuevoTipoUbicacion">Nuevo tipo</label>
+                                                    <input type="text" class="form-control" id="nuevoTipoUbicacion" name="nuevoTipoUbicacion" required>
+
+                                                </div>
+                                                <div class="form-group col-md-1 ">
+                                                    <a class="btn btn-outline-success" id="nuevaUb-btn" href="#" role="button"onclick="insertValue();">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
                                                 </div>      
-                                                <div class="form-group col-md-6">
-                                                    <label for="nombre">Nombre</label>
-                                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                                </div>      
+                                                    
                                             </div>
 
                                             <div class="form-row ">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-12">
+                                                    <label for="nombre">Nombre</label>
+                                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                                </div>  
+                                                
+                                            </div>
+                                            <div class="form-row ">
+                                                <div class="form-group col-12">
                                                     <label for="aMaterno">Edificio</label>
                                                     <input type="text" class="form-control" id="edificio" name="edificio" required>    
-                                                </div> 
+                                                </div>  
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <label for="descripcion">Descripcion del Activo</label>
+                                                    <label for="descripcion">Descripcion de la ubicación</label>
                                                     <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-row ">
-                                                <div class="form-group col-md-6">
-                                                    <label for="aMaterno">Capacidad</label>
-                                                    <input type="text" class="form-control" id="capacidad" name="capacidad" required>    
+                                                <div class="form-group col-md-2">
+                                                    <label for="capacidad">Capacidad</label>
+                                                    <input type="number" class="form-control" id="capacidad" name="capacidad" value="1" min="1" required>    
                                                 </div> 
+                                                
                                             </div>
 
                                             <div class="modal-btns-acciones">
@@ -301,7 +327,7 @@ $ubicacion = mysqli_query($conexion, $select);
                         </div>
                     </div>
 
-                    <!-- Modal: Registro de nueva ubicacion-->
+                    <!-- Modal: Registro editar ubicacion-->
                     <div class="modal fade" id="modal-editarUbicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -316,38 +342,63 @@ $ubicacion = mysqli_query($conexion, $select);
                                         
                                         <form id="formulario-nuevaUbicacion" action="validarRegistroUbicaciones.php" method="POST">
                                             <div class="form-row ">
-                                                <div class="form-group col-md-6">
-                                                    <label for="nombre">Tipo de Ubicacion</label>
-                                                    <input type="text" class="form-control" id="tipoUbicacion" name="tipoUbicacion" required>
+                                                <div class="form-group col-md-5">
+                                                    <label for="tipoUbicacion">Tipo de Ubicacion</label>
+                                                    <select class="form-control" id="tipoUbicacion" name="tipoUbicacion">
+                                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
+                                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']."</option>"; //muestra los datos de la tabla externa
+                                                            }
+                                                        ?>
+                                                        <option value="">No especificado</option>
+                                                    </select>
+                                                </div>
+
+                                                <!--Agregar nuevo tipo de ubicacion-->    
+                                                <div class="form-group col-md-5">
+                                                    <label for="nuevoTipoUbicacion">Nuevo tipo</label>
+                                                    <input type="text" class="form-control" id="nuevoTipoUbicacion" name="nuevoTipoUbicacion" required>
+
+                                                </div>
+                                                <div class="form-group col-md-1 ">
+                                                    <a class="btn btn-outline-success" id="nuevaUb-btn" href="#" role="button"onclick="insertValue();">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
                                                 </div>      
-                                                <div class="form-group col-md-6">
-                                                    <label for="nombre">Nombre</label>
-                                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                                </div>      
+                                                    
                                             </div>
 
                                             <div class="form-row ">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-12">
+                                                    <label for="nombre">Nombre</label>
+                                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                                </div>  
+                                                
+                                            </div>
+                                            <div class="form-row ">
+                                                <div class="form-group col-12">
                                                     <label for="aMaterno">Edificio</label>
                                                     <input type="text" class="form-control" id="edificio" name="edificio" required>    
-                                                </div> 
+                                                </div>  
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <label for="descripcion">Descripcion del Activo</label>
+                                                    <label for="descripcion">Descripcion de la ubicación</label>
                                                     <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-row ">
-                                                <div class="form-group col-md-6">
-                                                    <label for="aMaterno">Capacidad</label>
-                                                    <input type="text" class="form-control" id="capacidad" name="capacidad" required>    
+                                                <div class="form-group col-md-2">
+                                                    <label for="capacidad">Capacidad</label>
+                                                    <input type="number" class="form-control" id="capacidad" name="capacidad" value="1" min="1" required>    
                                                 </div> 
+                                                
                                             </div>
 
                                             <div class="modal-btns-acciones">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" id="registrar" class="btn btn-success">Guardar cambios</button>
+                                                <button type="submit" id="registrar" class="btn btn-success">Registrar</button>
                                             <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
                                             </div>
                                         </form>
@@ -462,3 +513,17 @@ $ubicacion = mysqli_query($conexion, $select);
 </script>
 
 
+<script>
+            
+    function insertValue()
+    {
+        var select = document.getElementById("tipoUbicacion"),
+            txtVal = document.getElementById("nuevoTipoUbicacion").value,
+            newOption = document.createElement("OPTION"),
+            newOptionVal = document.createTextNode(txtVal);
+     
+        newOption.appendChild(newOptionVal);
+        select.insertBefore(newOption,select.firstChild);
+    }
+    
+</script>

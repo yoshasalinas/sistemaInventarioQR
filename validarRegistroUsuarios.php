@@ -13,8 +13,6 @@ $email = $_POST['correo'];
 
  
 
-
-
 $consulta ="INSERT INTO usuarios (id_usuario, idx_rol, nombre, apellido_paterno, apellido_materno, nombre_usuario, contrasena, correo) 
 VALUES (NULL, '$rol', '$nombre', '$apellidoPaterno', '$apellidoMaterno', '$nombreUsuario', '$pass', '$email')";
 // $resultado = mysqli_query($conexion,$consulta);
