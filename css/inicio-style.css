@@ -1,3 +1,4 @@
+
 *,
 *:after,
 *:before {
@@ -5,6 +6,7 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+
 
 
 .navbar {
@@ -20,9 +22,7 @@
     display: inline-block;
 }
 
-.navbar .titulo{
-    
-}
+
 
 
 #logo {
