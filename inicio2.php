@@ -49,11 +49,20 @@ $ubicacion = mysqli_query($conexion, $select);
 
     <body>
         <nav>
+            
             <!--Boton de menu Sidebar-->
             <div class="menu-sidebar"><span class="fas fa-bars"></span></div>
-            
+
+            <!--Boton de menu movil-->
             <div class="menu-icon"><span class="fas fa-bars"></span></div>
-            <div class="logo">Control de Inventario</div>
+            <div class="logo">
+                Control de Inventario
+                <img src="img/itcj-escudo-rojo.png"  class="logos-img" alt="">
+                <img src="img/logo-TNM.png"  class="logos-img" alt="">
+            </div>
+
+            
+
             <div class="nav-items">
                 <li>
                     <a href="inicio.php"><i class="fas fa-home fa-lg"></i>Inicio</a>
@@ -120,10 +129,14 @@ $ubicacion = mysqli_query($conexion, $select);
              
             </div>
 
+            
+
             <!--Botonwa para menu-movil-->
             <div class="search-icon"><span class="fas fa-door-open"></span></div>
             <div class="cancel-icon"><span class="fas fa-times"></span></div>
+
             
+
             <!--Boton de cerrar sesion-->
             <div class="log-out-icon"><span class="fas fa-door-open"></span></div>
 
