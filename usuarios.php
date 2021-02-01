@@ -305,7 +305,7 @@ $tipo_usuario = $_SESSION['rol'];
                                         </div>
                                        
                                         <!-- Fin Mensajes de Verificación -->
-                                        <form id="formulario-nuevoUsuario" action="validarRegistroUsuarios.php" method="POST" onsubmit="verificarPasswords(); return false">
+                                        <form id="formulario-nuevoUsuario" action="validarRegistroUsuario.php" method="POST" onsubmit="verificarPasswords(); return false">
                                             <div class="form-row ">
                                                 <div class="form-group col-md-6">
                                                     <label for="nombre">Nombre</label>
@@ -315,12 +315,12 @@ $tipo_usuario = $_SESSION['rol'];
 
                                             <div class="form-row ">
                                                 <div class="form-group col-md-6">
-                                                    <label for="aMaterno">Apellido materno</label>
-                                                <input type="text" class="form-control" id="aMaterno" name="aMaterno" required>    
+                                                    <label for="aMaterno">Apellido paterno</label>
+                                                <input type="text" class="form-control" id="aPaterno" name="aPaterno" required>    
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="aPaterno">Apellido paterno</label>
-                                                    <input type="text" class="form-control" id="aPaterno" name="aPaterno" required>    
+                                                    <label for="aPaterno">Apellido materno</label>
+                                                    <input type="text" class="form-control" id="aMaterno" name="aMaterno" >    
                                                 </div>     
                                                      
                                             </div>
@@ -351,11 +351,11 @@ $tipo_usuario = $_SESSION['rol'];
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="contraseña">Contraseña</label>
-                                                    <input type="password" class="form-control"  name="contraseña" id="pass1" required>      
+                                                    <input type="password" class="form-control"  name="password" id="password" required>      
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="confirmarContraseña">Confirmar contraseña</label>
-                                                    <input type="password" class="form-control" name="confirmarContraseña" id="pass2" required>      
+                                                    <input type="password" class="form-control" name="confirmarpass" id="confirmarpass" required>      
                                                 </div>
                                             </div>
                                             
