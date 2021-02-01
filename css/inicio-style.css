@@ -7,8 +7,6 @@
     -webkit-box-sizing: border-box;
 }
 
-
-
 .navbar {
     padding: 5px 10%;
     background: #040925;
@@ -21,9 +19,6 @@
     height: 50px;
     display: inline-block;
 }
-
-
-
 
 #logo {
     display: inline-block;
@@ -52,15 +47,19 @@ i {
 
 }
 
-
-/*Menu Sidebar*/
 .wrapper {
     display: flex;
     width: 100%;
     align-items: stretch;
 }
 
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
 
+/*Menu Sidebar*/
 #sidebar {
     min-width: 250px;
     max-width: 250px;
