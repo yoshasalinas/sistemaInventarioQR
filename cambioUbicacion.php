@@ -1,3 +1,18 @@
+<?php
+
+    include('conexion_db.php');
+
+    session_start();
+
+    if(!isset($_SESSION['id'])){
+        header("Location: index.php");
+    }
+
+    $nombre = $_SESSION['nombreUsuario'];
+    $tipo_usuario = $_SESSION['rol'];
+
+?>
+
 <!Doctype html>
 <html lang="en">
     <head>
@@ -53,7 +68,8 @@
         <div class="wrapper fixed-left">
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3><i class="fas fa-user"></i>Administrador</h3>
+                    <i class="fas fa-user"></i>
+                    <h1><?php echo $nombre ?></h1>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -148,6 +164,12 @@
                                 <a href="configuracionUbicaciones.php">
                                     <i class="fas fa-map-marker-alt"></i>
                                     Ubicaciones
+                                </a>
+                            </li>
+                            <li>
+                                <a href="configuracionEstatus.php">
+                                    <i class="fas fa-check-double"></i>
+                                    Estatus de Activos
                                 </a>
                             </li>
                         </ul> 

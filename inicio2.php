@@ -2,11 +2,13 @@
 
 include('conexion_db.php');
 
+
 session_start();
 
 if(!isset($_SESSION['id'])){
     header("Location: index.php");
 }
+
 
 $nombre = $_SESSION['nombreUsuario'];
 $tipo_usuario = $_SESSION['rol'];
@@ -57,11 +59,7 @@ $ubicacion = mysqli_query($conexion, $select);
             <div class="menu-icon"><span class="fas fa-bars"></span></div>
             <div class="logo">
                 Control de Inventario
-                <img src="img/itcj-escudo-rojo.png"  class="logos-img" alt="">
-                <img src="img/logo-TNM.png"  class="logos-img" alt="">
             </div>
-
-            
 
             <div class="nav-items">
                 <li>
@@ -129,7 +127,8 @@ $ubicacion = mysqli_query($conexion, $select);
              
             </div>
 
-            
+            <img src="img/itcj-escudo-rojo.png"  class="logos-img" alt="">
+            <img src="img/logo-TNM.png"  class="logos-img" alt="">
 
             <!--Botonwa para menu-movil-->
             <div class="search-icon"><span class="fas fa-door-open"></span></div>
