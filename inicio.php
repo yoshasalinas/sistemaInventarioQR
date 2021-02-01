@@ -70,7 +70,6 @@
 
 <!--FUNCIONAMIENTO PARA MENU NAVBAR-->
 <script>
-
     const menuBtn = document.querySelector(".menu-navbar span");
     const logoutBtn = document.querySelector(".logout-icon-navbar");
     const cancelBtn = document.querySelector(".cancel-icon");
