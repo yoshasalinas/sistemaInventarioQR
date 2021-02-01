@@ -1,7 +1,7 @@
 <nav class="navbar">
     
     <!--Boton de menu Sidebar-->
-    <div class="menu-sidebar"><span class="fas fa-bars"></span></div>
+    <div class="menu-sidebar" id="sidebarCollapse"><span class="fas fa-bars"></span></div>
     <!--Boton de menu movil-->
     <div class="menu-icon"><span class="fas fa-bars"></span></div>
     <div class="logo">
@@ -88,6 +88,10 @@
     <!--Boton de cerrar sesion-->
     <div><a href="logout.php"><i class="fas fa-door-open log-out-icon"></i></a></div>
 </nav>
+
+
+
+
 <script>
     const menuBtn = document.querySelector(".menu-icon span");
     const searchBtn = document.querySelector(".search-icon");
@@ -114,3 +118,4 @@
     cancelBtn.classList.add("show");
     }
 </script>
+

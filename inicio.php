@@ -27,9 +27,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <!--CSS-->
         <link href="css/inicio-style.css" rel="stylesheet" type="text/css">
+        <link href="css/configurarUbicaciones-styles.css" rel="stylesheet" type="text/css">
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
         
 
         <title>Inicio</title>
@@ -69,7 +69,7 @@
 
         <div class="wrapper fixed-left">
             <!--Menu sidebar-->
-            <div id="sidebar">
+            <nav id="sidebar">
                 <div class="sidebar-header">
                     <i class="fas fa-user"></i>
                     <h1><?php echo $nombre ?></h1>
@@ -152,8 +152,6 @@
                             Reportes
                         </a>
                     </li>
-
-                    <?php if($tipo_usuario == 1) { ?>
                     <li>
                         <a href="#configuracionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <i class="fas fa-cog"></i>
@@ -179,11 +177,12 @@
                             </li>
                         </ul> 
                     </li>
-                    <?php } ?>
                 </ul>
-            </div>
+            </nav>
             <!--Contenido principal-->
-            <div id="content">
+            <div id="content" class="container tarjeta"> 
+                <div class="container">
+                    <!---->
             
 
             </div>

@@ -292,10 +292,9 @@ nav .logo.space{
   nav .search-icon{
     margin: 0 20px;
   }
-  /*
   nav form{
     right: 30px;
-  }*/
+  }
 }
 @media (max-width: 350px){
   nav .menu-icon,
