@@ -11,7 +11,7 @@ if(!isset($_SESSION['id'])){
 $nombre = $_SESSION['nombreUsuario'];
 $tipo_usuario = $_SESSION['rol'];
 
-
+$db = new Db();
 
 ?>
 
@@ -227,9 +227,12 @@ $tipo_usuario = $_SESSION['rol'];
                                 </thead>
 
                                     <?php 
+
+                                    $conexion = $db -> connect();
                                     
-                                    $select = "SELECT * FROM usuarios";
-                                    $usuario = mysqli_query($conexion, $select);
+                                    $select = "SELECT usuarios.*, rol.rol FROM usuarios INNER JOIN rol IN usuarios.idX_rol = rol.id_rol";
+                                    //$usuario = mysqli_query($conexion, $select);
+                                    $usuario = $db -> Db_query($select);
 
                                     while ($getFila = mysqli_fetch_array($usuario)) { 
 
@@ -247,7 +250,7 @@ $tipo_usuario = $_SESSION['rol'];
                                     <tr>
                                         <th scope="row"> <?php echo $getFila[0] ?> </th>
                                         <th><?php echo $getFila[1] ?></th>
-                                        <td><?php echo $getFila[2] ?></td>
+                                        <td><?php echo $getFila[8] ?></td>
                                         <td><?php echo $getFila[3] ?></td>
                                         <td><?php echo $getFila[4] ?></td>
                                         <td><?php echo $getFila[5] ?></td>
@@ -330,7 +333,8 @@ $tipo_usuario = $_SESSION['rol'];
                                                     <label for="rol">Rol</label>
                                                     <select class="form-control" id="rol" name="rol">
                                                         <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                                            $consulta = $conexion-> query("SELECT * FROM rol");
+                                                            $get_roles = "SELECT * FROM rol";
+                                                            $consulta = $db -> Db_query($get_roles);
                                                             while($fila=$consulta->fetch_array()){ //recorre el arreglo
                                                                 echo "<option value ='".$fila['id_rol']."'>".$fila['rol']."</option>"; //muestra los datos de la tabla externa
                                                             }
@@ -443,7 +447,8 @@ $tipo_usuario = $_SESSION['rol'];
                                         <label for="rol-edit">Rol</label>
                                         <select class="form-control" id="rol-edit" name="rol-edit">
                                             <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                                $consulta = $conexion-> query("SELECT * FROM rol");
+                                                $get_roles = "SELECT * FROM rol";
+                                                $consulta = $db -> Db_query($get_roles);
                                                 while($getFila=$consulta->fetch_array()){ //recorre el arreglo
                                                     echo "<option value ='".$getFila['id_rol']."'>".$getFila['rol']."</option>"; //muestra los datos de la tabla externa
                                                 }
