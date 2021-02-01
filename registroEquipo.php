@@ -311,15 +311,17 @@
                                     <div class="form-group col-md-12">
                                         <label for="estatus">Estatus</label>
                                         <select class="form-control" id="estatus" name="estatus">
-                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                            $consulta = $conexion-> query("SELECT * FROM estatus");
-                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
-                                            }
-                                        ?>
-                                        
+                                            <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                                $consulta = $conexion-> query("SELECT * FROM estatus");
+                                                while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                                    echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
+                                                }
+                                            ?>
+                                            <option value="">No especificado</option>
                                         </select>
                                     </div>
+                                    
+
                                     <!--Informacion de ubicacion-->
                                     <div class="form-group col-md-12">
                                         <label for="tipoUbicacion">Ubicacion</label> <!--Tipo/Nobre ubicacion-->
