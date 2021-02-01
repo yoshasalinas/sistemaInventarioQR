@@ -1,4 +1,4 @@
-<nav>
+<nav class="navbar">
     
     <!--Boton de menu Sidebar-->
     <div class="menu-sidebar"><span class="fas fa-bars"></span></div>
@@ -81,11 +81,12 @@
     <img src="img/itcj-escudo-rojo.png"  class="logos-img" alt="">
     <img src="img/logo-TNM.png"  class="logos-img" alt="">
     <!--Botonwa para menu-movil-->
-    <div class="search-icon"><span class="fas fa-door-open"></span></div>
+    <div><a href="logout.php"><i class="fas fa-door-open search-icon"></i></a></div>
+    
     <div class="cancel-icon"><span class="fas fa-times"></span></div>
     
     <!--Boton de cerrar sesion-->
-    <div class="log-out-icon"><span class="fas fa-door-open"></span></div>
+    <div><a href="logout.php"><i class="fas fa-door-open log-out-icon"></i></a></div>
 </nav>
 <script>
     const menuBtn = document.querySelector(".menu-icon span");

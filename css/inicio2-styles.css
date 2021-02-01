@@ -10,9 +10,7 @@ body{
   background: #f2f2f2;
 }
 
-.color {
-  background: #e63600;
-}
+
 nav{
   background: #040925;
   display: flex;
@@ -102,6 +100,8 @@ nav .nav-items li a:hover{
 nav .nav-items i {
   margin-right: 15px;
 }
+
+/*
 nav .form{
   display: flex;
   height: 40px;
@@ -132,7 +132,8 @@ nav form button{
 }
 nav form button:hover{
   background: #e63600;
-}
+}*/
+
 nav .menu-icon,
 nav .cancel-icon,
 nav .search-icon{
@@ -193,6 +194,7 @@ nav .search-icon{
   nav .nav-items li a{
     font-size: 20px;
   }
+  /*
   nav form{
     position: absolute;
     top: 80px;
@@ -230,7 +232,7 @@ nav .search-icon{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-  }
+  }*/
 
   
 
@@ -248,6 +250,19 @@ nav .search-icon{
   nav .cancel-icon.show{
     display: block;
   }
+
+  nav .menu-icon:hover{
+    color: #C21828;
+  }
+
+  nav .search-icon:hover{
+    color: #C21828;
+  }
+
+  nav .cancel-icon:hover{
+    color: #C21828;
+  }
+
 }
 .content{
   position: absolute;
@@ -277,9 +292,10 @@ nav .logo.space{
   nav .search-icon{
     margin: 0 20px;
   }
+  /*
   nav form{
     right: 30px;
-  }
+  }*/
 }
 @media (max-width: 350px){
   nav .menu-icon,

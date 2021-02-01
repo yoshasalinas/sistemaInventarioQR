@@ -41,6 +41,7 @@
                 <div class="div">
                     <!--Boton de menu-->
                     <i class="fas fa-align-justify fa-2x" id="sidebarCollapse"></i> <span></span>
+                    
                     <!--Titulo-->
                     <a class="navbar-brand" href="">
                         <h2 id="logo">Control de Inventario</h2>
@@ -68,7 +69,7 @@
 
         <div class="wrapper fixed-left">
             <!--Menu sidebar-->
-            <nav id="sidebar">
+            <div id="sidebar">
                 <div class="sidebar-header">
                     <i class="fas fa-user"></i>
                     <h1><?php echo $nombre ?></h1>
@@ -180,7 +181,7 @@
                     </li>
                     <?php } ?>
                 </ul>
-            </nav>
+            </div>
             <!--Contenido principal-->
             <div id="content">
             

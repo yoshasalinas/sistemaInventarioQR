@@ -170,6 +170,12 @@
                                     Ubicaciones
                                 </a>
                             </li>
+                            <li>
+                                <a href="configuracionEstatus.php">
+                                    <i class="fas fa-check-double"></i>
+                                    Estatus de Activos
+                                </a>
+                            </li>
                         </ul> 
                     </li>
                     <?php } ?>
