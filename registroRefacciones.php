@@ -12,6 +12,7 @@
     $tipo_usuario = $_SESSION['rol'];
 
 
+    $db = new Db();
 ?>
 <!Doctype html>
 <html lang="en">
@@ -279,7 +280,8 @@
                                         <label for="estatus">Estatus</label>
                                         <select class="form-control" id="estatus" name="estatus">
                                         <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                            $consulta = $conexion-> query("SELECT * FROM estatus");
+                                            $get_estatus = "SELECT * FROM estatus";
+                                            $consulta = $db -> Db_query($get_estatus);
                                             while($fila=$consulta->fetch_array()){ //recorre el arreglo
                                                 echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
                                             }
@@ -292,7 +294,8 @@
                                         <label for="tipoUbicacion">Ubicacion</label> <!--Tipo/Nobre ubicacion-->
                                         <select class="form-control" id="tipoUbicacion" name="tipoUbicacion" >
                                         <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
+                                            $get_ubicaciones = "SELECT * FROM ubicaciones";
+                                            $consulta = $db -> Db_query($get_ubicaciones);
                                             while($fila=$consulta->fetch_array()){ //recorre el arreglo
                                                 echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']." ".$fila['nombre_ubicacion']."</option>"; //muestra los datos de la tabla externa
                                             }

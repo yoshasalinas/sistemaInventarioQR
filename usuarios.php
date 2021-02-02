@@ -359,7 +359,7 @@ $db = new Db();
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Ubicacion</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -367,11 +367,11 @@ $db = new Db();
                     <div class="modal-body">
                         <div class="container">
                             <div class="div">
-                                ¿Esta seguro que desea eliminar la ubicacion del registro?
+                                ¿Esta seguro que desea eliminar el usuario del registro?
                             </div>
                             <div class="modal-btns-acciones">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-danger">Eliminar</a>
+                                <a href="eliminarUsuarios.php?id=<? echo $getFila[0]; ?>" class="btn btn-danger">Eliminar</a>
                             </div>
                         </div>
                     </div>
