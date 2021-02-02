@@ -1,5 +1,5 @@
 <?php
-/*
+
 include('conexion_db.php');
 
 session_start();
@@ -13,7 +13,7 @@ session_start();
 
     $select = "SELECT * FROM activos";
     $activo = mysqli_query($conexion, $select);
-*/
+
 ?>
 
 <!Doctype html>

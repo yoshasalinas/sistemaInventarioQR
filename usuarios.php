@@ -124,19 +124,16 @@ $db = new Db();
                                         
                                         <!--botones--> 
                                         <td>
+                                            <!--Movimintos-->
                                             <a href="" class="btn btn-outline-primary acciones-btn" data-toggle="modal" data-target="#modal-movimientosUsuario">
                                                 <!--Movimientos--><i class="far fa-folder-open"></i>
                                             </a>
-                                            <!--Editar
-                                            <a href="modificarUsuario.php?id_usuario=<?= $getFila['id_usuario'] ?>" class="btn btn-outline-secondary acciones-btn editbtn" data-toggle="modal" data-target="#modal-editarUsuario" >
+                                            <!--Editar-->
+                                            <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarUsuario" onclick="llenarModal_actualizar('<?php echo $datos ?>');">
                                                 <i class="far fa-edit"></i>
-                                                </a>-->
-                                                    
-                                                    
-                                                <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarUsuario" onclick="llenarModal_actualizar('<?php echo $datos ?>');">
-                                                    <i class="far fa-edit"></i>
-                                                </button>
-                                                <!--Eliminar-->
+                                            </button>
+
+                                            <!--Eliminar-->
                                             <a href="" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarUsuario">
                                                 <i class="fas fa-trash-alt"></i>
                                             </a>
@@ -243,21 +240,21 @@ $db = new Db();
 
         <!-- Modal: Movimientos del usuario-->
         <div class="modal fade" id="modal-movimientosUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <H2 class="modal-title" id="exampleModalLongTitle">Movientos</H2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        Mostrar movientos hechos por el usuario...
-                                    </div>
-                                </div>
-                            </div>
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <H2 class="modal-title" id="exampleModalLongTitle">Movientos</H2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            Mostrar movientos hechos por el usuario...
                         </div>
+                    </div>
+                </div>
+            </div>
         </div>  
 
         <!-- Modal: Editar informacion del usuario-->
@@ -355,8 +352,33 @@ $db = new Db();
                     </div>
                 </div>
             </div>
-        </div>    
-            
+        </div>  
+
+        <!--Eliminar Ubicacion-->       
+        <div class="modal fade" id="modal-eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Ubicacion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="div">
+                                ¿Esta seguro que desea eliminar la ubicacion del registro?
+                            </div>
+                            <div class="modal-btns-acciones">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-danger">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
