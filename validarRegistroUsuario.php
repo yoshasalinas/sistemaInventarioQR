@@ -2,51 +2,92 @@
 
 include('conexion_db.php');
 
-
-$email = $_POST['correo'];
-$pass = $_POST['password'];
-
 $db = new Db();
+$confirmarpass = $_POST['confirmarpass'];
+$posData = [];
+
+$posData[0] = $_POST['rol'];
+$posData[1] = $_POST['nombre'];
+$posData[2] = $_POST['aPaterno'];
+$posData[3] = $_POST['aMaterno'];
+$posData[4] = $_POST['nombreUsuario'];
+$posData[5] = $_POST['password'];
+$posData[6] = $_POST['correo'];
 
 
-$error_message = "";
-if(strlen($pass)<6) {
-    $error_message = "La contraseña es demasiado corta. Por favor, introduzca al menos 6 caracteres";
+/*
+
+    if($posData[0]=''or $posData[1]='' or $posData[2]='' or $posData[4]='' or $posData[5]='' or $posData[6]=''){
+
+        echo 'Por favor llene todos los campos.';
+
+    }else{
+        $get_usuarios = "SELECT * FROM usuarios WHERE correo = ? ";
+        $result = $db -> Db_query_select("s",$get_usuarios,[$posData[6]]);
+        $verificar_usuario = 0;
+        if(mysqli_num_rows($result) > 0){
+            
+                $verificar_usuario = 1;
+                echo '<script>
+        alert("El correo ya existe");
+        </script>';
+
+        }
+        if($verificar_usuario){
+            if($posData[5] == $confirmarpass){
+                $consulta = "INSERT INTO usuarios (idX_rol, nombre, apellido_paterno, apellido_materno, nombre_usuario, contrasena, correo) 
+                VALUES (?,?,?,?,?,?,?)";
+
+                $result = $db -> Db_query_save("issssss",$consulta,$posData);
+                header("location:usuarios.php");
+                echo 'Usted se ha registrado correctamente.';
+
+            }else{
+                echo 'Las claves no son iguales, intente nuevamente.'; 
+            }
+        }else{
+            echo 'Este usuario ya ha sido registrado anteriormente.'; 
+
+        }
 
 
-}else if($pass != $_POST['confirmarpass']){
-    $error_message ="Las contraseñas no coinciden. Por favor, intentalo de nuevo";
+    }
+*/
+    $get_usuario= "SELECT * FROM usuarios WHERE correo= ?";
+    $result1 = $db -> Db_query_select_all("s",$get_usuario,[$posData[6]]);
+    if(mysqli_num_rows($result1) == 0){
+        $consulta = "INSERT INTO usuarios (idX_rol, nombre, apellido_paterno, apellido_materno, nombre_usuario, contrasena, correo) VALUES (?,?,?,?,?,?,?)";
+          $result = $db -> Db_query_save("issssss",$consulta,$posData);
+      
+                  if (!$result === TRUE){
+                  
+                  header("location:usuarios.php");
+      
+                  }else {
+                  echo "error";
+              }
+    }else {
+        echo '<script>
+        alert("El correo ya existe");
+        </script>';
+        header("location:usuarios.php");
+          
+ 
+     }
 
-}
-//comprobar la sintaxis de la direccion de correo
-if( ! filter_var($email, FILTER_VALIDATE_EMAIL)){
-    $error_message = "Por favor, compruebe la dirección de email introducida";
-}
-if ($email ){
-
-}
-
+/*
 $consulta = "INSERT INTO usuarios (idX_rol, nombre, apellido_paterno, apellido_materno, nombre_usuario, contrasena, correo) 
- VALUES (".$_POST['rol'].",'".$_POST['nombre']."','".$_POST['aPaterno']."','".$_POST['aMaterno']."','".$_POST['nombreUsuario']."','$pass','$email')";
+ VALUES (?,?,?,?,?,?,?)";
 
-if ($conexion->query($consulta) === TRUE){
+ $result = $db -> Db_query_save("issssss",$consulta,$posData);
+
+if (!$result === TRUE){
     
     header("location:usuarios.php");
-   
 
 }else {
     echo "error";
     
 }
-/*
-if($conexion->query($consulta) === TRUE){
-	header("location:usuarios.php");
-}else{
-    echo $consulta;
-	echo "error";
-}
-
-mysqli_close($conexion);
 */
-
 ?>

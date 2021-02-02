@@ -1,13 +1,16 @@
 <?php
  include('conexion_db.php');
+ $db = new Db();
 session_start();
 
     if($_POST){
-        $email = $_POST['correo'];
-        $password = $_POST['contraseña'];
 
-        $consulta ="SELECT id_usuario, idX_rol, nombre_usuario, contrasena, correo FROM `usuarios` WHERE correo='$email'";
-        $resultado = mysqli_query($conexion,$consulta);
+        $posData = [];
+        $posData[0] = $_POST['correo'];
+        $posData[1] = $_POST['contraseña'];
+
+        $get_usuarios ="SELECT id_usuario, idX_rol, nombre_usuario, contrasena, correo FROM `usuarios` WHERE correo='$posData[0]'";
+        $resultado = $db -> Db_query($get_usuarios);
         
         $filas = mysqli_num_rows($resultado);
 
@@ -23,7 +26,7 @@ session_start();
             $password_db = $row['contrasena'];
             //campo de texto
             //$password_campo = sha1($password);
-            $password_campo = $password;
+            $password_campo = $posData[1];
 
             if($password_db == $password_campo){
 

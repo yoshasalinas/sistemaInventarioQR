@@ -220,7 +220,6 @@ $db = new Db();
                                         <th scope="col">Apellido Paterno</th>
                                         <th scope="col">Apellido Materno</th>
                                         <th scope="col">Nombre de Usuario</th>
-                                        <th scope="col">C</th>
                                         <th scope="col">Correo</th>
                                         <th scope="col">...</th>
                                     </tr>
@@ -230,14 +229,14 @@ $db = new Db();
 
                                     $conexion = $db -> connect();
                                     
-                                    $select = "SELECT usuarios.*, rol.rol FROM usuarios INNER JOIN rol IN usuarios.idX_rol = rol.id_rol";
+                                    $select = "SELECT usuarios.*, rol.rol FROM usuarios INNER JOIN rol ON usuarios.idX_rol = rol.id_rol";
                                     //$usuario = mysqli_query($conexion, $select);
                                     $usuario = $db -> Db_query($select);
 
                                     while ($getFila = mysqli_fetch_array($usuario)) { 
 
                                         $datos = $getFila[0].'||'.
-                                                $getFila[1]."||".
+                                                $getFila[8]."||".
                                                 $getFila[2]."||".
                                                 $getFila[3]."||".
                                                 $getFila[4]."||".
@@ -249,12 +248,11 @@ $db = new Db();
                                 <tbody> 
                                     <tr>
                                         <th scope="row"> <?php echo $getFila[0] ?> </th>
-                                        <th><?php echo $getFila[1] ?></th>
-                                        <td><?php echo $getFila[8] ?></td>
+                                        <th><?php echo $getFila[8] ?></th>
+                                        <td><?php echo $getFila[2] ?></td>
                                         <td><?php echo $getFila[3] ?></td>
                                         <td><?php echo $getFila[4] ?></td>
                                         <td><?php echo $getFila[5] ?></td>
-                                        <td><?php echo $getFila[6] ?></td>
                                         <td><?php echo $getFila[7] ?></td>
                                         
                                         <!--botones--> 
@@ -365,7 +363,7 @@ $db = new Db();
                                             
                                             <div class="modal-btns-acciones">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" id="registrar" class="btn btn-success">Registrar</button>
+                                                <button type="submit" id="registrar" name='enviar' class="btn btn-success">Registrar</button>
                                             <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
                                             </div>
                                         </form>
@@ -422,6 +420,7 @@ $db = new Db();
                                 <div class="form-row ">
                                     <div class="form-group col-md-6">
                                         <label for="id-rol-edit">ID rol</label>
+                                        
                                         <input type="text" class="form-control" id="id-rol-edit" name="id-rol-edit" value="" required>
                                     </div>      
                                 </div>

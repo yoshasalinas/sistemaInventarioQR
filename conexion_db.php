@@ -245,15 +245,6 @@ class Db{
 		return "true";
     }
     
-    public function Db_query_sv($query){
-		$connection = $this -> connect();
-
-		$stmt = $connection -> prepare($query);
-
-		//$stmt->bind_param($types, ...$postData);
-		$stmt->execute();
-		$stmt->close();
-	}
 
 }
 
