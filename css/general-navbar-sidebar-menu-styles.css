@@ -1,3 +1,4 @@
+
 *{
   margin: 0;
   padding: 0;
@@ -9,6 +10,14 @@
 body {
     background:rgb(236, 236, 236);
     padding-top: 50px;
+}
+
+body::-webkit-scrollbar {
+    width: 7px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: #09134E;
 }
 
 .tarjeta{
@@ -26,6 +35,17 @@ body {
 .container-1{
   margin: 200px;
 }
+
+.container::-webkit-scrollbar{
+    
+}
+
+.container::-webkit-scrollbar-thumb{
+    
+    
+}
+
+
 
 .center{
     margin-bottom: 30px;
@@ -68,9 +88,10 @@ body {
   display: flex;
   flex: 1;
   padding: 0 0 0 10px;
-  overflow:auto;
   visibility: hidden;
+  
 }
+
 
 .navbar-superior .nav-items li{
   list-style: none;
@@ -86,8 +107,10 @@ body {
 
 }
 
+
 .navbar-superior .nav-items li a:hover{
   color: #C21828;
+  font-size: 25px;
   /*background: #09134E;*/
 }
 
@@ -153,6 +176,7 @@ body {
 #sidebar .sidebar-header {
     padding: 20px;
     text-align: center;
+
     
 }
 
@@ -245,9 +269,18 @@ ul ul a {
         display: none;
     }
 
+    .nav-items::-webkit-scrollbar{
+        width: 7px;
+    }
+
+    .nav-items::-webkit-scrollbar-thumb{
+        background: #09134E;
+    }
+
     .nav-items .sidebar-header{
         font-size: 40px;
         color: #C21828;
+        text-align: center;
     }
 
     .navbar-superior .menu-sidebar, .navbar-superior .log-out-icon {
@@ -271,8 +304,15 @@ ul ul a {
         display: inline-block;
         transition: left 0.3s ease;
         visibility: visible;
+        overflow:auto;
+        
         
     }
+
+    .navbar-superior .nav-items{
+
+    }
+
     .navbar-superior .nav-items.active{
         left: 0px;
     }
@@ -282,7 +322,13 @@ ul ul a {
     }
     .navbar-superior .nav-items li a{
         font-size: 20px;
+        display: block;
+        color: #040925;
+        font-weight: bold;
     }
+
+    
+
 
     .navbar-superior .logos-img {
         height: 35px;
