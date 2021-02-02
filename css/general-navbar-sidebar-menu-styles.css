@@ -89,6 +89,7 @@ body::-webkit-scrollbar-thumb{
   flex: 1;
   padding: 0 0 0 10px;
   visibility: hidden;
+  overflow:hidden;
   
 }
 
@@ -309,9 +310,6 @@ ul ul a {
         
     }
 
-    .navbar-superior .nav-items{
-
-    }
 
     .navbar-superior .nav-items.active{
         left: 0px;

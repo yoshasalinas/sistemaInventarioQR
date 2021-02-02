@@ -14,6 +14,8 @@ session_start();
     $select = "SELECT * FROM activos";
     $activo = mysqli_query($conexion, $select);
 
+    $db = new Db();
+
 ?>
 
 <!Doctype html>
