@@ -9,12 +9,14 @@ $posData[0]= $id;
 $eliminar = "DELETE FROM usuarios WHERE id_usuario = ?";
 $result = $db-> Db_query_delete("i",$eliminar,$posData);
 
-if($result){
+if(!$result){
     header("location:usuarios.php");
 }else{
-    
+
     echo"<script> alert('No se pudo elimimar'); 
     window.history.go(-1);</script>";
+
+  
 }
 
 ?>
