@@ -181,6 +181,8 @@ body {
 .upimg, .notBlock{
 	display: none !important;
 }
+
+
 .errorArchivo{
 	font-size: 16px;
 	font-family: arial;
