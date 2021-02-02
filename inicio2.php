@@ -1,5 +1,5 @@
 <?php
-
+/*
 include('conexion_db.php');
 
 
@@ -15,7 +15,7 @@ $tipo_usuario = $_SESSION['rol'];
 
 $select = "SELECT * FROM ubicaciones";
 $ubicacion = mysqli_query($conexion, $select);
-
+*/
 
 ?>
 <!Doctype html>

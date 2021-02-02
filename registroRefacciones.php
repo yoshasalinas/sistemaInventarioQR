@@ -11,6 +11,7 @@
     $nombre = $_SESSION['nombreUsuario'];
     $tipo_usuario = $_SESSION['rol'];
 
+
 ?>
 <!Doctype html>
 <html lang="en">

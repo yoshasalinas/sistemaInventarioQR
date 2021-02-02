@@ -13,6 +13,4 @@ function llenarModal_actualizar(datos) {
     $("#pass1").val(d[6]);
     $("#pass2").val(d[6]);
     
-    
-
 }

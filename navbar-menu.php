@@ -1,13 +1,17 @@
-<nav class="navbar">
-    
+<nav class="navbar-superior navbar-expand-lg navbar-light fixed-top">
     <!--Boton de menu Sidebar-->
     <div class="menu-sidebar" id="sidebarCollapse"><span class="fas fa-bars"></span></div>
-    <!--Boton de menu movil-->
-    <div class="menu-icon"><span class="fas fa-bars"></span></div>
+    <!--Boton de menu navbar-->
+    <div class="menu-navbar"><span class="fas fa-bars"></span></div>
     <div class="logo">
         Control de Inventario
     </div>
+    
     <div class="nav-items">
+        <div class="sidebar-header">
+            <i id="usuario-icon" class="fas fa-user"></i>
+            <h1><?php echo $nombre ?></h1>
+        </div>
         <li>
             <a href="inicio.php"><i class="fas fa-home fa-lg"></i>Inicio</a>
         </li>
@@ -76,46 +80,16 @@
             </ul> 
         </li>
         <?php } ?>
-     
+    
     </div>
+    <!--Logos del TEC-->
     <img src="img/itcj-escudo-rojo.png"  class="logos-img" alt="">
     <img src="img/logo-TNM.png"  class="logos-img" alt="">
-    <!--Botonwa para menu-movil-->
-    <div><a href="logout.php"><i class="fas fa-door-open search-icon"></i></a></div>
     
+    <!--Botones para menu de tamaño pequeño, menu navbar-->
+    <div><a href="logout.php"><i class="fas fa-door-open logout-icon-navbar"></i></a></div>
     <div class="cancel-icon"><span class="fas fa-times"></span></div>
     
     <!--Boton de cerrar sesion-->
     <div><a href="logout.php"><i class="fas fa-door-open log-out-icon"></i></a></div>
 </nav>
-
-
-
-
-<script>
-    const menuBtn = document.querySelector(".menu-icon span");
-    const searchBtn = document.querySelector(".search-icon");
-    const cancelBtn = document.querySelector(".cancel-icon");
-    const items = document.querySelector(".nav-items");
-    const form = document.querySelector("form");
-    menuBtn.onclick = ()=>{
-    items.classList.add("active");
-    menuBtn.classList.add("hide");
-    searchBtn.classList.add("hide");
-    cancelBtn.classList.add("show");
-    }
-    cancelBtn.onclick = ()=>{
-    items.classList.remove("active");
-    menuBtn.classList.remove("hide");
-    searchBtn.classList.remove("hide");
-    cancelBtn.classList.remove("show");
-    form.classList.remove("active");
-    cancelBtn.style.color = "#ff3d00";
-    }
-    searchBtn.onclick = ()=>{
-    form.classList.add("active");
-    searchBtn.classList.add("hide");
-    cancelBtn.classList.add("show");
-    }
-</script>
-

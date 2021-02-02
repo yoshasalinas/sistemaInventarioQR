@@ -41,15 +41,6 @@ nav .log-out-icon:hover{
     color: #C21828;
 }
 
-nav .log-out-btn{
-    color: #fff;
-    margin-right: 20px;
-    font-size: 30px;
-}
-
-nav .log-out-btn:hover{
-    color: #C21828;
-}
 
 nav .logos-img {
   height: 50px;
@@ -63,14 +54,6 @@ nav .logo{
   font-size: 30px;
   font-weight: 600;
   letter-spacing: -1px;
-}
-
-/**/
-nav .logos-img {
-  height: 35px;
-  width: auto;
-  display: inline-block;
-  padding-left: 5px;
 }
 
 nav .nav-items{
@@ -100,6 +83,7 @@ nav .nav-items li a:hover{
 nav .nav-items i {
   margin-right: 15px;
 }
+
 
 /*
 nav .form{
@@ -193,8 +177,7 @@ nav .search-icon{
   }
   nav .nav-items li a{
     font-size: 20px;
-  }
-  /*
+  }/*
   nav form{
     position: absolute;
     top: 80px;
@@ -232,8 +215,8 @@ nav .search-icon{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-  }*/
-
+  }
+*/
   
 
   nav .menu-icon{
@@ -264,6 +247,8 @@ nav .search-icon{
   }
 
 }
+
+
 .content{
   position: absolute;
   top: 50%;
@@ -286,6 +271,8 @@ nav .logo.space{
   color: red;
   padding: 0 5px 0 0;
 }
+
+
 @media (max-width: 980px){
   nav .menu-icon,
   nav .cancel-icon,
