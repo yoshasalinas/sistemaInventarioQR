@@ -136,8 +136,9 @@ $db = new Db();
                                                 <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarUsuario" onclick="llenarModal_actualizar('<?php echo $datos ?>');">
                                                     <i class="far fa-edit"></i>
                                                 </button>
+                                                <!--Eliminar-->
                                             <a href="" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarUsuario">
-                                                <!--Eliminar--><i class="fas fa-trash-alt"></i>
+                                                <i class="fas fa-trash-alt"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -277,6 +278,7 @@ $db = new Db();
                                 Las Contraseñas no coinciden, vuelve a intentar!
                             </div>
                             <!-- Fin Mensajes de Verificación -->
+                             <!-- FORMULARIO VENTANA MODAL EDITAR USUARIO -->
                             <form id="formulario-nuevoUsuario" action="" method="POST" onsubmit="verificarPasswords(); return false">
                                 <div class="form-row ">
                                     <div class="form-group col-md-6">
