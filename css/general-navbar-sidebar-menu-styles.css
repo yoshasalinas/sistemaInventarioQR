@@ -17,7 +17,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb{
-    background: #09134E;
+    background: #b2b3b8;
 }
 
 .tarjeta{
@@ -274,7 +274,7 @@ ul ul a {
     }
 
     .nav-items::-webkit-scrollbar-thumb{
-        background: #09134E;
+        background: rgb(236, 236, 236);
     }
 
     .nav-items .sidebar-header{
