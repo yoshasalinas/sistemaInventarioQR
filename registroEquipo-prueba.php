@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <!--CSS-->
         <link href="css/general-navbar-sidebar-menu-styles.css" rel="stylesheet" type="text/css">
+        
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
@@ -45,8 +46,8 @@
             <div id="content" class="container tarjeta"> 
                 <div class="container">
                     <!---->
-                    <h1>Inicio</h1>
-            
+                    <h1>Registo de Equipo</h1>
+                    
                 </div>
             </div>
         </div>
