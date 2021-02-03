@@ -51,15 +51,15 @@
                     <!---->
                     <h1>Registo de Equipo</h1>
                     <div class="container-form">
-                        <form action="validarRegistroEquipo.php" method="POST">
+                        <form action="validarRegistroEquipo.php" method="POST" >
                             <!--Informacion general-->
                             <div class="row">
-                                <div class="col-md-8 ">
+                                <div class="col-md-8">
                                     <!--Informacion general-->
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label for="numSerial">Serial</label>
-                                            <input type="text" class="form-control" id="numSerial" readonly>
+                                            <input type="text" class="form-control " id="numSerial" aria-describedby="inputGroup-sizing-sm" readonly>
                                             
                                         </div>
                                         <div class="form-group col-md-4">
@@ -74,12 +74,16 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="nombreActivo">Nombre</label>
-                                            <input type="text" class="form-control" id="nombreActivo" name="nombreActivo">
+                                            <input type="text" class="form-control" id="nombreActivo" name="nombreActivo" required>
                                         </div>
                                         
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label for="fechaAlta">Fecha de alta:</label>
                                             <input type="date" class="form-control" id="fechaAlta" name="fechaAlta" value="<?php echo date("Y-m-d");?>">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="cantidad">Cantidad</label>
+                                            <input type="number" class="form-control" id="cantidad" name="cantidad" value="1" min="1">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -145,12 +149,7 @@
                                             <label for="tipoEntrada">Tipo de entrada</label>
                                             <input type="text" class="form-control" id="tipoEntrada" name="tipoEntrada">
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="cantidad">Cantidad</label>
-                                            <input type="number" class="form-control" id="cantidad" name="cantidad" value="1" min="1">
-                                        </div>
-                                        
-                                        
+
                                     </div>
                                 </div> 
 
@@ -234,15 +233,22 @@
                                         </div>
                                         <!--Auxiliar oculto para guadar QR base64-->
                                         <textarea class="form-control" id="archivoQR" name="archivoQR" rows="1"></textarea>
-                                    </div> 
+                                    </div>
 
-                                    
+                                    <!--QR imagen jpg--> 
+                                    <div class="form-row oculto">
+                                        <div class="form-group">
+                                            <div class="content-codigo-qr-img">
+                                                <!---Desplegar imagen de QR-->
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
                             
                             <div class="form-row center">
-                                <button type="submit" class="btn btn-lg registro-btn" href="validarRegistroEquipo.php">Registrar Activo</button>
+                                <button type="submit" class="btn btn-lg registro-btn" href="validarRegistroEquipo.php" >Registrar Activo</button>
                             </div>
                         </form>
 
@@ -270,6 +276,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <button type="button" id="btnDownload" class="btn btn btn-primary" href="" >Descargar</button>
                     </div>
                 </div>
             </div>
@@ -288,6 +296,11 @@
             /*Archivo js*/ 
         </script>
 
+        <!--SweetAlert-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        
+        <!--<script src="js/sweetAlert.js"></script>-->
+
     </body>
 </html>
 
@@ -305,7 +318,7 @@
         }
 
         //Funcion autoejecutada, carga al entrar a la pagina
-        window.onload = function Ejemplo1(){
+        window.onload = function generarNumSerial(){
             var serial = `${getRandomFour()}-${getRandomFour()}-${getRandomFour()}-${getRandomFour()}`;
             $('#numSerial').val(serial);
 
@@ -323,8 +336,25 @@
                     image = $(".content-codigo-qr").html(datos);
                     //let image = $("#archivoQR").val();
                     $("#archivoQR").val(image);
+
+
                 }
             })
+
+            parametros={"textqr":textqr,"sizeqr":sizeqr};
+                $.ajax({
+                type: "POST",
+                url: "qr-img.php",
+                data: parametros,
+                success: function(datos){
+                    $(".content-codigo-qr-img").html(datos);
+                    //let image = $("#archivoQR").val();
+                    //$("#archivoQR").val(image);
+
+
+                }
+            })
+            0
             event.preventDefault();
         }
 
@@ -408,5 +438,13 @@
         logoutBtn.classList.add("hide");
         cancelBtn.classList.add("show");
     }
+</script>
 
+<script type="text/javascript">
+    const btnDownload = document.querySelector("#btnDownload");
+
+    btnDonwload.addEventListener("click", function(){
+        
+
+    });
 </script>

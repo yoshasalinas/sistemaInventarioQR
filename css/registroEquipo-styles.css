@@ -6,8 +6,24 @@ h1{
   margin-bottom: 30px;
 }
 
-/*Agregar imagen de activo*/
+.container-form{
+  font-size: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
 
+.container-form input {
+  /*
+  width : 200px; 
+  height: 30px;*/
+  font-size: 15px;
+}
+
+.container-form select{
+  font-size: 15px;
+}
+
+/*Agregar imagen de activo*/
 #archivoImagen{
   position: absolute;
   top:0px;
