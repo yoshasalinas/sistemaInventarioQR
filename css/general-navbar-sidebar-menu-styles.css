@@ -1,4 +1,3 @@
-
 *{
   margin: 0;
   padding: 0;
@@ -10,6 +9,12 @@
 body {
     background:rgb(236, 236, 236);
     padding-top: 50px;
+}
+
+.botones-confirmacion{
+    margin: 10px;
+    width: 100px;
+    height: 40px;
 }
 
 body::-webkit-scrollbar {
@@ -35,7 +40,7 @@ body::-webkit-scrollbar-thumb{
 .container-1{
   margin: 200px;
 }
-
+/*
 .container::-webkit-scrollbar{
     
 }
@@ -43,7 +48,7 @@ body::-webkit-scrollbar-thumb{
 .container::-webkit-scrollbar-thumb{
     
     
-}
+}*/
 
 .color{
     background: greenyellow;
@@ -91,7 +96,7 @@ body::-webkit-scrollbar-thumb{
   flex: 1;
   padding: 0 0 0 10px;
   visibility: hidden;
-  overflow:hidden;
+  overflow:auto;
   
 }
 
@@ -150,11 +155,7 @@ body::-webkit-scrollbar-thumb{
   display: none;
 }
 
-.navbar-superior .menu-navbar span,
-.navbar-superior .cancel-icon,
-.navbar-superior .logout-icon-navbar{
-  display: none;
-}
+
 
 /*Menu Sidebar*/
 .wrapper {
@@ -272,8 +273,13 @@ ul ul a {
         display: none;
     }
 
+    .nav-items{
+        overflow: auto;
+    }
+
     .nav-items::-webkit-scrollbar{
         width: 7px;
+        
     }
 
     .nav-items::-webkit-scrollbar-thumb{
@@ -282,6 +288,12 @@ ul ul a {
 
     .nav-items .sidebar-header{
         font-size: 40px;
+        color: #C21828;
+        text-align: center;
+    }
+
+    .nav-items .sidebar-header h1{
+        font-size: 30px;
         color: #C21828;
         text-align: center;
     }
@@ -308,8 +320,6 @@ ul ul a {
         transition: left 0.3s ease;
         visibility: visible;
         overflow:auto;
-        
-        
     }
 
 
@@ -318,7 +328,7 @@ ul ul a {
     }
     .navbar-superior .nav-items li{
         line-height: 40px;
-        margin: 30px 0;
+        margin: 20px 0;
     }
     .navbar-superior .nav-items li a{
         font-size: 20px;
@@ -352,11 +362,16 @@ ul ul a {
         display: block;
     }
 
+    .navbar-superior .menu-navbar,.navbar-superior .logout-icon-navbar, .navbar-superior .cancel-icon{
+        color: #fff;
+    }
+
+
     .navbar-superior .menu-navbar:hover{
         color: #C21828;
     }
 
-    .navbar-superior .logout-icon-navbarn:hover{
+    .navbar-superior .logout-icon-navbar:hover{
         color: #C21828;
     }
 

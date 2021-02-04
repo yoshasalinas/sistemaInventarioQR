@@ -30,6 +30,8 @@
         <!--CSS-->
         <link href="css/general-navbar-sidebar-menu-styles.css" rel="stylesheet" type="text/css">
         <link href="css/registroEquipo-styles.css" rel="stylesheet" type="text/css">
+        <!-- Include the Bootstrap 4 theme
+        <link rel="stylesheet" href="@sweetalert2/theme-bootstrap-4/bootstrap-4.css"> -->
         
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -296,8 +298,8 @@
             /*Archivo js*/ 
         </script>
 
-        <!--SweetAlert-->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <!--SweetAlert
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>--:
         
         <!--<script src="js/sweetAlert.js"></script>-->
 
@@ -337,7 +339,6 @@
                     //let image = $("#archivoQR").val();
                     $("#archivoQR").val(image);
 
-
                 }
             })
 
@@ -350,8 +351,6 @@
                     $(".content-codigo-qr-img").html(datos);
                     //let image = $("#archivoQR").val();
                     //$("#archivoQR").val(image);
-
-
                 }
             })
             0
@@ -439,12 +438,23 @@
         cancelBtn.classList.add("show");
     }
 </script>
-
+<!--
 <script type="text/javascript">
     const btnDownload = document.querySelector("#btnDownload");
 
     btnDonwload.addEventListener("click", function(){
-        
+
 
     });
 </script>
+-->
+<script type="text/javascript">
+    const a = document.querySelector("#btnDownload");
+
+    a.onclick = ()=>{
+        Swal.fire({
+            title:"Bienvenido!",
+        });
+    }
+</script>
+

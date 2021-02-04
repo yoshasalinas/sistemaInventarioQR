@@ -1,3 +1,4 @@
+
 <?php
     include('conexion_db.php');
 
@@ -22,7 +23,7 @@
         mysqli_query($conexion, $consultaDos) or die (mysqli_error($conexion));
         header("Location: registroEquipo.php");
 
-        
+
 
     }else {
 

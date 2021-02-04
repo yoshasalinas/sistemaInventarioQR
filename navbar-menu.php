@@ -91,5 +91,133 @@
     <div class="cancel-icon"><span class="fas fa-times"></span></div>
     
     <!--Boton de cerrar sesion-->
-    <div><a href="logout.php"><i class="fas fa-door-open log-out-icon"></i></a></div>
+    <div><a href="#" onclick="cerrarSesion()"><i class="fas fa-door-open log-out-icon"></i></a></div>
 </nav>
+
+    <!--SweetAlert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+
+
+<script type="text/javascript">
+
+    function cerrarSesion() {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success botones-confirmacion',
+                cancelButton: 'btn btn-danger botones-confirmacion'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Cerrar Sesion',
+            text: "¿Esta seguro que desea salir de esta pagina?",
+            icon: 'warning', //No me gusta el icono :C
+            showCloseButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Si',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //Redirigir a logout
+                window.location.replace("logout.php");
+                
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                
+            }
+        })
+    }
+</script>
+
+
+<!--
+<script type="text/javascript">
+    const a = document.querySelector(".log-out-icon");
+
+    a.onclick = ()=>{
+       
+        Swal.fire({
+            /*d
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+            )
+        }
+        })*/
+
+        title: "¿Estás seguro de cerrar session?",
+        type: "warning",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Cerrar session",
+        closeOnConfirm: false
+        },
+        function (isConfirm) {
+            if(isConfirm){
+                //$(elemento).closest('tr').remove();
+
+                //location.href ="logout.php";
+
+                
+
+                swal({
+                    title: "Eliminado",
+                    text: "Eliminaste el registro del proyecto.",
+                    type: "success"
+                });
+
+            }else{
+                swal("No se ha eliminado.","El registro NO ha sido eliminado.","error");
+                delay(2000);
+            }
+        });
+    }
+</script>-->
+
+ <!--
+     $(document).on('click', '.borrar', function (event) {
+    var elemento = $(this);
+
+    swal({
+        title: "¿Estás seguro?",
+        text: "Estás por borrar un proyecto, este no se podrá recuperar más adelante.",
+        type: "warning",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Continuar",
+        closeOnConfirm: false
+        },
+        function (isConfirm) {
+            if(isConfirm){
+                $(elemento).closest('tr').remove();
+
+                swal({
+                    title: "Eliminado",
+                    text: "Eliminaste el registro del proyecto.",
+                    type: "success"
+                });
+            }else{
+                swal("No se ha eliminado.","El registro NO ha sido eliminado.","error");
+                delay(2000);
+            }
+        });
+});
+ -->
