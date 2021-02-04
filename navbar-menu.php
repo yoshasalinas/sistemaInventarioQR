@@ -87,7 +87,7 @@
     <img src="img/logo-TNM.png"  class="logos-img" alt="">
     
     <!--Botones para menu de tamaño pequeño, menu navbar-->
-    <div><a href="logout.php"><i class="fas fa-door-open logout-icon-navbar"></i></a></div>
+    <div><a href="#" onclick="cerrarSesion()"><i class="fas fa-door-open logout-icon-navbar"></i></a></div>
     <div class="cancel-icon"><span class="fas fa-times"></span></div>
     
     <!--Boton de cerrar sesion-->

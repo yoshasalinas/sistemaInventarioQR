@@ -78,7 +78,7 @@ $db = new Db();
                     <!--Tabla de usuarios registrados-->
                     <div class="row" id="tabla-de-usuarios">
                         <div class="col-lg-12">
-                            <table id="example" class="table table-striped table-bordered tabla-usuarios" style="width:100%">
+                            <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -91,81 +91,107 @@ $db = new Db();
                                         <th scope="col">...</th>
                                     </tr>
                                 </thead>
-
-                                    <?php 
-
-                                    $conexion = $db -> connect();
-                                    
-                                    $select = "SELECT usuarios.*, rol.rol FROM usuarios INNER JOIN rol ON usuarios.idX_rol = rol.id_rol";
-                                    //$usuario = mysqli_query($conexion, $select);
-                                    $usuario = $db -> Db_query($select);
-
-                                    while ($getFila = mysqli_fetch_array($usuario)) { 
-
-                                        $datos = $getFila[0].'||'.
-                                                $getFila[8]."||".
-                                                $getFila[2]."||".
-                                                $getFila[3]."||".
-                                                $getFila[4]."||".
-                                                $getFila[5]."||".
-                                                $getFila[6]."||".
-                                                $getFila[7];
-
-                                    ?>
-                                <tbody> 
+                                <tbody>
                                     <tr>
-                                        <th scope="row"> <?php echo $getFila[0] ?> </th>
-                                        <th><?php echo $getFila[8] ?></th>
-                                        <td><?php echo $getFila[2] ?></td>
-                                        <td><?php echo $getFila[3] ?></td>
-                                        <td><?php echo $getFila[4] ?></td>
-                                        <td><?php echo $getFila[5] ?></td>
-                                        <td><?php echo $getFila[7] ?></td>
-                                        
-                                        <!--botones--> 
-                                        <td>
-                                            <!--Movimintos-->
-                                            <button type="button" href="" class="btn btn-outline-primary acciones-btn" data-toggle="modal" data-target="#modal-movimientosUsuario">
-                                                <!--Movimientos--><i class="far fa-folder-open"></i>
-                                            </button>
-                                            <!--Editar-->
-                                            <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarUsuario" onclick="llenarModal_actualizar('<?php echo $datos ?>');">
-                                                <i class="far fa-edit"></i>
-                                            </button>
-
-                                            <!--Eliminar-->
-                                            <button href="" type="button" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarUsuario">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
+                                        <td>Tiger Nixon</td>
+                                        <td>System Architect</td>
+                                        <td>Edinburgh</td>
+                                        <td>61</td>
+                                        <td>2011/04/25</td>
+                                        <td>$320,800</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Garrett Winters</td>
+                                        <td>Accountant</td>
+                                        <td>Tokyo</td>
+                                        <td>63</td>
+                                        <td>2011/07/25</td>
+                                        <td>$170,750</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ashton Cox</td>
+                                        <td>Junior Technical Author</td>
+                                        <td>San Francisco</td>
+                                        <td>66</td>
+                                        <td>2009/01/12</td>
+                                        <td>$86,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cedric Kelly</td>
+                                        <td>Senior Javascript Developer</td>
+                                        <td>Edinburgh</td>
+                                        <td>22</td>
+                                        <td>2012/03/29</td>
+                                        <td>$433,060</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Airi Satou</td>
+                                        <td>Accountant</td>
+                                        <td>Tokyo</td>
+                                        <td>33</td>
+                                        <td>2008/11/28</td>
+                                        <td>$162,700</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hermione Butler</td>
+                                        <td>Regional Director</td>
+                                        <td>London</td>
+                                        <td>47</td>
+                                        <td>2011/03/21</td>
+                                        <td>$356,250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lael Greer</td>
+                                        <td>Systems Administrator</td>
+                                        <td>London</td>
+                                        <td>21</td>
+                                        <td>2009/02/27</td>
+                                        <td>$103,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jonas Alexander</td>
+                                        <td>Developer</td>
+                                        <td>San Francisco</td>
+                                        <td>30</td>
+                                        <td>2010/07/14</td>
+                                        <td>$86,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shad Decker</td>
+                                        <td>Regional Director</td>
+                                        <td>Edinburgh</td>
+                                        <td>51</td>
+                                        <td>2008/11/13</td>
+                                        <td>$183,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Michael Bruce</td>
+                                        <td>Javascript Developer</td>
+                                        <td>Singapore</td>
+                                        <td>29</td>
+                                        <td>2011/06/27</td>
+                                        <td>$183,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Donna Snider</td>
+                                        <td>Customer Support</td>
+                                        <td>New York</td>
+                                        <td>27</td>
+                                        <td>2011/01/25</td>
+                                        <td>$112,000</td>
                                     </tr>
                                 </tbody>
-                                        <!--Eliminar Ubicacion-->       
-                                        <div class="modal fade" id="modal-eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="container">
-                                                            <div class="div">
-                                                                ¿Esta seguro que desea eliminar el usuario del registro?
-                                                            </div>
-                                                            <div class="modal-btns-acciones">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                                <a href="eliminarUsuarios.php?id=<?php echo $getFila[0]; ?>" class="btn btn-danger">Eliminar</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> 
-                                    <?php } ?>
-                            </table>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </tfoot>
+                            </table> 
                         </div>
                     </div>
 
