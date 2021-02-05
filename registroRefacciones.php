@@ -94,7 +94,7 @@
                                         <div class="form-group col-md-6">
                                             <div class="form-group ">
                                                 <label for="descripcionActivo">Descripcion del Activo</label>
-                                                <textarea class="form-control" id="descripcionActivo" rows="5"></textarea>
+                                                <textarea class="form-control" id="descripcionActivo" name="descripcionActivo" rows="5"></textarea>
                                             </div>
                                             
                                         </div>
@@ -143,7 +143,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label for="tipoActivo">Tipo de activo</label>
-                                            <input class="form-control" id="tipoActivo" type="text" value="Equipo" readonly>
+                                            <input class="form-control" id="tipoActivo" name="tipoActivo" type="text" value="Refacciones" readonly>
                                         </div>
                                     </div>
                                     <!---->

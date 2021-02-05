@@ -10,11 +10,11 @@ session_start();
 
     $nombre = $_SESSION['nombreUsuario'];
     $tipo_usuario = $_SESSION['rol'];
+    
+    $db = new Db();
 
     $select = "SELECT * FROM activos";
-    $activo = mysqli_query($conexion, $select);
-
-    $db = new Db();
+    $activo = $db -> Db_query($select);
 
 ?>
 
