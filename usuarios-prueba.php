@@ -78,7 +78,7 @@ $db = new Db();
                     <!--Tabla de usuarios registrados-->
                     <div class="row" id="tabla-de-usuarios">
                         <div class="col-lg-12">
-                            <table id="example" class="table table-striped table-bordered tabla-usuarios" style="width:100%">
+                            <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -91,111 +91,107 @@ $db = new Db();
                                         <th scope="col">...</th>
                                     </tr>
                                 </thead>
-
-                                    <?php 
-
-                                    $conexion = $db -> connect();
-                                    
-                                    $select = "SELECT usuarios.*, rol.rol FROM usuarios INNER JOIN rol ON usuarios.idX_rol = rol.id_rol";
-                                    //$usuario = mysqli_query($conexion, $select);
-                                    $usuario = $db -> Db_query($select);
-
-                                    while ($getFila = mysqli_fetch_array($usuario)) { 
-
-                                        $datos = $getFila[0].'||'.
-                                                $getFila[8]."||".
-                                                $getFila[2]."||".
-                                                $getFila[3]."||".
-                                                $getFila[4]."||".
-                                                $getFila[5]."||".
-                                                $getFila[6]."||".
-                                                $getFila[7];
-
-                                    ?>
-                                <tbody> 
+                                <tbody>
                                     <tr>
-                                    <th scope="row"> <?php echo $getFila[0] ?> </th> <!-- ID--> 
-                                        <th><?php echo $getFila[8] ?></th> <!--Rol-->
-                                        <td><?php echo $getFila[2] ?></td> <!--Nombre-->
-                                        <td><?php echo $getFila[3] ?></td> <!--Ap-->
-                                        <td><?php echo $getFila[4] ?></td> <!--Am-->
-                                        <td><?php echo $getFila[5] ?></td> <!--Nom Usuario-->
-                                        <td><?php echo $getFila[7] ?></td> <!--correo-->
-                                        
-                                        <!--botones--> 
-                                        <td>
-                                            <!--Movimintos-->
-                                            <button type="button" href="" class="btn btn-outline-primary acciones-btn" data-toggle="modal" data-target="#modal-movimientosUsuario">
-                                                <!--Movimientos--><i class="far fa-folder-open"></i>
-                                            </button>
-                                            <!--Editar-->
-                                            <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarUsuario" onclick="llenarModal_actualizar('<?php echo $datos ?>');">
-                                                <i class="far fa-edit"></i>
-                                            </button>
-
-                                            <!--Eliminar-->
-                                            <button href="" type="button" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarUsuario">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
+                                        <td>Tiger Nixon</td>
+                                        <td>System Architect</td>
+                                        <td>Edinburgh</td>
+                                        <td>61</td>
+                                        <td>2011/04/25</td>
+                                        <td>$320,800</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Garrett Winters</td>
+                                        <td>Accountant</td>
+                                        <td>Tokyo</td>
+                                        <td>63</td>
+                                        <td>2011/07/25</td>
+                                        <td>$170,750</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ashton Cox</td>
+                                        <td>Junior Technical Author</td>
+                                        <td>San Francisco</td>
+                                        <td>66</td>
+                                        <td>2009/01/12</td>
+                                        <td>$86,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cedric Kelly</td>
+                                        <td>Senior Javascript Developer</td>
+                                        <td>Edinburgh</td>
+                                        <td>22</td>
+                                        <td>2012/03/29</td>
+                                        <td>$433,060</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Airi Satou</td>
+                                        <td>Accountant</td>
+                                        <td>Tokyo</td>
+                                        <td>33</td>
+                                        <td>2008/11/28</td>
+                                        <td>$162,700</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hermione Butler</td>
+                                        <td>Regional Director</td>
+                                        <td>London</td>
+                                        <td>47</td>
+                                        <td>2011/03/21</td>
+                                        <td>$356,250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lael Greer</td>
+                                        <td>Systems Administrator</td>
+                                        <td>London</td>
+                                        <td>21</td>
+                                        <td>2009/02/27</td>
+                                        <td>$103,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jonas Alexander</td>
+                                        <td>Developer</td>
+                                        <td>San Francisco</td>
+                                        <td>30</td>
+                                        <td>2010/07/14</td>
+                                        <td>$86,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shad Decker</td>
+                                        <td>Regional Director</td>
+                                        <td>Edinburgh</td>
+                                        <td>51</td>
+                                        <td>2008/11/13</td>
+                                        <td>$183,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Michael Bruce</td>
+                                        <td>Javascript Developer</td>
+                                        <td>Singapore</td>
+                                        <td>29</td>
+                                        <td>2011/06/27</td>
+                                        <td>$183,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Donna Snider</td>
+                                        <td>Customer Support</td>
+                                        <td>New York</td>
+                                        <td>27</td>
+                                        <td>2011/01/25</td>
+                                        <td>$112,000</td>
                                     </tr>
                                 </tbody>
-<<<<<<< HEAD
-        <!--Eliminar Usuario-->       
-        <div class="modal fade" id="modal-eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <div class="div">
-                                ¿Esta seguro que desea eliminar el usuario del registro?
-                            </div>
-                            <div class="modal-btns-acciones">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <a href="eliminarUsuarios.php?id=<?php echo $getFila[0]; ?>" class="btn btn-danger">Eliminar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> 
-     
-                               <?php } ?>
-                               
-=======
-                                        <!--Eliminar Ubicacion-->       
-                                        <div class="modal fade" id="modal-eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="container">
-                                                            <div class="div">
-                                                                ¿Esta seguro que desea eliminar el usuario del registro?
-                                                            </div>
-                                                            <div class="modal-btns-acciones">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                                <a href="eliminarUsuarios.php?id=<?php echo $getFila[0]; ?>" class="btn btn-danger">Eliminar</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> 
-                                    <?php } ?>
->>>>>>> d397e509eab114799152d5b53ad17a9ce90e691f
-                            </table>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </tfoot>
+                            </table> 
                         </div>
                     </div>
 
@@ -208,86 +204,88 @@ $db = new Db();
 
         <!-- Modal: Registro de nuevo usuario-->
         <div class="modal fade" id="modal-nuevoUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <H2 class="modal-title" id="exampleModalLongTitle">Nuevo usuario</H2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <div id="msg"></div>
-                            <!-- Mensajes de Verificación -->
-                            <div id="error" class="alert alert-danger ocultar" role="alert">
-                                Las Contraseñas no coinciden, vuelve a intentar!
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <H2 class="modal-title" id="exampleModalLongTitle">Nuevo usuario</H2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div id="msg"></div>
+                                        <!-- Mensajes de Verificación -->
+                                        <div id="error" class="alert alert-danger ocultar" role="alert">
+                                            Las Contraseñas no coinciden, vuelve a intentar!
+                                        </div>
+                                       
+                                        <!-- Fin Mensajes de Verificación -->
+                                        <form id="formulario-nuevoUsuario" action="validarRegistroUsuario.php" method="POST" onsubmit="verificarPasswords(); return false">
+                                            <div class="form-row ">
+                                                <div class="form-group col-md-6">
+                                                    <label for="nombre">Nombre</label>
+                                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                                </div>      
+                                            </div>
+
+                                            <div class="form-row ">
+                                                <div class="form-group col-md-6">
+                                                    <label for="aMaterno">Apellido paterno</label>
+                                                <input type="text" class="form-control" id="aPaterno" name="aPaterno" required>    
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="aPaterno">Apellido materno</label>
+                                                    <input type="text" class="form-control" id="aMaterno" name="aMaterno" >    
+                                                </div>     
+                                                     
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6 ">
+                                                    <label for="rol">Rol</label>
+                                                    <select class="form-control" id="rol" name="rol">
+                                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                                            $get_roles = "SELECT * FROM rol";
+                                                            $consulta = $db -> Db_query($get_roles);
+                                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                                                echo "<option value ='".$fila['id_rol']."'>".$fila['rol']."</option>"; //muestra los datos de la tabla externa
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="nombreUsuario">Nombre de usuario</label>
+                                                    <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label for="correo">Correo electronico</label>
+                                                    <input type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" required>      
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="contraseña">Contraseña</label>
+                                                    <input type="password" class="form-control"  name="password" id="password" required>      
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="confirmarContraseña">Confirmar contraseña</label>
+                                                    <input type="password" class="form-control" name="confirmarpass" id="confirmarpass" required>      
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="modal-btns-acciones">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" id="registrar" name='enviar' class="btn btn-success">Registrar</button>
+                                            <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                           
-                            <!-- Fin Mensajes de Verificación -->
-                            <form id="formulario-nuevoUsuario" action="validarRegistroUsuario.php" method="POST" >
-                                <div class="form-row ">
-                                    <div class="form-group col-md-6">
-                                        <label for="nombre">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                    </div>      
-                                </div>
-                                <div class="form-row ">
-                                    <div class="form-group col-md-6">
-                                        <label for="aMaterno">Apellido paterno</label>
-                                    <input type="text" class="form-control" id="aPaterno" name="aPaterno" required>    
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="aPaterno">Apellido materno</label>
-                                        <input type="text" class="form-control" id="aMaterno" name="aMaterno" >    
-                                    </div>     
-                                         
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6 ">
-                                        <label for="rol">Rol</label>
-                                        <select class="form-control" id="rol" name="rol">
-                                            <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                                $get_roles = "SELECT * FROM rol";
-                                                $consulta = $db -> Db_query($get_roles);
-                                                while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                    echo "<option value ='".$fila['id_rol']."'>".$fila['rol']."</option>"; //muestra los datos de la tabla externa
-                                                }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="nombreUsuario">Nombre de usuario</label>
-                                        <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" required>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-12">
-                                        <label for="correo">Correo electronico</label>
-                                        <input type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" required>      
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="contrasena">Contraseña</label>
-                                        <input type="password" class="form-control"  name="password" id="password" required>      
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="confirmarContrasena">Confirmar contraseña</label>
-                                        <input type="password" class="form-control" name="confirmarpass" id="confirmarpass" required>      
-                                    </div>
-                                </div>
-                                
-                                <div class="modal-btns-acciones">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" id="registrar-usuario" name='enviar' class="btn btn-success">Registrar</button>
-                                <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
-                                </div>
-                            </form>
                         </div>
-                    </div>
-                </div>
-            </div>
         </div>  
 
         <!-- Modal: Movimientos del usuario-->
@@ -328,7 +326,7 @@ $db = new Db();
                             </div>
                             <!-- Fin Mensajes de Verificación -->
                              <!-- FORMULARIO VENTANA MODAL EDITAR USUARIO -->
-                            <form id="formulario-actualizarUsuario" action="" method="POST" >
+                            <form id="formulario-nuevoUsuario" action="" method="POST" onsubmit="verificarPasswords(); return false">
                                 <div class="form-row ">
                                     <div class="form-group col-md-6">
                                         <label for="id-edit">ID Usuario</label>
@@ -385,17 +383,17 @@ $db = new Db();
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="contrasena-edit">Contraseña</label>
-                                        <input type="password" class="form-control"  name="contrasena-edit" id="pass1" required>      
+                                        <label for="contraseña-edit">Contraseña</label>
+                                        <input type="password" class="form-control"  name="contraseña-edit" id="pass1" required>      
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="confirmarContrasena-edit">Confirmar contraseña</label>
-                                        <input type="password" class="form-control" name="confirmarContrasena-edit" id="pass2" required>      
+                                        <label for="confirmarContraseña-edit">Confirmar contraseña</label>
+                                        <input type="password" class="form-control" name="confirmarContraseña-edit" id="pass2" required>      
                                     </div>
                                 </div>
                                 <div class="modal-btns-acciones">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" id="registrar-cambios" class="btn btn-success">Guardar cambios</button>
+                                    <button type="submit" id="registrar" class="btn btn-success">Guardar cambios</button>
                                 <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
                                     <input type="hidden" id="hidden_user_id">
                                 </div>
@@ -537,7 +535,7 @@ $db = new Db();
     const logoutBtn = document.querySelector(".logout-icon-navbar");
     const cancelBtn = document.querySelector(".cancel-icon");
     const items = document.querySelector(".nav-items");
-    
+    const form = document.querySelector("form");
 
     menuBtn.onclick = ()=>{
         items.classList.add("active");
@@ -553,7 +551,7 @@ $db = new Db();
         
         cancelBtn.style.color = "#ff3d00";
     }
-    logoutBtn.onclick = ()=>{
+    searchBtn.onclick = ()=>{
         logoutBtn.classList.add("hide");
         cancelBtn.classList.add("show");
     }

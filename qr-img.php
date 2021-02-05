@@ -20,9 +20,7 @@ $imageData = base64_encode($image);//Salida en formato imagen Codifico la imagen
 
 //echo '<textarea class="form-control" id="pruebaQR" name="pruebaQR" rows="10" value = '.$image.' ></textarea>'; 
 
-echo $image;
-
-//echo '<img name="archivoQR" id="archivoQR-img" src="data:image/png;base64,'.$imageData.'">';
+echo '<img name="archivoQR" id="archivoQR-img" src="data:image/png;base64,'.$imageData.'">';
 
 
 //echo '<input id="archivoCodigoQR" type="file" class="form-control-file"  name="archivoCodigoQR src="data:image/png;base64,'.$imageData.'" >'; 

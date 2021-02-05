@@ -1,12 +1,11 @@
-	$(document).ready(function() {
-        $('#example').DataTable({
-            
 
-            responsive: true,  //propiedad responsive
-            autoWidth: false, //ajuste de tamaño 
-
-            //Traduccion al español
-            "language": {
+(document).ready(function() {
+    $('#exaple').DataTable({
+        
+        responsive: true,
+        
+        //Traduccion al español
+        "language": {
                 /*"lengthMenu": "Displ _MENU_ records per page",
                 "zeroRecords": "Nothing found - sorry",
                 "info": "Showing page _PAGE_ of _PAGES_",
@@ -148,6 +147,7 @@
                     }
                 },
                 "thousands": "."
-            }
-        });
-    } ); 
+        }
+    });
+} ); 
+   

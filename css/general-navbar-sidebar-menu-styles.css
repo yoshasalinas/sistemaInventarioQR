@@ -11,6 +11,20 @@ body {
     padding-top: 50px;
 }
 
+.botones-confirmacion{
+    margin: 10px;
+    width: 100px;
+    height: 40px;
+}
+
+body::-webkit-scrollbar {
+    width: 7px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: #b2b3b8;
+}
+
 .tarjeta{
   margin-bottom: 100px;
 	background: white;
@@ -25,6 +39,19 @@ body {
 
 .container-1{
   margin: 200px;
+}
+/*
+.container::-webkit-scrollbar{
+    
+}
+
+.container::-webkit-scrollbar-thumb{
+    
+    
+}*/
+
+.color{
+    background: greenyellow;
 }
 
 .center{
@@ -68,9 +95,11 @@ body {
   display: flex;
   flex: 1;
   padding: 0 0 0 10px;
-  overflow:auto;
   visibility: hidden;
+  overflow:auto;
+  
 }
+
 
 .navbar-superior .nav-items li{
   list-style: none;
@@ -86,8 +115,10 @@ body {
 
 }
 
+
 .navbar-superior .nav-items li a:hover{
   color: #C21828;
+  font-size: 25px;
   /*background: #09134E;*/
 }
 
@@ -124,11 +155,7 @@ body {
   display: none;
 }
 
-.navbar-superior .menu-navbar span,
-.navbar-superior .cancel-icon,
-.navbar-superior .logout-icon-navbar{
-  display: none;
-}
+
 
 /*Menu Sidebar*/
 .wrapper {
@@ -153,6 +180,7 @@ body {
 #sidebar .sidebar-header {
     padding: 20px;
     text-align: center;
+
     
 }
 
@@ -245,9 +273,29 @@ ul ul a {
         display: none;
     }
 
+    .nav-items{
+        overflow: auto;
+    }
+
+    .nav-items::-webkit-scrollbar{
+        width: 7px;
+        
+    }
+
+    .nav-items::-webkit-scrollbar-thumb{
+        background: rgb(236, 236, 236);
+    }
+
     .nav-items .sidebar-header{
         font-size: 40px;
         color: #C21828;
+        text-align: center;
+    }
+
+    .nav-items .sidebar-header h1{
+        font-size: 30px;
+        color: #C21828;
+        text-align: center;
     }
 
     .navbar-superior .menu-sidebar, .navbar-superior .log-out-icon {
@@ -271,18 +319,26 @@ ul ul a {
         display: inline-block;
         transition: left 0.3s ease;
         visibility: visible;
-        
+        overflow:auto;
     }
+
+
     .navbar-superior .nav-items.active{
         left: 0px;
     }
     .navbar-superior .nav-items li{
         line-height: 40px;
-        margin: 30px 0;
+        margin: 20px 0;
     }
     .navbar-superior .nav-items li a{
         font-size: 20px;
+        display: block;
+        color: #040925;
+        font-weight: bold;
     }
+
+    
+
 
     .navbar-superior .logos-img {
         height: 35px;
@@ -306,11 +362,16 @@ ul ul a {
         display: block;
     }
 
+    .navbar-superior .menu-navbar,.navbar-superior .logout-icon-navbar, .navbar-superior .cancel-icon{
+        color: #fff;
+    }
+
+
     .navbar-superior .menu-navbar:hover{
         color: #C21828;
     }
 
-    .navbar-superior .logout-icon-navbarn:hover{
+    .navbar-superior .logout-icon-navbar:hover{
         color: #C21828;
     }
 

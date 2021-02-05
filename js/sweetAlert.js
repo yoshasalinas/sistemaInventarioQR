@@ -1,5 +1,3 @@
 Swal.fire({
-    title:'Bienvenido!',
-    html: 
-    ''
+    title:"Bienvenido!",
 });

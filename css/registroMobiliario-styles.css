@@ -1,45 +1,12 @@
-.color{
-  background: #9658fe;
-}
-
-body {
-    background:rgb(236, 236, 236);
-    padding-top: 50px;
-    
-}
-
-.tarjeta{
-  margin-bottom: 100px;
-	background: white;
-	border-radius: 30px;
-  box-shadow: 12px 12px 22px grey;
-}
-
-.container-1{
-  margin: 200px;
-}
-
-.tarjeta h1{
-    text-align: center;
-    color: #09134E;
-    margin-bottom: 30px;
-}
-
-.center{
-    margin-bottom: 30px;
-    justify-content: center;
-}
-
 .oculto{
     display: none;
 }
 
-#texto{
-  text-align: center;
-  color: white;
-  font-size: 15px;
+h1{
+  margin-bottom: 30px;
 }
 
+/*Agregar imagen de activo*/
 
 #archivoImagen{
   position: absolute;
@@ -119,18 +86,6 @@ body {
   text-align: center;
 }
 
-#generarQr-btn{
-  margin-top: 30px;
-  text-align: center;
-}
-
-
-
-
-
-
-/*Imagen*/
-
 .previewImagen {
     display: flex;
     align-items: center;
@@ -182,7 +137,6 @@ body {
 	display: none !important;
 }
 
-
 .errorArchivo{
 	font-size: 16px;
 	font-family: arial;
@@ -191,6 +145,7 @@ body {
 	font-weight: bold; 
 	margin-top: 10px;
 }
+
 .delPhoto{
 	color: #FFF;
 	display: -webkit-flex;
@@ -229,5 +184,3 @@ body {
   background: #c72737;
   color: whitesmoke;
 }
-
-
