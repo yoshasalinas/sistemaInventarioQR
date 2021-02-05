@@ -22,6 +22,10 @@ $get_usuario= "SELECT * FROM usuarios WHERE correo= ?";
       
                   if (!$result === TRUE){
                   
+                   echo '<script>
+                        alert("Nuevo usuario registrado!");
+                        </script>'; 
+                    
                   header("location:usuarios.php");
       
                   }else {echo "error";}
