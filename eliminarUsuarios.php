@@ -14,7 +14,8 @@ if(mysqli_fetch_array($result1)){
 $result = $db-> Db_query_delete("i",$eliminar,$posData);
 
 if(!$result === TRUE){
-    header("location:usuarios.php");
+    //El usuario se elimina correctamente
+    header("location:usuarios.php?eliminar=1");
 }else{
     echo"<script> alert('No se pudo elimimar'); 
     window.history.go(-1);</script>";

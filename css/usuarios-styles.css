@@ -62,6 +62,10 @@ body {
   font-size: 14px;
 }
 
+.tabla-usuarios .ajuste{
+  width: 30px;
+}
+
 .tabla-usuarios .acciones-btn{
   font-size: 10px;
 }

@@ -21,12 +21,8 @@ $get_usuario= "SELECT * FROM usuarios WHERE correo = ?";
           $result = $db -> Db_query_save("issssss",$consulta,$posData);
       
                   if (!$result === TRUE){
-                  
-                   echo '<script>
-                        alert("Nuevo usuario registrado!");
-                        </script>'; 
                     
-                  header("location:usuarios.php");
+                  header("location:usuarios.php?registro=1");
       
                   }else {echo "error";}
         }else {
