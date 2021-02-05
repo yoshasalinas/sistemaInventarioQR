@@ -28,7 +28,7 @@ $get_usuario= "SELECT * FROM usuarios WHERE correo = ?";
         }else {
         echo '<script>
         alert("El correo ya existe");
-        </script>';
+        window.history.go(-1);</script>';
        //header("location:usuarios.php");
         }
 
