@@ -114,13 +114,13 @@ $db = new Db();
                                     ?>
                                 <tbody> 
                                     <tr>
-                                        <th scope="row"> <?php echo $getFila[0] ?> </th>
-                                        <th><?php echo $getFila[8] ?></th>
-                                        <td><?php echo $getFila[2] ?></td>
-                                        <td><?php echo $getFila[3] ?></td>
-                                        <td><?php echo $getFila[4] ?></td>
-                                        <td><?php echo $getFila[5] ?></td>
-                                        <td><?php echo $getFila[7] ?></td>
+                                    <th scope="row"> <?php echo $getFila[0] ?> </th> <!-- ID--> 
+                                        <th><?php echo $getFila[8] ?></th> <!--Rol-->
+                                        <td><?php echo $getFila[2] ?></td> <!--Nombre-->
+                                        <td><?php echo $getFila[3] ?></td> <!--Ap-->
+                                        <td><?php echo $getFila[4] ?></td> <!--Am-->
+                                        <td><?php echo $getFila[5] ?></td> <!--Nom Usuario-->
+                                        <td><?php echo $getFila[7] ?></td> <!--correo-->
                                         
                                         <!--botones--> 
                                         <td>
@@ -140,7 +140,7 @@ $db = new Db();
                                         </td>
                                     </tr>
                                 </tbody>
-                                        <!--Eliminar Ubicacion-->       
+        <!--Eliminar Usuario-->       
         <div class="modal fade" id="modal-eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -164,7 +164,9 @@ $db = new Db();
                 </div>
             </div>
         </div> 
-                                    <?php } ?>
+     
+                               <?php } ?>
+                               
                             </table>
                         </div>
                     </div>
