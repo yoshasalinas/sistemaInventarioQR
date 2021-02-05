@@ -11,8 +11,11 @@ if(!isset($_SESSION['id'])){
 $nombre = $_SESSION['nombreUsuario'];
 $tipo_usuario = $_SESSION['rol'];
 
+$db = new Db();
+
+$conexion = $db -> connect();
 $select = "SELECT * FROM ubicaciones";
-$ubicacion = mysqli_query($conexion, $select);
+$ubicacion = $db-> Db_query($select);
 
 
 ?>
@@ -136,20 +139,17 @@ $ubicacion = mysqli_query($conexion, $select);
                                                 <div class="form-group col-md-5">
                                                     <label for="tipoUbicacion">Tipo de Ubicacion</label>
                                                     <select class="form-control" id="tipoUbicacion" name="tipoUbicacion">
-                                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
-                                                            while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                                echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']."</option>"; //muestra los datos de la tabla externa
-                                                            }
-                                                        ?>
-                                                        <option value="">No especificado</option>
+                                                        <option value="Sala">Sala</option>
+                                                        <option value="Bodega">Bodega</option>
+                                                        <option value="Oficina">Oficina</option>
+                                                        <option value="No especificada">No especificado</option>
                                                     </select>
                                                 </div>
 
                                                 <!--Agregar nuevo tipo de ubicacion-->    
                                                 <div class="form-group col-md-5">
                                                     <label for="nuevoTipoUbicacion">Nuevo tipo</label>
-                                                    <input type="text" class="form-control" id="nuevoTipoUbicacion" name="nuevoTipoUbicacion" required>
+                                                    <input type="text" class="form-control" id="nuevoTipoUbicacion" name="nuevoTipoUbicacion">
 
                                                 </div>
                                                 <div class="form-group col-md-1 ">
@@ -170,7 +170,7 @@ $ubicacion = mysqli_query($conexion, $select);
                                             <div class="form-row ">
                                                 <div class="form-group col-12">
                                                     <label for="aMaterno">Edificio</label>
-                                                    <input type="text" class="form-control" id="edificio" name="edificio" required>    
+                                                    <input type="text" class="form-control" id="edificio" name="edificio" required >    
                                                 </div>  
                                             </div>
                                             <div class="form-row">
@@ -218,7 +218,8 @@ $ubicacion = mysqli_query($conexion, $select);
                                                     <label for="tipoUbicacion">Tipo de Ubicacion</label>
                                                     <select class="form-control" id="tipoUbicacion" name="tipoUbicacion">
                                                         <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                                            $consulta = $conexion-> query("SELECT * FROM ubicaciones");
+                                                            $get_ubicaciones = "SELECT * FROM ubicaciones";
+                                                            $consulta = $db -> Db_query($get_ubicaciones);
                                                             while($fila=$consulta->fetch_array()){ //recorre el arreglo
                                                                 echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']."</option>"; //muestra los datos de la tabla externa
                                                             }
@@ -244,7 +245,7 @@ $ubicacion = mysqli_query($conexion, $select);
                                             <div class="form-row ">
                                                 <div class="form-group col-12">
                                                     <label for="nombre">Nombre</label>
-                                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                                    <input type="text" class="form-control" id="nombre" name="nombre" required >
                                                 </div>  
                                                 
                                             </div>

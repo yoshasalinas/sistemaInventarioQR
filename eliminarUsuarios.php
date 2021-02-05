@@ -6,17 +6,25 @@ $id = $_GET['id'];
 $posData = [];
 $posData[0]= $id;
 
-$eliminar = "DELETE FROM usuarios WHERE id_usuario = ?";
+$get_usuario= "SELECT * FROM usuarios WHERE id_usuario= ?";
+$result1 = $db -> Db_query_select_all("s",$get_usuario,[$posData[0]]);
+
+if(mysqli_fetch_array($result1)){
+    $eliminar = "DELETE FROM usuarios WHERE usuarios.id_usuario = ?";
 $result = $db-> Db_query_delete("i",$eliminar,$posData);
 
-if(!$result){
+if(!$result === TRUE){
     header("location:usuarios.php");
 }else{
-
     echo"<script> alert('No se pudo elimimar'); 
     window.history.go(-1);</script>";
-
-  
 }
+}else{
+    echo '<script>
+    alert("El correo ya existe");
+    </script>';
+
+}
+
 
 ?>

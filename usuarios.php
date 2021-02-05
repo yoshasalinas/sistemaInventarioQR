@@ -114,13 +114,13 @@ $db = new Db();
                                     ?>
                                 <tbody> 
                                     <tr>
-                                        <th scope="row"> <?php echo $getFila[0] ?> </th>
-                                        <th><?php echo $getFila[8] ?></th>
-                                        <td><?php echo $getFila[2] ?></td>
-                                        <td><?php echo $getFila[3] ?></td>
-                                        <td><?php echo $getFila[4] ?></td>
-                                        <td><?php echo $getFila[5] ?></td>
-                                        <td><?php echo $getFila[7] ?></td>
+                                    <th scope="row"> <?php echo $getFila[0] ?> </th> <!-- ID--> 
+                                        <th><?php echo $getFila[8] ?></th> <!--Rol-->
+                                        <td><?php echo $getFila[2] ?></td> <!--Nombre-->
+                                        <td><?php echo $getFila[3] ?></td> <!--Ap-->
+                                        <td><?php echo $getFila[4] ?></td> <!--Am-->
+                                        <td><?php echo $getFila[5] ?></td> <!--Nom Usuario-->
+                                        <td><?php echo $getFila[7] ?></td> <!--correo-->
                                         
                                         <!--botones--> 
                                         <td>
@@ -140,6 +140,35 @@ $db = new Db();
                                         </td>
                                     </tr>
                                 </tbody>
+<<<<<<< HEAD
+        <!--Eliminar Usuario-->       
+        <div class="modal fade" id="modal-eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="div">
+                                ¿Esta seguro que desea eliminar el usuario del registro?
+                            </div>
+                            <div class="modal-btns-acciones">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <a href="eliminarUsuarios.php?id=<?php echo $getFila[0]; ?>" class="btn btn-danger">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+     
+                               <?php } ?>
+                               
+=======
                                         <!--Eliminar Ubicacion-->       
                                         <div class="modal fade" id="modal-eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -165,6 +194,7 @@ $db = new Db();
                                             </div>
                                         </div> 
                                     <?php } ?>
+>>>>>>> d397e509eab114799152d5b53ad17a9ce90e691f
                             </table>
                         </div>
                     </div>
