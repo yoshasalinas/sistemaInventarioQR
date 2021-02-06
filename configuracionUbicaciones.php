@@ -120,6 +120,11 @@ $ubicacion = $db-> Db_query($select);
                         </div>
                     </div>
 
+                    <!--Variable auxiliar para mostrar alerta "Usuario Registrado"-->
+                    <?php if (isset($_GET['registro'])) : ?>
+                        <div class="flash-data-r" data-flashdata="<?= $_GET['registro']; ?>"></div>
+                    <?php endif; ?>
+
                     <!-- Modal: Registro de nueva ubicacion-->
                     <div class="modal fade" id="modal-nuevaUbicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -327,7 +332,8 @@ $ubicacion = $db-> Db_query($select);
         <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
         
-            
+        <!--SweetAlert-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>       
             
         <script src="script.js">
             /*Archivo js para animacion en menu */ 
@@ -423,6 +429,31 @@ $ubicacion = $db-> Db_query($select);
     searchBtn.onclick = ()=>{
         logoutBtn.classList.add("hide");
         cancelBtn.classList.add("show");
+    }
+
+</script>
+
+<!--FUNCION ALERTA: Activo REGISTRADO-->
+<script type="text/javascript">
+    /*$('#btn-registrar-usuario').on('click', function(){
+        document.location.href = href;
+    })*/
+
+    const flashdataRegistro = $('.flash-data-r').data('flashdata')
+    if(flashdataRegistro) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Nueva ubicacion registrada',
+            showConfirmButton: false,
+            timer: 1600
+        })
+        //se activa el método luego de 1 segundos
+        setTimeout(refresh,1000);   
+    }
+
+    function refresh(){
+        location.href ="configuracionUbicaciones.php";
     }
 
 </script>

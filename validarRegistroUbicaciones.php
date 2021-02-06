@@ -21,7 +21,8 @@ if(!empty($posData[0]) &&!empty($posData[1]) && !empty($posData[2])){ //valida c
 		VALUES (?,?,?,?,?)";
 		$result1 = $db -> Db_query_save("ssssi",$insert_ubicaciones,$posData);
 			if(!$result1 === True){
-			header("location:configuracionUbicaciones.php");
+				//
+			header("location:configuracionUbicaciones.php?registro=1");
 			}else{ echo '<script> alert("Error"); </script>';}
 	}else{
 		echo"<script> alert('Ya existe esta ubicacion'); 
