@@ -2,7 +2,7 @@
 (document).ready(function() {
     $('#exaple').DataTable({
         
-        responsive: true,
+        "responsive": true,
         
         //Traduccion al español
         "language": {

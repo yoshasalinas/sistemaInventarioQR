@@ -27,7 +27,8 @@ $result = $db -> Db_query_save("iiisssssssssssi",$consultaUno,$posData);
 
 if(!$result === TRUE){
     
-    header("Location: registroMobiliario.php");
+    header("Location: registroMobiliario.php?registro=1");
+    
 
 }else {
 

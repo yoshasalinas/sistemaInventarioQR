@@ -30,7 +30,6 @@ $db = new Db();
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <!--CSS-->
         <link href="css/general-navbar-sidebar-menu-styles.css" rel="stylesheet" type="text/css">
-        <!--<link href="css/inicio-style.css" rel="stylesheet" type="text/css">-->
         <link href="css/usuarios-styles.css" rel="stylesheet" type="text/css">
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -62,9 +61,6 @@ $db = new Db();
                     <div class="row " >
                         <div class="col-lg-12">
                             <H1>Usuarios del sistema</H1>
-                            <div id="ok" class="alert alert-success ocultar" role="alert">
-                                Registro exitoso!
-                            </div>
                         </div>
                     </div>
                     <div class="row btn-nuevoUsuario" >
@@ -78,7 +74,7 @@ $db = new Db();
                     <!--Tabla de usuarios registrados-->
                     <div class="row" id="tabla-de-usuarios">
                         <div class="col-lg-12">
-                            <table id="example" class="table table-striped table-bordered tabla-usuarios" style="width:100%">
+                            <table id="example" class="table table-striped table-bordered tabla-usuarios" >
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -140,34 +136,44 @@ $db = new Db();
                                         </td>
                                     </tr>
                                 </tbody>
-        <!--Eliminar Usuario-->       
-        <div class="modal fade" id=<?php echo "modal-eliminarUsuario" . $getFila[0]; ?> tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <div class="div">
-                                ¿Esta seguro que desea eliminar el usuario del registro?
-                            </div>
-                            <div class="modal-btns-acciones">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <a href="eliminarUsuarios.php?id=<?php echo $getFila[0]; ?>" class="btn btn-danger">Eliminar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> 
+                                <!--Eliminar Usuario-->       
+                                <div class="modal fade" id=<?php echo "modal-eliminarUsuario" . $getFila[0]; ?> tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="container">
+                                                    <div class="div">
+                                                        ¿Esta seguro que desea eliminar el usuario del registro?
+                                                    </div>
+                                                    <div class="modal-btns-acciones">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                        <a id="btn-eliminar"  href="eliminarUsuarios.php?id=<?php echo $getFila[0]; ?>" class="btn btn-danger">Eliminar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
      
                                <?php } ?>
-                               
+
                             </table>
+                            <!--Variable auxiliar para mostrar alerta "Usuario Eliminado"-->
+                            <?php if (isset($_GET['eliminar'])) : ?>
+                                <div class="flash-data" data-flashdata="<?= $_GET['eliminar']; ?>"></div>
+                            <?php endif; ?>
+
+                            <!--Variable auxiliar para mostrar alerta "Usuario Registrado"-->
+                            <?php if (isset($_GET['registro'])) : ?>
+                                <div class="flash-data-r" data-flashdata="<?= $_GET['registro']; ?>"></div>
+                            <?php endif; ?>
+                            
                         </div>
                     </div>
 
@@ -252,7 +258,7 @@ $db = new Db();
                                 
                                 <div class="modal-btns-acciones">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" id="registrar-usuario" name='enviar' class="btn btn-success">Registrar</button>
+                                    <button type="submit" id="btn-registrar-usuario" class="btn btn-success">Registrar</button>
                                 <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
                                 </div>
                             </form>
@@ -393,7 +399,9 @@ $db = new Db();
         <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
         
-            
+        <!--SweetAlert-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
+
         <script src="script.js">
             /*Archivo js para animacion en menu */ 
         </script>
@@ -530,4 +538,40 @@ $db = new Db();
         cancelBtn.classList.add("show");
     }
 
+</script>
+
+<!--FUNCION ALERTA: USUARIO ELIMINADO-->
+<script type="text/javascript">
+    $('#btn-eliminar').on('click', function(){
+        document.location.href = href;
+    })
+
+    const flashdataEliminar = $('.flash-data').data('flashdata')
+    if(flashdataEliminar) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Usuario Eliminado',
+            showConfirmButton: false,
+            timer: 1600
+        })
+    }
+</script>
+
+<!--FUNCION ALERTA: USUARIO REGISTRADO-->
+<script type="text/javascript">
+    $('#btn-registrar-usuario').on('click', function(){
+        document.location.href = href;
+    })
+
+    const flashdataRegistro = $('.flash-data-r').data('flashdata')
+    if(flashdataRegistro) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Nuevo usuario registrado',
+            showConfirmButton: false,
+            timer: 1600
+        })
+    }
 </script>

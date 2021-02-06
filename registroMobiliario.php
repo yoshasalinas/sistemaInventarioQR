@@ -70,27 +70,72 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="nombreActivo">Nombre</label>
-                                            <input type="text" class="form-control" id="nombreActivo" name="nombreActivo">
+                                        <div class="form-group col-md-4">
+                                            <label for="tipoActivo">Tipo de activo</label>
+                                            <input class="form-control" id="tipoActivo" name="tipoActivo" type="text" value="Mobiliario" readonly>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="fechaAlta">Fecha de alta:</label>
-                                            <input type="date" class="form-control" id="fechaAlta" name="fechaAlta" value="<?php echo date("Y-m-d");?>">
+                                        <div class="form-group col-md-4">
+                                            <label for="estatus">Estatus</label>
+                                            <select class="form-control" id="estatus" name="estatus">
+                                                <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                                    $get_estatus= "SELECT * FROM estatus";
+                                                    $consulta = $db -> Db_query($get_estatus);
+                                                    while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                                        echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
+                                                    }
+                                                ?>
+                                                <option value="">No especificado</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="tipoUbicacion">Ubicacion</label> <!--Tipo/Nobre ubicacion-->
+                                            <select class="form-control" id="tipoUbicacion" name="tipoUbicacion" >
+                                                <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                                    $get_ubicaciones = "SELECT * FROM ubicaciones";
+                                                    $consulta = $db -> Db_query($get_ubicaciones);
+                                                    while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                                        echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']." ".$fila['nombre_ubicacion']."</option>"; //muestra los datos de la tabla externa
+                                                    }
+                                                ?>
+                                                <option value="">No especificado</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            
+                                            <label for="nombreActivo">Nombre</label>
+                                            <input type="text" class="form-control" id="nombreActivo" name="nombreActivo">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="fechaAlta">Fecha de alta:</label>
+                                            <input type="date" class="form-control" id="fechaAlta" name="fechaAlta" value="<?php echo date("Y-m-d");?>">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="cantidad">Cantidad</label>
+                                            <input type="number" class="form-control" id="cantidad" name="cantidad" value="1" min="1">
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                       <div class="form-group col-md-6">
                                             <div class="form-group ">
                                                 <label for="marca">Marca</label>
                                                 <input type="text" class="form-control" id="marca" name="marca">
                                             </div>
-                                            <div class="form-group ">
-                                                <label for="modelo">Modelo</label>
-                                                <input type="text" class="form-control" id="modelo" name="modelo">
-                                            </div>
                                             
+                                            <div class="form-row">
+                                                
+                                                <div class="form-group col-6">
+                                                    <label for="modelo">Modelo</label>
+                                                    <input type="text" class="form-control" id="modelo" name="modelo">
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <label for="color">Color</label>
+                                                    <input type="text" class="form-control" id="color" name="color">
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <div class="form-group col-md-6">
                                             <div class="form-group ">
@@ -101,17 +146,7 @@
                                         </div>
                                         
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="color">Color</label>
-                                            <input type="text" class="form-control" id="color" name="color">
-                                        </div>
-                                        <!--Informacion Mobiliario-->
-                                        <div class="form-group col-md-6">
-                                            <label for="cantidad">Cantidad</label>
-                                            <input type="number" class="form-control" id="cantidad" name="cantidad" value="1" min="1">
-                                        </div>
-                                    </div>
+                                    
                                 </div> 
 
                                 <div class="col-md-4 ">
@@ -136,48 +171,6 @@
                                                 <input type="file" name="archivoImagen" id="archivoImagen">
                                             </div>
                                             <div id="form_alert"></div>
-                                        </div>
-                                    </div>
-
-                                    <!--Informacion general-->
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label for="tipoActivo">Tipo de activo</label>
-                                            <input class="form-control" id="tipoActivo" name="tipoActivo" type="text" value="Mobiliario" readonly>
-                                        </div>
-                                    </div>
-                                    <!---->
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label for="estatus">Estatus</label>
-                                            <select class="form-control" id="estatus" name="estatus">
-                                                <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                                    $get_estatus= "SELECT * FROM estatus";
-                                                    $consulta = $db -> Db_query($get_estatus);
-                                                    while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                        echo "<option value ='".$fila['id_estatus']."'>".$fila['nombre_estatus']."</option>"; //muestra los datos de la tabla externa
-                                                    }
-                                                ?>
-                                                <option value="">No especificado</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!---->
-                                    <div class="form-row">
-                                        <!--Informacion de ubicacion-->
-                                        <div class="form-group col-md-12">
-                                            <label for="tipoUbicacion">Ubicacion</label> <!--Tipo/Nobre ubicacion-->
-                                            <select class="form-control" id="tipoUbicacion" name="tipoUbicacion" >
-                                            <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
-                                                $get_ubicaciones = "SELECT * FROM ubicaciones";
-                                                $consulta = $db -> Db_query($get_ubicaciones);
-                                                while($fila=$consulta->fetch_array()){ //recorre el arreglo
-                                                    echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']." ".$fila['nombre_ubicacion']."</option>"; //muestra los datos de la tabla externa
-                                                }
-                                            ?>
-                                            <option value="">No especificado</option>
-                                            </select>
                                         </div>
                                     </div>
 
@@ -225,6 +218,10 @@
                             </div>
                         </div>
                     </div>
+                    <!--Variable auxiliar para mostrar alerta "Usuario Registrado"-->
+                    <?php if (isset($_GET['registro'])) : ?>
+                        <div class="flash-data-r" data-flashdata="<?= $_GET['registro']; ?>"></div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -238,6 +235,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+        <!--SweetAlert-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
+        
         <script src="script.js">
             /*Archivo js*/ 
         </script>
@@ -363,4 +363,22 @@
         cancelBtn.classList.add("show");
     }
 
+</script>
+
+<!--FUNCION ALERTA: Activo REGISTRADO-->
+<script type="text/javascript">
+    /*$('#btn-registrar-usuario').on('click', function(){
+        document.location.href = href;
+    })*/
+
+    const flashdataRegistro = $('.flash-data-r').data('flashdata')
+    if(flashdataRegistro) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Activo registrado',
+            showConfirmButton: false,
+            timer: 1600
+        })
+    }
 </script>

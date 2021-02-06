@@ -105,7 +105,7 @@
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success botones-confirmacion',
-                cancelButton: 'btn btn-danger botones-confirmacion'
+                cancelButton: 'btn btn-secondary botones-confirmacion'
             },
             buttonsStyling: false
         })
@@ -113,7 +113,7 @@
         swalWithBootstrapButtons.fire({
             title: 'Cerrar Sesion',
             text: "¿Esta seguro que desea salir de esta pagina?",
-            icon: 'warning', //No me gusta el icono :C
+            //icon: 'warning', //No me gusta el icono :C
             showCloseButton: true,
             showCancelButton: true,
             confirmButtonText: 'Si',
