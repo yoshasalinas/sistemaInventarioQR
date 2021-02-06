@@ -12,15 +12,15 @@
   background: #081042;
   color: whitesmoke;
   text-align: center;
-  font-size: 8px;
+  font-size: 15px;
 }
 
 .tabla-inventario tbody{
-  font-size: 8px;
+  font-size: 15px;
 }
 
 .tabla-inventario #col-numSerial{
-  width: 80px;
+  
 }
 
 .tabla-inventario .acciones-btn{

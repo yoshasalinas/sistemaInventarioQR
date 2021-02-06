@@ -88,7 +88,7 @@ session_start();
                                 <tbody>
                                 	<?php while ($getresultado = $activo->fetch_assoc()) { ?>
 							            <tr>
-							            	<th scope="row"> <?php echo $getresultado['numeroSerial'] ?> </th>
+							            	<th><?php echo $getresultado['numeroSerial'] ?> </th>
                                             <td><?php echo $getresultado['numero_serial_dispositivo'] ?></td>
 							            	<td><?php echo $getresultado['numero_serial_tecNM'] ?></td>
 							            	<td><?php echo $getresultado['idx_estatus'] ?></td>

@@ -86,9 +86,17 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="fechaAlta">Fecha de alta:</label>
-                                            <input type="date" class="form-control" id="fechaAlta" name="fechaAlta" value="<?php echo date("Y-m-d");?>">
-
+                                            <label for="tipoUbicacion">Ubicacion</label> <!--Tipo/Nobre ubicacion-->
+                                            <select class="form-control" id="tipoUbicacion" name="tipoUbicacion" >
+                                                <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                                    $get_ubicaciones = "SELECT * FROM ubicaciones";
+                                                    $consulta = $db -> Db_query($get_ubicaciones);
+                                                    while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                                        echo "<option value ='".$fila['id_ubicacion']."'>".$fila['tipo_ubicacion']." ".$fila['nombre_ubicacion']."</option>"; //muestra los datos de la tabla externa
+                                                    }
+                                                ?>
+                                                <option value="">No especificado</option>
+                                            </select>
                                         </div>
                                         
                                     </div>
