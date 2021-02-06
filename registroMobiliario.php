@@ -380,5 +380,13 @@
             showConfirmButton: false,
             timer: 1600
         })
+        //se activa el método luego de 1 segundos
+        setTimeout(refresh,1000);   
     }
+
+    function refresh(){
+        location.href ="registroMobiliario.php";
+    }
+
+
 </script>
