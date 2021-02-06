@@ -11,8 +11,10 @@ if(!isset($_SESSION['id'])){
 $nombre = $_SESSION['nombreUsuario'];
 $tipo_usuario = $_SESSION['rol'];
 
+$db = new Db();
+$conexion = $db -> connect();
 $select = "SELECT * FROM estatus";
-$ubicacion = mysqli_query($conexion, $select);
+$estatus = $db-> Db_query($select);
 
 
 ?>
@@ -86,7 +88,7 @@ $ubicacion = mysqli_query($conexion, $select);
                                         </tr>
                                 </thead>
                                 <tbody>
-                                    <?php while ($getresultado = $ubicacion->fetch_assoc()) { ?>
+                                    <?php while ($getresultado = $estatus->fetch_assoc()) { ?>
                                         <tr>
                                             <td><?php echo $getresultado['nombre_estatus'] ?></td>
 

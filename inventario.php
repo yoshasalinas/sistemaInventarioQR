@@ -13,9 +13,6 @@ session_start();
     
     $db = new Db();
 
-    $select = "SELECT * FROM activos";
-    $activo = $db -> Db_query($select);
-
 ?>
 
 <!Doctype html>
@@ -59,6 +56,7 @@ session_start();
             <div id="content" class="container tarjeta">
                 <h1>Inventario</h1>   
                 <div class="container">
+                <!--Tabla de activos registrados-->
                     <div class="row">
                         <div class="col-lg-12 ">
                             <table id="example" class="table table-striped table-bordered tabla-inventario" style="width:100%">
@@ -72,22 +70,30 @@ session_start();
                                         <th>Ubicacion</th>
                                         <th>Nombre</th>
                                         <th>...</th>
-                                        <!--
-                                            <th>Fecha Alta</th>
-                                        <th>Marca</th>
-                                        <th>Modelo</th>
-                                        <th>Descripcion</th>
-                                        <th>Imagen</th>
-                                        <th>QR</th>
-                                        <th>...</th>
-                                        -->
                                         			
                                     </tr>
                                 </thead>
-                                
+                                    <?php 
+                                        
+                                        $conexion = $db -> connect();
+                                    
+                                        $select = "SELECT activos.*, ubicaciones.nombre_ubicacion,estatus.nombre_estatus 
+                                        FROM activos 
+                                        INNER JOIN ubicaciones ON activos.idx_ubicacion = ubicaciones.id_ubicacion
+                                        INNER JOIN estatus ON activos.idx_estatus = estatus.id_estatus";
+                                        $activo = $db -> Db_query($select);
+                                        while ($getresultado = mysqli_fetch_array($activo)) { 
+                                            $datos = $getresultado[3].'||'.
+                                                $getresultado[4]."||".
+                                                $getresultado[5]."||".
+                                                $getresultado[17]."||".
+                                                $getresultado[6]."||".
+                                                $getresultado[16]."||".
+                                                $getresultado[7]."||";                   
+                                    ?>                    
                                 <tbody>
-                                	<?php while ($getresultado = $activo->fetch_assoc()) { ?>
 							            <tr>
+<<<<<<< HEAD
 							            	<th><?php echo $getresultado['numeroSerial'] ?> </th>
                                             <td><?php echo $getresultado['numero_serial_dispositivo'] ?></td>
 							            	<td><?php echo $getresultado['numero_serial_tecNM'] ?></td>
@@ -95,6 +101,15 @@ session_start();
                                             <td><?php echo $getresultado['tipo_activo'] ?></td>
 							            	<td><?php echo $getresultado['idx_ubicacion'] ?></td>
                                             <td><?php echo $getresultado['nombre_activo'] ?></td>
+=======
+							            	<th scope="row"> <?php echo $getresultado[3] ?> </th> <!--serial-->
+                                            <td><?php echo $getresultado[4] ?></td> <!--serial Dispo-->
+							            	<td><?php echo $getresultado[5] ?></td> <!--serial tec-->
+							            	<td><?php echo $getresultado[17] ?></td> <!--estatus-->
+                                            <td><?php echo $getresultado[6] ?></td> <!--tipo activo-->
+							            	<td><?php echo $getresultado[16] ?></td> <!--ubicacion-->
+                                            <td><?php echo $getresultado[7] ?></td> <!--nombre-->
+>>>>>>> f6309adffa47d4b3e80f2c2e48572465d87aa745
                                             <td>
                                                 <!--Boton de accion Editar(Modal)-->
                                                 <button type="button" id="" class="btn btn-outline-secondary acciones-btn" data-toggle="modal" data-target="#modal-editarActivo">
