@@ -23,7 +23,7 @@ $posData[14]= $_POST['cantidad'];
 $consultaUno = "INSERT INTO activos (idx_estatus, idx_ubicacion, numeroSerial, numero_serial_dispositivo,
 numero_serial_tecNM, tipo_activo ,nombre_activo, fecha_alta, marca, modelo, color, descripcion_activo, imagen_activo, imagen_codigo_qr, cantidad) 
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-$result = $db -> Db_query_save("iiisssssssssssi",$consultaUno,$posData);
+$result = $db -> Db_query_save("iissssssssssssi",$consultaUno,$posData);
 
 if(!$result === TRUE){
 
