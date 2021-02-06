@@ -27,7 +27,7 @@ $result = $db -> Db_query_save("iiisssssssssssi",$consultaUno,$posData);
 
 if(!$result === TRUE){
 
-    header("Location: registroRefacciones.php");
+    header("Location: registroRefacciones.php?registro=1");
 
 }else {
                                             
