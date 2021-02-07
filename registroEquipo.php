@@ -278,8 +278,9 @@
                                 </div>
                             </div>
                         </div>
-
+<!--
                         <button type="button" id="btnDownload" class="btn btn btn-primary" href="" >Descargar</button>
+                                            -->
                     </div>
                 </div>
             </div>
