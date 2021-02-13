@@ -1,20 +1,3 @@
-<?php
-    
-/*
-    
-    session_start();
-
-    if(!isset($_SESSION['id'])){
-        header("Location: index.php");
-    }
-
-    $nombre = $_SESSION['nombreUsuario'];
-    $tipo_usuario = $_SESSION['rol'];
-
-    $db = new Db();
-
-*/
-?>
 
 <nav class="navbar-superior navbar-expand-lg navbar-light fixed-top">
     <!--Boton de menu Sidebar-->
