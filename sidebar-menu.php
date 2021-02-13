@@ -1,4 +1,6 @@
 <?php
+/*
+
     
     session_start();
 
@@ -10,6 +12,7 @@
     $tipo_usuario = $_SESSION['rol'];
 
     $db = new Db();
+*/
 
 ?>
 <nav id="sidebar">

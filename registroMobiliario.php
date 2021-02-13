@@ -57,8 +57,7 @@
                                         <div class="form-group col-md-4">
                                             <label for="numSerial">Serial</label>
                                             <input type="text" class="form-control" id="numSerial" name="numSerial" readonly>
-                                        <!--   <input type="text" class="form-control"  name="numSerial" id="txtSerial"> -->
-                                            
+                                        <!--   <input type="text" class="form-control"  name="numSerial" id="txtSerial"> -->    
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="numDispositivo">Serial del Dispositivo</label>

@@ -1,5 +1,7 @@
 <?php
     
+/*
+    
     session_start();
 
     if(!isset($_SESSION['id'])){
@@ -11,6 +13,7 @@
 
     $db = new Db();
 
+*/
 ?>
 
 <nav class="navbar-superior navbar-expand-lg navbar-light fixed-top">
