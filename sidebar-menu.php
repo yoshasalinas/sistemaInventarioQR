@@ -1,17 +1,5 @@
-<?php
-    
-    session_start();
 
-    if(!isset($_SESSION['id'])){
-        header("Location: index.php");
-    }
 
-    $nombre = $_SESSION['nombreUsuario'];
-    $tipo_usuario = $_SESSION['rol'];
-
-    $db = new Db();
-
-?>
 <nav id="sidebar">
     <div class="sidebar-header">
         <i class="fas fa-user"></i>
