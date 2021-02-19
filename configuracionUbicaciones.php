@@ -83,11 +83,11 @@ $ubicacion = $db-> Db_query($select);
                             <table id="example" class="table table-striped table-bordered tabla-usuarios" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Tipo de Ubicacion</th>
+                                        <th>Tipo de Ubicación</th>
                                         <th>Nombre</thscope=>
                                         <th>Nombre del Edificio</th>
                                         <th>Descripcion</th>
-                                        <th id="col-capacidad">Capacidad de la Ubicacion</th>
+                                        <th id="col-capacidad">Capacidad de la Ubicación</th>
                                         <th>...</th>
                                         </tr>
                                 </thead>

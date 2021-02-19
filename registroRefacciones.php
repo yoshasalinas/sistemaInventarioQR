@@ -47,7 +47,7 @@
             <div id="content" class="container tarjeta"> 
                 <div class="container">
                     <!---->
-                    <h1>Registo de Refacciones</h1>
+                    <h1>Registro de Refacciones</h1>
                     <div class="container-form">
                         <form action="validarRegistroRefacciones.php" method="POST">
                             <!--Informacion general-->
@@ -86,7 +86,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="tipoUbicacion">Ubicacion</label> <!--Tipo/Nobre ubicacion-->
+                                            <label for="tipoUbicacion">Ubicación</label> <!--Tipo/Nobre ubicacion-->
                                             <select class="form-control" id="tipoUbicacion" name="tipoUbicacion" >
                                                 <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
                                                     $get_ubicaciones = "SELECT * FROM ubicaciones";
@@ -106,7 +106,7 @@
                                             <input type="text" class="form-control" id="nombreActivo" name="nombreActivo">
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label for="fechaAlta">Fecha de alta:</label>
+                                            <label for="fechaAlta">Fecha de alta</label>
                                             <input type="date" class="form-control" id="fechaAlta" name="fechaAlta" value="<?php echo date("Y-m-d");?>">
                                         </div>
                                         <div class="form-group col-md-2">
@@ -137,7 +137,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <div class="form-group ">
-                                                <label for="descripcionActivo">Descripcion del Activo</label>
+                                                <label for="descripcionActivo">Descripción del Activo</label>
                                                 <textarea class="form-control" id="descripcionActivo" name="descripcionActivo" rows="5"></textarea>
                                             </div>
                                             

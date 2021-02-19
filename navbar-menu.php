@@ -112,8 +112,8 @@
         })
 
         swalWithBootstrapButtons.fire({
-            title: 'Cerrar Sesion',
-            text: "¿Esta seguro que desea salir de esta pagina?",
+            title: 'Cerrar Sesión',
+            text: "¿Está seguro que desea salir de esta página?",
             //icon: 'warning', //No me gusta el icono :C
             showCloseButton: true,
             showCancelButton: true,
