@@ -77,7 +77,7 @@ $db = new Db();
                             <table id="example" class="table table-striped table-bordered tabla-usuarios" >
                                 <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
+                                       <!--<th scope="col">ID</th>-->
                                         <th scope="col">Rol</th>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Apellido Paterno</th>
@@ -98,24 +98,23 @@ $db = new Db();
 
                                     while ($getFila = mysqli_fetch_array($usuario)) { 
 
-                                        $datos = $getFila[0].'||'.
-                                                $getFila[8]."||".
-                                                $getFila[2]."||".
-                                                $getFila[3]."||".
-                                                $getFila[4]."||".
+                                        $datos = $getFila[0].'||'. //ID
+                                                $getFila[8]."||". //rol
+                                                $getFila[2]."||". //nombre
+                                                $getFila[3]."||". //ap
+                                                $getFila[4]."||". //am
                                                 $getFila[5]."||".
-                                                $getFila[6]."||".
+                                                $getFila[6]."||". //pass
                                                 $getFila[7];
 
                                     ?>
                                 <tbody> 
                                     <tr>
-                                    <th scope="row"> <?php echo $getFila[0] ?> </th> <!-- ID--> 
-                                        <th><?php echo $getFila[8] ?></th> <!--Rol-->
-                                        <td><?php echo $getFila[2] ?></td> <!--Nombre-->
-                                        <td><?php echo $getFila[3] ?></td> <!--Ap-->
-                                        <td><?php echo $getFila[4] ?></td> <!--Am-->
-                                        <td><?php echo $getFila[5] ?></td> <!--Nom Usuario-->
+                                    <th scope="row"> <?php echo $getFila[8] ?> </th> <!-- rol--> 
+                                        <th><?php echo $getFila[2] ?></th> <!--nom-->
+                                        <td><?php echo $getFila[3] ?></td> <!--ap-->
+                                        <td><?php echo $getFila[4] ?></td> <!--am-->
+                                        <td><?php echo $getFila[5] ?></td> <!--nomUser-->
                                         <td><?php echo $getFila[7] ?></td> <!--correo-->
                                         
                                         <!--botones--> 
@@ -159,7 +158,7 @@ $db = new Db();
                                             </div>
                                         </div>
                                     </div>
-                                </div>  
+                                </div>
      
                                <?php } ?>
 
@@ -305,19 +304,18 @@ $db = new Db();
                                 Las Contraseñas no coinciden, vuelve a intentar!
                             </div>
                             <!-- Fin Mensajes de Verificación -->
-                             <!-- FORMULARIO VENTANA MODAL EDITAR USUARIO -->
+                             <!-- *********    FORMULARIO VENTANA MODAL EDITAR USUARIO  **********************************************************************-->
                             <form id="formulario-actualizarUsuario" action="" method="POST" >
                                 <div class="form-row ">
                                     <div class="form-group col-md-6">
-                                        <label for="id-edit">ID Usuario</label>
-                                        <input type="text" class="form-control" id="id-edit" name="id-edit" value="" required>
+                                       <!-- <label for="id-edit">ID Usuario</label>
+                                        <input type="text" class="form-control" id="id-edit" name="id-edit" value="" required>-->
                                     </div>      
                                 </div>
                                 <div class="form-row ">
                                     <div class="form-group col-md-6">
-                                        <label for="id-rol-edit">ID rol</label>
-                                        
-                                        <input type="text" class="form-control" id="id-rol-edit" name="id-rol-edit" value="" required>
+                                        <label for="id-rol-edit">Rol</label>     
+                                        <input type="text" class="form-control" id="id-rol-edit" name="id-rol-edit" value="" readonly>
                                     </div>      
                                 </div>
                                 <div class="form-row ">
@@ -373,7 +371,7 @@ $db = new Db();
                                 </div>
                                 <div class="modal-btns-acciones">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" id="registrar-cambios" class="btn btn-success">Guardar cambios</button>
+                                    <button type="submit" href="updateUsuarios.php?id=<?php echo $getFila[0]; ?>" value="update" name="action" id="registrar-cambios" class="btn btn-success">Guardar cambios</button>
                                 <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
                                     <input type="hidden" id="hidden_user_id">
                                 </div>
