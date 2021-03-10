@@ -305,7 +305,7 @@ $db = new Db();
                             </div>
                             <!-- Fin Mensajes de Verificación -->
                              <!-- *********    FORMULARIO VENTANA MODAL EDITAR USUARIO  **********************************************************************-->
-                            <form id="formulario-actualizarUsuario" action="" method="POST" >
+                            <form id="formulario-actualizarUsuario" action="updateUsuarios.php" method="POST" >
                                 <div class="form-row ">
                                     <div class="form-group col-md-6">
                                        <!-- <label for="id-edit">ID Usuario</label>
@@ -371,7 +371,7 @@ $db = new Db();
                                 </div>
                                 <div class="modal-btns-acciones">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" href="updateUsuarios.php?id=<?php echo $getFila[0]; ?>" value="update" name="action" id="registrar-cambios" class="btn btn-success">Guardar cambios</button>
+                                    <button type="submit" id="registrar-cambios" class="btn btn-success">Guardar cambios</button>
                                 <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
                                     <input type="hidden" id="hidden_user_id">
                                 </div>
