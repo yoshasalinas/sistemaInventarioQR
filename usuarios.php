@@ -119,10 +119,6 @@ $db = new Db();
                                         
                                         <!--botones--> 
                                         <td>
-                                            <!--Movimintos-->
-                                            <button type="button" href="" class="btn btn-outline-primary acciones-btn" data-toggle="modal" data-target="#modal-movimientosUsuario">
-                                                <!--Movimientos--><i class="far fa-folder-open"></i>
-                                            </button>
                                             <!--Editar-->
                                             <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarUsuario" onclick="llenarModal_actualizar('<?php echo $datos ?>');">
                                                 <i class="far fa-edit"></i>
@@ -172,6 +168,11 @@ $db = new Db();
                             <?php if (isset($_GET['registro'])) : ?>
                                 <div class="flash-data-r" data-flashdata="<?= $_GET['registro']; ?>"></div>
                             <?php endif; ?>
+
+                                <!--Variable auxiliar para mostrar alerta "Usuario Registrado"-->
+                                <?php if (isset($_GET['editar'])) : ?>
+                                <div class="flash-data-e" data-flashdata="<?= $_GET['editar']; ?>"></div>
+                            <?php endif; ?>         
                             
                         </div>
                     </div>
@@ -266,26 +267,6 @@ $db = new Db();
                 </div>
             </div>
         </div>  
-
-        <!-- Modal: Movimientos del usuario-->
-        <div class="modal fade" id="modal-movimientosUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <H2 class="modal-title" id="exampleModalLongTitle">Movientos</H2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            Mostrar movientos hechos por el usuario...
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>  
-
         <!-- Modal: Editar informacion del usuario-->
         <div class="modal fade" id="modal-editarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -305,7 +286,7 @@ $db = new Db();
                             </div>
                             <!-- Fin Mensajes de Verificación -->
                              <!-- *********    FORMULARIO VENTANA MODAL EDITAR USUARIO  **********************************************************************-->
-                            <form id="formulario-actualizarUsuario" action="updateUsuarios.php" method="POST" >
+                            <form id="formulario-editarUsuario" action="updateUsuarios.php" method="POST" >
                                 <div class="form-row ">
                                     <div class="form-group col-md-6">
                                        <!-- <label for="id-edit">ID Usuario</label>
@@ -337,8 +318,8 @@ $db = new Db();
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 ">
-                                        <label for="rol-edit">Rol</label>
-                                        <select class="form-control" id="rol-edit" name="rol-edit">
+                                        <label for="id-rol-edit">Rol</label>
+                                        <select class="form-control" id="id-rol-edit" name="id-rol-edit">
                                             <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
                                                 $get_roles = "SELECT * FROM rol";
                                                 $consulta = $db -> Db_query($get_roles);
@@ -371,8 +352,9 @@ $db = new Db();
                                 </div>
                                 <div class="modal-btns-acciones">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" id="registrar-cambios" class="btn btn-success">Guardar cambios</button>
-                                <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
+                                    <!--ME QUEDE AQUI-->
+                                    <button type="submit" id="btn-registrar-cambios" class="btn btn-success">Guardar cambios</button>
+                                <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button> href="validarRegistroUsuario.php"-->
                                     <input type="hidden" id="hidden_user_id">
                                 </div>
                             </form>
@@ -424,6 +406,7 @@ $db = new Db();
 
     //
     var formulario = document.getElementById("formulario-nuevoUsuario");
+    //var formularioEditar = document.getElementById("formulario-editarUsuario");
  
     // Verificamos si las constraseñas no coinciden 
         if (pass1.value != pass2.value) {
@@ -451,6 +434,7 @@ $db = new Db();
             //}, 3000);
 
             formulario.submit();
+           // formularioEditar.submit();
             return true;
         }
  
@@ -568,6 +552,24 @@ $db = new Db();
             position: 'center',
             icon: 'success',
             title: 'Nuevo usuario registrado',
+            showConfirmButton: false,
+            timer: 1600
+        })
+    }
+</script>
+
+<!--FUNCION ALERTA: USUARIO Editar-->
+<script type="text/javascript">
+    $('#btn-registrar-cambios').on('click', function(){
+        document.location.href = href;
+    })
+
+    const flashdataEditar = $('.flash-data-e').data('flashdata')
+    if(flashdataEditar) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Usuario actualizado',
             showConfirmButton: false,
             timer: 1600
         })

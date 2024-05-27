@@ -52,28 +52,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <!--Imagen del activo-->
-                            <div class="form-row">
-                                <div class="form-group col-12">
-                                    <label for="archivoImagen"></label>
-                                    <div class="previewImagen">
-                                        <span class="delPhoto notBlock"><i class="fas fa-times"></i></span>
-                                        <label for="archivoImagen"></label>
-                                        <div>
-                                            <div class="image-activo">
-                                                <img src="" alt="" id="img" class="oculto">
-                                            </div>
-                                            <div class="content" id="portada">
-                                                <div class="icon"><i class="fas fa-upload"></i></div>
-                                                <div class="text">Subir QR</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="upimg">
-                                        <input type="file" name="archivoImagen" id="archivoImagen">
-                                    </div>
-                                    <div id="form_alert"></div>
-                                </div>
-                            </div>
+
 
                             <!--Imagen del activo-->
                             <div class="form-row">

@@ -103,7 +103,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="nombreActivo">Nombre</label>
-                                            <input type="text" class="form-control" id="nombreActivo" name="nombreActivo">
+                                            <input type="text" class="form-control" id="nombreActivo" name="nombreActivo" required>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="fechaAlta">Fecha de alta</label>

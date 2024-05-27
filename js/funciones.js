@@ -12,5 +12,31 @@ function llenarModal_actualizar(datos) {
     $("#correo-edit").val(d[7]);
     $("#pass1").val(d[6]);
     $("#pass2").val(d[6]);
+   
+    const autoCompleteConfig = [{
+        name: 'Activos',
+        debounceMS: 250,
+        minLength: 2,
+        maxResults: 10,
+        inputSource: document.getElementById('inputText1'),
+        targetID: document.getElementById('inputID1'),
+        fetchURL: 'http://localhost/tutos/js_autocomplete/paises.php?term={term}',
+        fetchMap: {id: "alpha2Code",
+                   name: "name"}
+      }
+    ];
     
+    console.log(autoCompleteConfig);
+    
+    // Initiate Autocomplete to Create Listeners
+    autocompleteBS(autoCompleteConfig);
+    
+    function resultHandlerBS(inputName, selectedData) {
+      //console.log(inputName);
+     // console.log(selectedData);
+      document.getElementById('inputID0').value=selectedData.id;
+      document.getElementById('inputID2').value=selectedData.phonecode;
+      document.getElementById('inputID3').value=selectedData.nicename;
+    
+    }
 }

@@ -61,7 +61,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label for="numSerial">Serial</label>
-                                            <input type="text" class="form-control " id="numSerial" aria-describedby="inputGroup-sizing-sm" readonly>
+                                            <input type="text" class="form-control " id="numSerial" name = "numSerial" aria-describedby="inputGroup-sizing-sm" readonly>
                                             
                                         </div>
                                         <div class="form-group col-md-4">
@@ -104,7 +104,7 @@
                                         <div class="form-group col-md-6">
                                             <div class="form-group ">
                                                 <label for="descripcionActivo">Descripción del Activo</label>
-                                                <textarea class="form-control" id="descripcionActivo" rows="5"></textarea>
+                                                <textarea class="form-control" id="descripcionActivo" name="descripcionActivo" rows="5"></textarea>
                                             </div>
                                             
                                         </div>
@@ -184,7 +184,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label for="tipoActivo">Tipo de activo</label>
-                                            <input class="form-control" id="tipoActivo" type="text" value="Equipo" readonly>
+                                            <input class="form-control" id="tipoActivo" type="text" value="Equipo" name="tipoActivo" readonly>
                                         </div>
                                     </div>
                                     <!---->
@@ -278,9 +278,10 @@
                                 </div>
                             </div>
                         </div>
-<!--
-                        <button type="button" id="btnDownload" class="btn btn btn-primary" href="" >Descargar</button>
-                                            -->
+                    <!--Variable auxiliar para mostrar alerta "Usuario Registrado"-->
+                    <?php if (isset($_GET['registro'])) : ?>
+                        <div class="flash-data-r" data-flashdata="<?= $_GET['registro']; ?>"></div>
+                    <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -302,7 +303,7 @@
         <!--SweetAlert
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>--:
         
-        <!--<script src="js/sweetAlert.js"></script>-->
+        <script src="js/sweetAlert.js"></script>-->
 
     </body>
 </html>
@@ -342,19 +343,8 @@
 
                 }
             })
-
-            parametros={"textqr":textqr,"sizeqr":sizeqr};
-                $.ajax({
-                type: "POST",
-                url: "qr-img.php",
-                data: parametros,
-                success: function(datos){
-                    $(".content-codigo-qr-img").html(datos);
-                    //let image = $("#archivoQR").val();
-                    //$("#archivoQR").val(image);
-                }
-            })
-            0
+            
+            
             event.preventDefault();
         }
 
@@ -457,5 +447,30 @@
             title:"Bienvenido!",
         });
     }
+
 </script>
+
+<!--FUNCION ALERTA: Activo REGISTRADO-->
+<script type="text/javascript">
+    /*$('#btn-registrar-usuario').on('click', function(){
+        document.location.href = href;
+    })*/
+
+    const flashdataRegistro = $('.flash-data-r').data('flashdata')
+    if(flashdataRegistro) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Activo registrado',
+            showConfirmButton: false,
+            timer: 1600
+        })
+        //se activa el método luego de 1 segundos
+        setTimeout(refresh,1000);   
+    }
+
+    function refresh(){
+        location.href ="registroEquipo.php";
+    }
+    </script>
 

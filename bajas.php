@@ -46,9 +46,42 @@
                 <div class="container">
                     <!---->
                     <h1>Baja de Activos</h1>
+                    <div class="container-form">
+                        <form action="validarBajas.php" method="POST" >
+                                                        <!--Buscar Activo-->
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="numSerial">Serial</label>
+                                            <input type="text" class="form-control " id="numSerial" name = "numSerial" >
+                                            
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="numDispositivo">Serial del Dispositivo</label>
+                                            <input type="text" class="form-control" id="numDispositivo" name="numDispositivo">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                        <label for="input-datalist">Timezone</label>
+                                        <input type="text" class="form-control" placeholder="Timezone" list="list-timezone" id="input-datalist">
+                                        <select class="form-control" id="id_activos" name="activos">
+                                        <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
+                                                    $get_estatus= "SELECT * FROM activos";
+                                                    $consulta = $db -> Db_query($get_estatus);
+                                                    while($fila=$consulta->fetch_array()){ //recorre el arreglo
+                                                        echo "<option value ='".$fila['id_activos']."'>".$fila['numeroSerial']."</option>"; //muestra los datos de la tabla externa
+                                                    }
+                                                ?>
+                                                <option value="">No especificado</option>
+                                                </datalist>
+                                        </div>
+                                        <div class="modal-btns-acciones">
+                                    <button type="submit" id="btn-registrar-usuario" class="btn btn-success">Buscar</button>
+                                <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
+                                </div>
                 </div>
             </div>
         </div>
+</form>
+</div>
             
             
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->

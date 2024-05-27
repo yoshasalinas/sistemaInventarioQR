@@ -57,6 +57,16 @@ class Db{
 		$stmt->close();
 	}
 
+	public function Db_query_save_second($types, $query){
+		$connection = $this -> connect();
+
+		$stmt = $connection -> prepare($query);
+
+		$stmt->bind_param($types);
+		$stmt->execute();
+		$stmt->close();
+	}
+
 	public function Db_query_select($types, $query, $postData){
 		$connection = $this -> connect();
 

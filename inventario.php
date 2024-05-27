@@ -105,10 +105,10 @@ session_start();
                                                 <button type="button" id="" class="btn btn-outline-secondary acciones-btn" data-toggle="modal" data-target="#modal-editarActivo">
                                                     Editar<i class="far fa-edit"></i>
                                                 </button>
-                                                <!-- Boton de accion Eliminar(Modal)-->
+                                                <!-- Boton de accion Eliminar(Modal)
                                                 <button type="button" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarActivo">
                                                     Eliminar <i class="fas fa-trash-alt"></i>
-                                                </button>
+                                                </button>-->
                                             </td>
                                            
                                             
