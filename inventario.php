@@ -105,13 +105,12 @@ session_start();
                                                 <button type="button" id="" class="btn btn-outline-secondary acciones-btn" data-toggle="modal" data-target="#modal-editarActivo">
                                                     Editar<i class="far fa-edit"></i>
                                                 </button>
-                                                <!-- Boton de accion Eliminar(Modal)
-                                                <button type="button" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarActivo">
-                                                    Eliminar <i class="fas fa-trash-alt"></i>
-                                                </button>-->
+                                                <!-- Boton de accion Descargar QR(Modal) -->
+                                                <a href = "downloadQR.php?id=<?php echo $getresultado['numeroSerial'] ;?>" >
+                                                Descargar QR <i class="fa fa-download"></i>
+                                                </a>
                                             </td>
-                                           
-                                            
+
                                             <!--
                                             <td><?php echo $getresultado['fecha_alta'] ?></td>
 							            	<td><?php echo $getresultado['marca'] ?></td>
@@ -127,7 +126,7 @@ session_start();
                                             
 							            	
 							            	<td>
-							            		<a href="modificarActivo.php?idx_numeroSerial=<?= $getresultado['idx_numeroSerial'] ?>" class="btn btn-outline-info">Modificar</a>
+							            		<a ="modificarActivo.php?idx_numeroSerial=<?= $getresultado['idx_numeroSerial'] ?>" class="btn btn-outline-info">Modificar</a>
 							            	</td>
                                             -->
 							            </tr>
@@ -150,7 +149,7 @@ session_start();
                                     </div>
                                     <div class="modal-body">
                                         <div class="container">
-                                            Traer formulario segun el tipo de activo que sea para poder mostrar la informacion
+                                            Traer formulario segun el tipo de ahrefctivo que sea para poder mostrar la informacion
                                         </div>
                                     </div>
                                     <div class="modal-footer">

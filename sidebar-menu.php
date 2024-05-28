@@ -71,18 +71,6 @@
             </a>
         </li>
         <li>
-            <a href="ubicaciones.php">
-                <i class="fas fa-map-marked-alt fa-lg"></i>
-                Ubicaciones
-            </a>
-        </li>
-        <li>
-            <a href="reportes.php">
-                <i class="fas fa-info-circle"></i>
-                Reportes
-            </a>
-        </li>
-        <li>
             <a href="#configuracionesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="fas fa-cog"></i>
                 Configuraciones

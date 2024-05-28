@@ -52,12 +52,6 @@
         <li>
             <a href="inventario.php"><i class="fas fa-box-open fa-lg"></i>Inventario</a>
         </li>
-        <li>
-            <a href="ubicaciones.php"><i class="fas fa-map-marked-alt fa-lg"></i>Ubicaciones</a>
-        </li>
-        <li>
-            <a href="reportes.php"><i class="fas fa-info-circle"></i>Reportes</a>
-        </li>
         <!--Condicion para tipo de usuario: SOLO ADMINISTRADOR-->
         <?php if($tipo_usuario == 1) { ?>
         <li>
