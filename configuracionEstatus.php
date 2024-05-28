@@ -117,7 +117,7 @@ $estatus = $db-> Db_query($select);
                                 </div>
                                 <div class="modal-body">
                                     <div class="container">
-                                        <form id="formulario-nuevoEstatus" action="" method="POST">
+                                        <form id="formulario-nuevoEstatus" action="validarEstatus.php" method="POST">
                                             <div class="form-row ">
                                                 <div class="form-group col-12">
                                                     <label for="estatus">Estatus</label>
@@ -160,7 +160,7 @@ $estatus = $db-> Db_query($select);
                                         </div>
                                         <div class="modal-btns-acciones">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-danger">Eliminar</a>
+                                            <a href="eliminarEstatus.php?id_usuario=<?= $getresultado['id_estatus'] ?>" class="btn btn-danger">Eliminar</a>
                                         </div>
                                     </div>
                                 </div>
