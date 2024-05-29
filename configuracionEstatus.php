@@ -94,7 +94,7 @@ $estatus = $db-> Db_query($select);
 
                                             <!--botones--> 
                                             <td>
-                                                <a href="" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarUsuario">
+                                                <a href="" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarEsatus">
                                                     <!--Eliminar--><i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </td>
@@ -127,7 +127,7 @@ $estatus = $db-> Db_query($select);
 
                                             <div class="modal-btns-acciones">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" id="registrar" class="btn btn-success">Registrar</button>
+                                                <button type="submit" id="btn-registrar-estatus" class="btn btn-success">Registrar</button>
                                             <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
                                             </div>
                                         </form>
@@ -143,8 +143,9 @@ $estatus = $db-> Db_query($select);
 
                     
                     
-                    <!--Eliminar Ubicacion-->       
-                    <div class="modal fade" id="modal-eliminarEstatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <!--Eliminar estatus-->       
+
+                    <div class="modal fade" id=<?php echo "modal-eliminarEsatus" . $getFila[0]; ?> tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -167,11 +168,26 @@ $estatus = $db-> Db_query($select);
 
                             </div>
                         </div>
-                    </div>
+                    </div> <!--Fin de eliminar-->
                     
                 </div>
             </div> <!--FIN Contenido principal-->
         </div>
+
+                            <!--Variable auxiliar para mostrar alerta "Estatus Eliminado"-->
+                             <?php if (isset($_GET['eliminar'])) : ?>
+                            <div class="flash-data" data-flashdata="<?= $_GET['eliminar']; ?>"></div>
+                            <?php endif; ?>
+
+                            <!--Variable auxiliar para mostrar alerta "Estatus Registrado"-->
+                            <?php if (isset($_GET['registro'])) : ?>
+                            <div class="flash-data-r" data-flashdata="<?= $_GET['registro']; ?>"></div>
+                            <?php endif; ?>
+
+                            <!--Variable auxiliar para mostrar alerta "Estatus Registrado"-->
+                            <?php if (isset($_GET['editar'])) : ?>
+                            <div class="flash-data-e" data-flashdata="<?= $_GET['editar']; ?>"></div>
+                            <?php endif; ?>     
             
             
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -270,4 +286,40 @@ $estatus = $db-> Db_query($select);
         cancelBtn.classList.add("show");
     }
 
+</script>
+
+<!--FUNCION ALERTA: ESTATUS REGISTRADO-->
+<script type="text/javascript">
+    $('#btn-registrar-estatus').on('click', function(){
+        document.location.href = href;
+    })
+
+    const flashdataRegistro = $('.flash-data-r').data('flashdata')
+    if(flashdataRegistro) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Nuevo estatus registrado',
+            showConfirmButton: false,
+            timer: 1600
+        })
+    }
+</script>
+
+<!--FUNCION ALERTA: USUARIO ELIMINADO-->
+<script type="text/javascript">
+    $('#btn-eliminarEstatus').on('click', function(){
+        document.location.href = href;
+    })
+
+    const flashdataEliminar = $('.flash-data').data('flashdata')
+    if(flashdataEliminar) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Estatus Eliminado',
+            showConfirmButton: false,
+            timer: 1600
+        })
+    }
 </script>
