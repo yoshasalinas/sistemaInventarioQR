@@ -12,9 +12,9 @@ $nombre = $_SESSION['nombreUsuario'];
 $tipo_usuario = $_SESSION['rol'];
 
 $db = new Db();
-$conexion = $db -> connect();
-$select = "SELECT * FROM estatus";
-$estatus = $db-> Db_query($select);
+//$conexion = $db -> connect();
+//$select = "SELECT * FROM estatus";
+//$estatus = $db-> Db_query($select);
 
 
 ?>
@@ -34,7 +34,7 @@ $estatus = $db-> Db_query($select);
         <link href="css/general-navbar-sidebar-menu-styles.css" rel="stylesheet" type="text/css">
         
         <!--<link href="css/inicio-style.css" rel="stylesheet" type="text/css">-->
-        <link href="css/configurarUbicaciones-styles.css" rel="stylesheet" type="text/css">
+        <link href="css/estatus-styles.css" rel="stylesheet" type="text/css">
         <!--icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         
@@ -69,44 +69,85 @@ $estatus = $db-> Db_query($select);
                             </div>
                         </div>
                     </div>
-                    <div class="row btn-nuevoUsuario" >
+                    <div class="row btn-nuevoEstatus" >
                         <div class="col-lg-12">
-                            <button  type="submit" class="btn btn-nuevoUsuario" data-toggle="modal" data-target="#modal-nuevoEstatus">
+                            <button  type="submit" class="btn btn-nuevoEstatus" data-toggle="modal" data-target="#modal-nuevoEstatus">
                                 Registrar nuevo estatus
                                 <i class="fas fa-check-double"></i>
                             </button>
                         </div>
                     </div>
-                    <!--Tabla de usuarios registrados-->
+                    <!--Tabla de estatus registrados-->
                     <div class="row" id="tabla-de-estatus">
                         <div class="col-lg-12">
-                            <table id="example" class="table table-striped table-bordered tabla-usuarios" style="width:100%">
+                            <table id="example" class="table table-striped table-bordered tabla-estatus" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Estatus</th>
-                                        <th>...</th>
+                                    <th scope="col">Estatus</th>
+                                    <th scope="col">...</th>
                                         </tr>
                                 </thead>
+                                <?php 
+
+                                $conexion = $db -> connect();
+
+                                $select = "SELECT * FROM estatus ";
+                                //$usuario = mysqli_query($conexion, $select);
+                                $estatus = $db -> Db_query($select);
+
+                                while ($getFila = mysqli_fetch_array($estatus)) { 
+
+                                    $datos = $getFila[0].'||'. //ID
+                                            $getFila[1]."||"; //name estatus
+
+                                ?>
                                 <tbody>
-                                    <?php while ($getresultado = $estatus->fetch_assoc()) { ?>
                                         <tr>
-                                            <td><?php echo $getresultado['nombre_estatus'] ?></td>
+                                        <th scope="row"> <?php echo $getFila[1] ?> </th> <!-- name estatus--> 
 
                                             <!--botones--> 
                                             <td>
-                                                <a href="" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarEsatus">
-                                                    <!--Eliminar--><i class="fas fa-trash-alt"></i>
-                                                </a>
+                                                <!-- Eliminar-->
+                                                <button href="" type="button" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target=<?php echo "#modal-eliminarEsatus" . $getFila[0] ?>>
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
                                             </td>
                                         </tr>
-                                    <?php } ?>
                                 </tbody>
-                            </table>
                         </div>
                     </div>
 
-                    <!-- Modal: Registro de nueva ubicacion-->
-                    <div class="modal fade" id="modal-nuevoEstatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <!--Eliminar estatus-->       
+
+                        <div class="modal fade" id=<?php echo "modal-eliminarEsatus" . $getFila[0]; ?> tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Estatus</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="div">
+                                            ¿Esta seguro que desea eliminar este estatus del registro?
+                                        </div>
+                                        <div class="modal-btns-acciones">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <a id="btn-eliminarEstatus" href="eliminarEstatus.php?id=<?php echo $getFila[0]; ?>" class="btn btn-danger">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> <!--Fin de eliminar-->
+                    <?php } ?>
+                    </table>
+
+                                            <!-- Modal: Registro de nueva ubicacion-->
+                        <div class="modal fade" id="modal-nuevoEstatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -135,48 +176,53 @@ $estatus = $db-> Db_query($select);
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                
+                    </div>  
 
                     
 
                     
-                    
-                    <!--Eliminar estatus-->       
 
-                    <div class="modal fade" id=<?php echo "modal-eliminarEsatus" . $getFila[0]; ?> tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Estatus</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <div class="div">
-                                            ¿Esta seguro que desea eliminar este estatus del registro?
-                                        </div>
-                                        <div class="modal-btns-acciones">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <a href="eliminarEstatus.php?id_usuario=<?= $getresultado['id_estatus'] ?>" class="btn btn-danger">Eliminar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div> <!--Fin de eliminar-->
-                    
+   
+                    <!--aqi-->
                 </div>
             </div> <!--FIN Contenido principal-->
         </div>
 
+                                <!-- Modal: Registro de nueva ubicacion-->
+                                <div class="modal fade" id="modal-nuevoEstatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <H2 class="modal-title" id="exampleModalLongTitle">Nuevo Estatus</H2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form id="formulario-nuevoEstatus" action="validarEstatus.php" method="POST">
+                                            <div class="form-row ">
+                                                <div class="form-group col-12">
+                                                    <label for="estatus">Estatus</label>
+                                                    <input type="text" class="form-control" id="estatus" name="estatus" required>    
+                                                </div>  
+                                            </div>
+
+                                            <div class="modal-btns-acciones">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" id="btn-registrar-estatus" class="btn btn-success">Registrar</button>
+                                            <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+
                             <!--Variable auxiliar para mostrar alerta "Estatus Eliminado"-->
                              <?php if (isset($_GET['eliminar'])) : ?>
-                            <div class="flash-data" data-flashdata="<?= $_GET['eliminar']; ?>"></div>
+                            <div class="flash-data-d" data-flashdata="<?= $_GET['eliminar']; ?>"></div>
                             <?php endif; ?>
 
                             <!--Variable auxiliar para mostrar alerta "Estatus Registrado"-->
@@ -225,7 +271,7 @@ $estatus = $db-> Db_query($select);
     pass2 = document.getElementById('pass2');
 
     //
-    var formulario = document.getElementById("formulario-nuevoUsuario");
+    var formulario = document.getElementById("formulario-nuevoEstatus");
  
     // Verificamos si las constraseñas no coinciden 
     if (pass1.value != pass2.value) {
@@ -288,6 +334,24 @@ $estatus = $db-> Db_query($select);
 
 </script>
 
+<!--FUNCION ALERTA: ESTATUS ELIMINADO-->
+<script type="text/javascript">
+    $('#btn-eliminarEstatus').on('click', function(){
+        document.location.href = href;
+    })
+
+    const flashdataEliminar = $('.flash-data-d').data('flashdata')
+    if(flashdataEliminar) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Estatus Eliminado',
+            showConfirmButton: false,
+            timer: 1600
+        })
+    }
+</script>
+
 <!--FUNCION ALERTA: ESTATUS REGISTRADO-->
 <script type="text/javascript">
     $('#btn-registrar-estatus').on('click', function(){
@@ -306,20 +370,3 @@ $estatus = $db-> Db_query($select);
     }
 </script>
 
-<!--FUNCION ALERTA: USUARIO ELIMINADO-->
-<script type="text/javascript">
-    $('#btn-eliminarEstatus').on('click', function(){
-        document.location.href = href;
-    })
-
-    const flashdataEliminar = $('.flash-data').data('flashdata')
-    if(flashdataEliminar) {
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Estatus Eliminado',
-            showConfirmButton: false,
-            timer: 1600
-        })
-    }
-</script>
