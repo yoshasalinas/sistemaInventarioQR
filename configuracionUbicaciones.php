@@ -13,9 +13,9 @@ $tipo_usuario = $_SESSION['rol'];
 
 $db = new Db();
 
-$conexion = $db -> connect();
-$select = "SELECT * FROM ubicaciones";
-$ubicacion = $db-> Db_query($select);
+//$conexion = $db -> connect();
+//$select = "SELECT * FROM ubicaciones";
+//$ubicacion = $db-> Db_query($select);
 
 
 ?>
@@ -63,7 +63,7 @@ $ubicacion = $db-> Db_query($select);
                     <!---->
                     <div class="row " >
                         <div class="col-lg-12">
-                            <H1>Ubicaciones del sistema</H1>
+                            <H1>Ubicaciones del activo</H1>
                             <div id="ok" class="alert alert-success ocultar" role="alert">
                                 Registro exitoso!
                             </div>
@@ -83,23 +83,41 @@ $ubicacion = $db-> Db_query($select);
                             <table id="example" class="table table-striped table-bordered tabla-usuarios" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Tipo de Ubicación</th>
-                                        <th>Nombre</thscope=>
-                                        <th>Nombre del Edificio</th>
-                                        <th>Descripcion</th>
-                                        <th id="col-capacidad">Capacidad de la Ubicación</th>
-                                        <th>...</th>
-                                        </tr>
-                                </thead>
-                                <tbody>
-                                    <?php while ($getresultado = $ubicacion->fetch_assoc()) { ?>
-                                        <tr>
-                                            <td><?php echo $getresultado['tipo_ubicacion'] ?></td>
-                                            <td><?php echo $getresultado['nombre_ubicacion'] ?></td>
-                                            <td><?php echo $getresultado['nombre_edificio'] ?></td>
-                                            <td><?php echo $getresultado['descripcion_ubicacion'] ?></td>
-                                            <td><?php echo $getresultado['capacidad'] ?></td>
 
+                                        <th scope="col">Tipo de Ubicación</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Nombre del Edificio</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col" id="col-capacidad">Capacidad de la Ubicación</th>
+                                        <th scope="col">...</th>
+                                    </tr>
+                                </thead>
+                                <?php 
+
+                                    $conexion = $db -> connect();
+                                    
+                                    $select = "SELECT * FROM ubicaciones";
+                                    $ubicacion = $db -> Db_query($select);
+
+                                    while ($getFila = mysqli_fetch_array($ubicacion)) { 
+
+                                        $datos = $getFila[0].'||'. //ID
+                                                $getFila[1]."||". //tipo
+                                                $getFila[2]."||". //nombre ubi
+                                                $getFila[3]."||". //nombre edi
+                                                $getFila[4]."||". //descripcion
+                                                $getFila[5]."||"; // capacidad
+        
+
+                                    ?>
+                                <tbody>
+                                        <tr>
+
+                                            <th scope="row"> <?php echo $getFila[1] ?> </th> <!-- tipo--> 
+                                            <th><?php echo $getFila[2] ?></th> <!--nom ubi-->
+                                            <td><?php echo $getFila[3] ?></td> <!--nombre edi-->
+                                            <td><?php echo $getFila[4] ?></td> <!--descripcion-->
+                                            <td><?php echo $getFila[5] ?></td> <!--capacidad-->
                                             
                                             <!--botones--> 
                                             <td>
@@ -108,23 +126,62 @@ $ubicacion = $db-> Db_query($select);
                                                     <!--Editar--><i class="far fa-edit"></i>
 
                                                 </a>
-                                                <a href="" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target="#modal-eliminarUsuario">
-                                                    <!--Eliminar--><i class="fas fa-trash-alt"></i>
-                                                </a>
+                                                <!-- Boton Eliminar-->
+                                                <button href="" type="button" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target=<?php echo "#modal-eliminarUbicacion" . $getFila[0] ?>>
+                                                <i class="fas fa-trash-alt"></i>
                                             </td>
                                             
                                         </tr>
-                                    <?php } ?>
                                 </tbody>
-                            </table>
+
+                    <!--Eliminar Ubicacion-->       
+                    <div class="modal fade" id=<?php echo "modal-eliminarUbicacion" . $getFila[0]; ?> tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Ubicacion</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="div">
+                                            ¿Esta seguro que desea eliminar la ubicacion del registro?
+                                        </div>
+                                        <div class="modal-btns-acciones">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <a id="btn-eliminar"  href="eliminarUbicaciones.php?id=<?php echo $getFila[0]; ?>" class="btn btn-danger">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                        <?php } ?>
+                         </table>
+
+                            <!--Variable auxiliar para mostrar alerta "Usuario Eliminado"-->
+                            <?php if (isset($_GET['eliminar'])) : ?>
+                            <div class="flash-data-d" data-flashdata="<?= $_GET['eliminar']; ?>"></div>
+                            <?php endif; ?>
+
+                            <!--Variable auxiliar para mostrar alerta "Usuario Registrado"-->
+                            <?php if (isset($_GET['registro'])) : ?>
+                                <div class="flash-data-r" data-flashdata="<?= $_GET['registro']; ?>"></div>
+                            <?php endif; ?>
+
+                                <!--Variable auxiliar para mostrar alerta "Usuario Registrado"-->
+                                <?php if (isset($_GET['editar'])) : ?>
+                                <div class="flash-data-e" data-flashdata="<?= $_GET['editar']; ?>"></div>
+                            <?php endif; ?> 
                         </div>
                     </div>
 
-                    <!--Variable auxiliar para mostrar alerta "Usuario Registrado"-->
-                    <?php if (isset($_GET['registro'])) : ?>
-                        <div class="flash-data-r" data-flashdata="<?= $_GET['registro']; ?>"></div>
-                    <?php endif; ?>
-
+                </div>
+            </div> <!--FIN Contenido principal-->
+        </div>
                     <!-- Modal: Registro de nueva ubicacion-->
                     <div class="modal fade" id="modal-nuevaUbicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -286,35 +343,9 @@ $ubicacion = $db-> Db_query($select);
                         </div>
                     </div>  
                     
-                    <!--Eliminar Ubicacion-->       
-                    <div class="modal fade" id="modal-eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Ubicacion</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <div class="div">
-                                            ¿Esta seguro que desea eliminar la ubicacion del registro?
-                                        </div>
-                                        <div class="modal-btns-acciones">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <a href="eliminarUsuario.php?id_usuario=<?= $getresultado['id_usuario'] ?>" class="btn btn-danger">Eliminar</a>
-                                        </div>
-                                    </div>
-                                </div>
 
-                            </div>
-                        </div>
-                    </div>
                     
-                </div>
-            </div> <!--FIN Contenido principal-->
-        </div>
+
             
             
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -354,7 +385,7 @@ $ubicacion = $db-> Db_query($select);
     pass2 = document.getElementById('pass2');
 
     //
-    var formulario = document.getElementById("formulario-nuevoUsuario");
+    var formulario = document.getElementById("formulario-nuevoUbicacion");
  
     // Verificamos si las constraseñas no coinciden 
     if (pass1.value != pass2.value) {
@@ -457,3 +488,21 @@ $ubicacion = $db-> Db_query($select);
     }
 
 </script>
+
+
+<!--FUNCION ALERTA: UBICACION ELIMINADO-->
+<script type="text/javascript">
+    $('#btn-eliminar').on('click', function(){
+        document.location.href = href;
+    })
+
+    const flashdataEliminar = $('.flash-data-d').data('flashdata')
+    if(flashdataEliminar) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Ubicacion Eliminado',
+            showConfirmButton: false,
+            timer: 1600
+        })
+    }
