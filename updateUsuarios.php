@@ -15,9 +15,9 @@ $posData[5] = $_POST['contrasena-edit'];
 $posData[6] = $_POST['correo-edit'];
 
     
-        $update = "UPDATE usuarios SET idX_rol='$posData[0]', nombre='$posData[0]', apellido_paterno='$posData[2]', apellido_materno='$posData[3]', 
-        nombre_usuario='$posData[4]', contrasena='$posData[5]', correo='$posData[5]'
-        WHERE  id_usuario=?";
+        $update = "UPDATE usuarios SET idX_rol='$posData[0]', nombre='$posData[1]', apellido_paterno='$posData[2]', apellido_materno='$posData[3]', 
+        nombre_usuario='$posData[4]', contrasena='$posData[5]', correo='$posData[6]'
+        FROM usuarios WHERE  id_usuario=?";
         echo($update);
         $result = $db -> Db_query("issssss",$update,$posData);
 

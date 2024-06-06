@@ -98,7 +98,7 @@ $db = new Db();
                                 while ($getFila = mysqli_fetch_array($estatus)) { 
 
                                     $datos = $getFila[0].'||'. //ID
-                                            $getFila[1]."||"; //name estatus
+                                             $getFila[1]."||"; //name estatus
 
                                 ?>
                                 <tbody>
@@ -107,6 +107,10 @@ $db = new Db();
 
                                             <!--botones--> 
                                             <td>
+                                            <!--Editar-->
+                                            <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarEstatus" onclick="llenarModal_actualizar('<?php echo $datos ?>');">
+                                                <i class="far fa-edit"></i>
+                                            </button>
                                                 <!-- Eliminar-->
                                                 <button href="" type="button" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target=<?php echo "#modal-eliminarEstatus" . $getFila[0] ?>>
                                                     <i class="fas fa-trash-alt"></i>
@@ -115,7 +119,7 @@ $db = new Db();
                                         </tr>
                                 </tbody>
                         </div>
-                    </div>
+                        </div>
 
                         <!--Eliminar estatus-->       
 
@@ -123,7 +127,7 @@ $db = new Db();
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Estatus</h5>
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar estatus</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -142,11 +146,28 @@ $db = new Db();
 
                             </div>
                         </div>
-                    </div> <!--Fin de eliminar-->
+                        </div> <!--Fin de eliminar-->
                     <?php } ?>
                     </table>
 
-                                            <!-- Modal: Registro de nueva ubicacion-->
+                    
+                            <!--Variable auxiliar para mostrar alerta "Estatus Eliminado"-->
+                            <?php if (isset($_GET['eliminar'])) : ?>
+                            <div class="flash-data-d" data-flashdata="<?= $_GET['eliminar']; ?>"></div>
+                            <?php endif; ?>
+
+                            <!--Variable auxiliar para mostrar alerta "Estatus Registrado"-->
+                            <?php if (isset($_GET['registro'])) : ?>
+                            <div class="flash-data-r" data-flashdata="<?= $_GET['registro']; ?>"></div>
+                            <?php endif; ?>
+
+                            <!--Variable auxiliar para mostrar alerta "Estatus Registrado"-->
+                            <?php if (isset($_GET['editar'])) : ?>
+                            <div class="flash-data-e" data-flashdata="<?= $_GET['editar']; ?>"></div>
+                            <?php endif; ?>     
+            
+
+                        <!-- Modal: Registro de nuevo ubicacion-->
                         <div class="modal fade" id="modal-nuevoEstatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -178,40 +199,38 @@ $db = new Db();
                         </div>
                     </div>  
 
-                    
-
-                    
-
-   
                     <!--aqi-->
                 </div>
             </div> <!--FIN Contenido principal-->
         </div>
 
-                                <!-- Modal: Registro de nueva ubicacion-->
-                                <div class="modal fade" id="modal-nuevoEstatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <!-- Modal: Formulario de editar estatus-->
+                                <div class="modal fade" id= "modal-editarEstatus"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <H2 class="modal-title" id="exampleModalLongTitle">Nuevo Estatus</H2>
+                                    <H2 class="modal-title" id="exampleModalLongTitle">Editar estatus</H2>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="container">
-                                        <form id="formulario-nuevoEstatus" action="validarEstatus.php" method="POST">
+                                        <form id="formulario-editarEstatus" action="updateEstatus.php" method="POST"> 
                                             <div class="form-row ">
                                                 <div class="form-group col-12">
-                                                    <label for="estatus">Estatus</label>
-                                                    <input type="text" class="form-control" id="estatus" name="estatus" required>    
+                                                    <label for="estatus-edit">Estatus</label>
+                                                    <input type="text" class="form-control" id="estatus-edit" name="estatus-edit" value="" required>
+                                                    
+                                                    <!--<label for="editName"> <?php echo $datos ?> </th>-->
                                                 </div>  
                                             </div>
 
                                             <div class="modal-btns-acciones">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" id="btn-registrar-estatus" class="btn btn-success">Registrar</button>
+                                                <button type="submit" id="btn-registrar-cambios" class="btn btn-success">Guardar cambios</button>
                                             <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
+                                            <input type="hidden" id="hidden_user_id">
                                             </div>
                                         </form>
                                     </div>
@@ -220,21 +239,6 @@ $db = new Db();
                         </div>
                     </div>  
 
-                            <!--Variable auxiliar para mostrar alerta "Estatus Eliminado"-->
-                             <?php if (isset($_GET['eliminar'])) : ?>
-                            <div class="flash-data-d" data-flashdata="<?= $_GET['eliminar']; ?>"></div>
-                            <?php endif; ?>
-
-                            <!--Variable auxiliar para mostrar alerta "Estatus Registrado"-->
-                            <?php if (isset($_GET['registro'])) : ?>
-                            <div class="flash-data-r" data-flashdata="<?= $_GET['registro']; ?>"></div>
-                            <?php endif; ?>
-
-                            <!--Variable auxiliar para mostrar alerta "Estatus Registrado"-->
-                            <?php if (isset($_GET['editar'])) : ?>
-                            <div class="flash-data-e" data-flashdata="<?= $_GET['editar']; ?>"></div>
-                            <?php endif; ?>     
-            
             
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -250,8 +254,10 @@ $db = new Db();
         <!-- extension responsive y de bootstrap 4-->
         <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
-        
-            
+
+        <!--SweetAlert-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
+
         <script src="script.js">
             /*Archivo js para animacion en menu */ 
         </script>
@@ -260,6 +266,10 @@ $db = new Db();
 </html>
 
 <script src="js/datatables.js">
+    /*Archivo js para plugin datatables*/ 
+</script>
+
+<script src="js/funciones.js">
     /*Archivo js para plugin datatables*/ 
 </script>
 
@@ -364,6 +374,24 @@ $db = new Db();
             position: 'center',
             icon: 'success',
             title: 'Nuevo estatus registrado',
+            showConfirmButton: false,
+            timer: 1600
+        })
+    }
+</script>
+
+<!--FUNCION ALERTA: USUARIO Editar-->
+<script type="text/javascript">
+    $('#btn-registrar-cambios').on('click', function(){
+        document.location.href = href;
+    })
+
+    const flashdataEditar = $('.flash-data-e').data('flashdata')
+    if(flashdataEditar) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Estatus actualizado',
             showConfirmButton: false,
             timer: 1600
         })

@@ -208,7 +208,7 @@ $db = new Db();
                                                     </select>
                                                 </div>
 
-                                                <!--Agregar nuevo tipo de ubicacion-->    
+                                                <!--Agregar nuevo tipo de ubicacion 
                                                 <div class="form-group col-md-5">
                                                     <label for="nuevoTipoUbicacion">Nuevo tipo</label>
                                                     <input type="text" class="form-control" id="nuevoTipoUbicacion" name="nuevoTipoUbicacion">
@@ -218,7 +218,7 @@ $db = new Db();
                                                     <a class="btn btn-outline-success" id="nuevaUb-btn" href="#" role="button"onclick="insertValue();">
                                                         <i class="fas fa-plus"></i>
                                                     </a>
-                                                </div>      
+                                                </div>      -->   
                                                     
                                             </div>
 
@@ -266,7 +266,7 @@ $db = new Db();
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <H2 class="modal-title" id="exampleModalLongTitle">Ubicación</H2>
+                                    <H2 class="modal-title" id="exampleModalLongTitle">Editar ubicación</H2>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -290,7 +290,7 @@ $db = new Db();
                                                     </select>
                                                 </div>
 
-                                                <!--Agregar nuevo tipo de ubicacion-->    
+                                                <!--Agregar nuevo tipo de ubicacion   
                                                 <div class="form-group col-md-5">
                                                     <label for="nuevoTipoUbicacion">Nuevo tipo</label>
                                                     <input type="text" class="form-control" id="nuevoTipoUbicacion" name="nuevoTipoUbicacion" required>
@@ -300,7 +300,7 @@ $db = new Db();
                                                     <a class="btn btn-outline-success" id="nuevaUb-btn" href="#" role="button"onclick="insertValue();">
                                                         <i class="fas fa-plus"></i>
                                                     </a>
-                                                </div>      
+                                                </div>      --> 
                                                     
                                             </div>
 

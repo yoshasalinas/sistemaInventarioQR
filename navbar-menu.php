@@ -23,9 +23,6 @@
             </a>
             <ul class="collapse list-unstyled" id="movimientosSubmenu">
                 <li>
-                    <a href="cambioUbicacion.php"><i class="fas fa-thumbtack"></i>Cambio de Ubicacion</a>
-                </li>
-                <li>
                     <a href="prestamo.php"><i class="fas fa-people-carry"></i>Prestamo</a>
                 </li>
                 <li>

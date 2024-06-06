@@ -169,7 +169,7 @@ $db = new Db();
                                 <div class="flash-data-r" data-flashdata="<?= $_GET['registro']; ?>"></div>
                             <?php endif; ?>
 
-                                <!--Variable auxiliar para mostrar alerta "Usuario Registrado"-->
+                                <!--Variable auxiliar para mostrar alerta "Usuario Editado"-->
                                 <?php if (isset($_GET['editar'])) : ?>
                                 <div class="flash-data-e" data-flashdata="<?= $_GET['editar']; ?>"></div>
                             <?php endif; ?>         
@@ -272,7 +272,7 @@ $db = new Db();
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <H2 class="modal-title" id="exampleModalLongTitle">Usuario</H2>
+                        <H2 class="modal-title" id="exampleModalLongTitle">Editar usuario</H2>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -312,7 +312,7 @@ $db = new Db();
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="aPaterno-edit">Apellido paterno</label>
-                                        <input type="text" class="form-control" id="aPaterno-edit" name="aPaterno-edit" required>    
+                                        <input type="text" class="form-control" id="aPaterno-edit" name="aPaterno-edit" >    
                                     </div>     
                                         
                                 </div>
