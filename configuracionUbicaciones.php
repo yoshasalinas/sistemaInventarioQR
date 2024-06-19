@@ -121,11 +121,11 @@ $db = new Db();
                                             
                                             <!--botones--> 
                                             <td>
-                                                
-                                                <a href="" class="btn btn-outline-secondary acciones-btn" data-toggle="modal" data-target="#modal-editarUbicacion">
-                                                    <!--Editar--><i class="far fa-edit"></i>
-
-                                                </a>
+                                    <!--Boton editar-->
+                                                <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarUbicacion" 
+                                                onclick="llenarModal_actualizarUbicaciones('<?php echo $datos ?>');">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
                                                 <!-- Boton Eliminar-->
                                                 <button href="" type="button" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target=<?php echo "#modal-eliminarUbicacion" . $getFila[0] ?>>
                                                 <i class="fas fa-trash-alt"></i>
@@ -277,8 +277,8 @@ $db = new Db();
                                         <form id="formulario-nuevaUbicacion" action="validarRegistroUbicaciones.php" method="POST">
                                             <div class="form-row ">
                                                 <div class="form-group col-md-5">
-                                                    <label for="tipoUbicacion">Tipo de Ubicacion</label>
-                                                    <select class="form-control" id="tipoUbicacion" name="tipoUbicacion">
+                                                    <label for="tipoUbicacion-edit">Tipo de Ubicacion</label>
+                                                    <select class="form-control" id="tipoUbicacion-edit" name="tipoUbicacion-edit">
                                                         <?php // TODO ESTA LINEA DE CODIGO SOLO ES PARA TRAER LOS DATOS DE MIS TABLAS CON LA LLAVE FORANEA
                                                             $get_ubicaciones = "SELECT * FROM ubicaciones";
                                                             $consulta = $db -> Db_query($get_ubicaciones);
@@ -306,27 +306,27 @@ $db = new Db();
 
                                             <div class="form-row ">
                                                 <div class="form-group col-12">
-                                                    <label for="nombre">Nombre</label>
-                                                    <input type="text" class="form-control" id="nombre" name="nombre" required >
+                                                    <label for="nombreUbicacion-edit">Nombre</label>
+                                                    <input type="text" class="form-control" id="nombreUbicacion-edit" name="nombreUbicacion-edit" required >
                                                 </div>  
                                                 
                                             </div>
                                             <div class="form-row ">
                                                 <div class="form-group col-12">
-                                                    <label for="aMaterno">Edificio</label>
-                                                    <input type="text" class="form-control" id="edificio" name="edificio" required>    
+                                                    <label for="edificio-edit">Edificio</label>
+                                                    <input type="text" class="form-control" id="edificio-edit" name="edificio-edit" required>    
                                                 </div>  
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <label for="descripcion">Descripcion de la ubicación</label>
-                                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                                                    <label for="descripcion-edit">Descripcion de la ubicación</label>
+                                                    <textarea class="form-control" id="descripcion-edit" name="descripcion-edit" rows="3"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-row ">
                                                 <div class="form-group col-md-2">
-                                                    <label for="capacidad">Capacidad</label>
-                                                    <input type="number" class="form-control" id="capacidad" name="capacidad" value="1" min="1" required>    
+                                                    <label for="capacidad-edit">Capacidad</label>
+                                                    <input type="number" class="form-control" id="capacidad-edit" name="capacidad-edit" value="1" min="1" required>    
                                                 </div> 
                                                 
                                             </div>
@@ -374,6 +374,10 @@ $db = new Db();
 </html>
 
 <script src="js/datatables.js">
+    /*Archivo js para plugin datatables*/ 
+</script>
+
+<script src="js/funcionesUbicaciones.js">
     /*Archivo js para plugin datatables*/ 
 </script>
 

@@ -16,7 +16,13 @@ $db = new Db();
 //$select = "SELECT * FROM estatus";
 //$estatus = $db-> Db_query($select);
 
+/*
 
+$query = "SELECT * FROM estatus WHERE id_estatus = $id";
+$result = $conexion -> query($query);
+$record = $result -> fetch_assoc();
+print_r($record);
+*/
 ?>
 <!Doctype html>
 <html lang="en">
@@ -83,6 +89,7 @@ $db = new Db();
                             <table id="example" class="table table-striped table-bordered tabla-estatus" style="width:100%">
                                 <thead>
                                     <tr>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Estatus</th>
                                     <th scope="col">...</th>
                                         </tr>
@@ -91,32 +98,34 @@ $db = new Db();
 
                                 $conexion = $db -> connect();
 
-                                $select = "SELECT * FROM estatus ";
-                                //$usuario = mysqli_query($conexion, $select);
+                                $select = "SELECT * FROM estatus";
                                 $estatus = $db -> Db_query($select);
 
                                 while ($getFila = mysqli_fetch_array($estatus)) { 
 
                                     $datos = $getFila[0].'||'. //ID
-                                             $getFila[1]."||"; //name estatus
+                                             $getFila[1]; //name estatus
 
                                 ?>
-                                <tbody>
-                                        <tr>
-                                        <th scope="row"> <?php echo $getFila[1] ?> </th> <!-- name estatus--> 
-
+                            <tbody>
+                                    <tr>
+                                        <th scope="row"> <?php echo $getFila[0] ?> </th>
+                                        <td><?php echo $getFila[1] ?></td> <!--nom-->
                                             <!--botones--> 
-                                            <td>
+                                        <td>
                                             <!--Editar-->
-                                            <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarEstatus" onclick="llenarModal_actualizar('<?php echo $datos ?>');">
+                                            <button  href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn" data-toggle="modal" 
+                                            data-target="#modal-editarEstatus" onclick="llenarModal_actualizarEstatus('<?php echo $datos ?>');">
                                                 <i class="far fa-edit"></i>
                                             </button>
                                                 <!-- Eliminar-->
-                                                <button href="" type="button" class="btn btn-outline-danger acciones-btn" data-toggle="modal" data-target=<?php echo "#modal-eliminarEstatus" . $getFila[0] ?>>
+                                                <button href="" type="button" class="btn btn-outline-danger acciones-btn" data-toggle="modal" 
+                                                data-target=<?php echo "#modal-eliminarEstatus" . $getFila[0] ?>>
                                                     <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                                </button>  
+                                                
+                                        </td>
+                                     </tr>
                                 </tbody>
                         </div>
                         </div>
@@ -167,8 +176,13 @@ $db = new Db();
                             <?php endif; ?>     
             
 
-                        <!-- Modal: Registro de nuevo ubicacion-->
-                        <div class="modal fade" id="modal-nuevoEstatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+                    <!--aqi-->
+                </div>
+            </div> <!--FIN Contenido principal-->
+        </div>
+                                <!-- Modal: Registro de nuevo ubicacion-->
+                                <div class="modal fade" id="modal-nuevoEstatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -180,7 +194,7 @@ $db = new Db();
                                 <div class="modal-body">
                                     <div class="container">
                                         <form id="formulario-nuevoEstatus" action="validarEstatus.php" method="POST">
-                                            <div class="form-row ">
+                                        <div class="form-row ">
                                                 <div class="form-group col-12">
                                                     <label for="estatus">Estatus</label>
                                                     <input type="text" class="form-control" id="estatus" name="estatus" required>    
@@ -188,7 +202,7 @@ $db = new Db();
                                             </div>
 
                                             <div class="modal-btns-acciones">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarNuevo()">Cancelar</button>
                                                 <button type="submit" id="btn-registrar-estatus" class="btn btn-success">Registrar</button>
                                             <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
                                             </div>
@@ -199,10 +213,6 @@ $db = new Db();
                         </div>
                     </div>  
 
-                    <!--aqi-->
-                </div>
-            </div> <!--FIN Contenido principal-->
-        </div>
 
                                 <!-- Modal: Formulario de editar estatus-->
                                 <div class="modal fade" id= "modal-editarEstatus"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -217,17 +227,21 @@ $db = new Db();
                                 <div class="modal-body">
                                     <div class="container">
                                         <form id="formulario-editarEstatus" action="updateEstatus.php" method="POST"> 
+                                        <div class="form-row ">
+                                            <div class="form-group col-md-6">
+                                            <label for="id-edit">ID Usuario</label>
+                                             <input type="text" class="form-control" id="id-edit" name="id-edit" value="">
+                                            </div>      
+                                        </div>
                                             <div class="form-row ">
                                                 <div class="form-group col-12">
                                                     <label for="estatus-edit">Estatus</label>
                                                     <input type="text" class="form-control" id="estatus-edit" name="estatus-edit" value="" required>
-                                                    
-                                                    <!--<label for="editName"> <?php echo $datos ?> </th>-->
                                                 </div>  
                                             </div>
 
                                             <div class="modal-btns-acciones">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarEdit()">Cancelar</button>
                                                 <button type="submit" id="btn-registrar-cambios" class="btn btn-success">Guardar cambios</button>
                                             <!--<button  type="btn" class="btn-success" onclick="Ocultar()"  >Ocultar</button>-->
                                             <input type="hidden" id="hidden_user_id">
@@ -269,7 +283,7 @@ $db = new Db();
     /*Archivo js para plugin datatables*/ 
 </script>
 
-<script src="js/funciones.js">
+<script src="js/funcionesEstatus.js">
     /*Archivo js para plugin datatables*/ 
 </script>
 
@@ -398,3 +412,14 @@ $db = new Db();
     }
 </script>
 
+<script>
+function limpiarEdit() {
+    document.getElementById("estatus-edit").value = "";
+}
+</script>
+
+<script>
+function limpiarNuevo() {
+    document.getElementById("estatus").value = "";
+}
+</script>

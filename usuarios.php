@@ -120,7 +120,8 @@ $db = new Db();
                                         <!--botones--> 
                                         <td>
                                             <!--Editar-->
-                                            <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarUsuario" onclick="llenarModal_actualizar('<?php echo $datos ?>');">
+                                            <button href="" type="button"  id="ver_modal" class="btn btn-outline-secondary acciones-btn " data-toggle="modal" data-target="#modal-editarUsuario" 
+                                             onclick="llenarModal_actualizar('<?php echo $datos ?>');">
                                                 <i class="far fa-edit"></i>
                                             </button>
 
